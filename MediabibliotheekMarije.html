@@ -25,43 +25,42 @@
             max-width: 100%;
             margin: 0 auto;
             background: white;
-            padding: 8px;
+            padding: 10px;
             border-radius: 0;
             box-shadow: none;
         }
         
         h1 {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 18px;
+            font-size: 20px;
             color: #1a365d;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
             letter-spacing: 0.5px;
-            font-weight: bold;
         }
         
         .tabs {
             display: flex;
-            margin-bottom: 4px;
-            gap: 3px;
+            margin-bottom: 15px;
+            gap: 5px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
         
         .tab {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 1px;
+            padding: 8px 12px;
             background-color: #e2e8f0;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 14px;
             white-space: nowrap;
             color: #1a365d;
         }
         
         .tab.active {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
         }
         
@@ -82,8 +81,8 @@
         #searchInput, #librarySearchInput {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             flex: 1;
-            padding: 20px;
-            font-size: 11px;
+            padding: 10px;
+            font-size: 14px;
             border: 1px solid #cbd5e0;
             border-radius: 6px;
             min-width: 0;
@@ -92,19 +91,19 @@
         #searchButton, #librarySearchButton {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 10px 15px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 14px;
             white-space: nowrap;
         }
         
         .filters {
             display: flex;
             gap: 8px;
-            margin-bottom: 4px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -120,7 +119,7 @@
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin-bottom: 4px;
             font-weight: bold;
-            font-size: 11px;
+            font-size: 12px;
             color: #1a365d;
         }
         
@@ -129,7 +128,7 @@
             padding: 8px;
             border: 1px solid #cbd5e0;
             border-radius: 6px;
-            font-size: 11px;
+            font-size: 12px;
         }
         
         .duration-range input {
@@ -139,7 +138,7 @@
         .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 3px;
+            gap: 10px;
         }
         
         .media-card {
@@ -148,20 +147,20 @@
             padding: 8px;
             background: white;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            font-size: 11px;
+            font-size: 12px;
         }
         
         .media-card img {
             width: 100%;
             height: auto;
             border-radius: 4px;
-            margin-bottom: 2px;
+            margin-bottom: 6px;
         }
         
         .media-card h3 {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 6px 0;
-            font-size: 11px;
+            font-size: 14px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -180,7 +179,7 @@
         
         .media-card .actions {
             display: flex;
-            gap: 3px;
+            gap: 5px;
             margin-top: 8px;
             flex-wrap: wrap;
         }
@@ -196,7 +195,7 @@
         }
         
         .media-card .add-button {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
         }
         
@@ -228,13 +227,13 @@
         
         .export-section button {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 1px;
-            background: linear-gradient(135deg, #1a365d 0%, #15202b 100%);
+            padding: 8px 12px;
+            background-color: #1a365d;
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 12px;
         }
         
         .table-container {
@@ -246,55 +245,32 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
         }
         
         th, td {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 6px 4px;
+            padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #cbd5e0;
             white-space: nowrap;
-            font-size: 11px;
         }
         
         th {
-            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 12px 10px;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-            white-space: nowrap;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
+            background-color: #e2e8f0;
             cursor: pointer;
             position: sticky;
             top: 0;
             z-index: 10;
-            font-weight: bold;
-            transition: background 0.2s ease;
+            color: #1a365d;
         }
         
         th:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
             background-color: #cbd5e0;
         }
         
         tr:hover {
             background-color: #ebf8ff;
-        }
-        
-        .sort-indicator {
-            font-size: 10px;
-            color: #718096;
-            margin-left: 5px;
-        }
-        
-        th.sorted-asc::after {
-            content: " ↑";
-        }
-        
-        th.sorted-desc::after {
-            content: " ↓";
         }
         
         .poster-cell {
@@ -329,7 +305,7 @@
             width: 90%;
             max-width: 400px;
             border-radius: 8px;
-            font-size: 11px;
+            font-size: 14px;
             color: #1a202c;
         }
         
@@ -354,7 +330,7 @@
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: block;
             margin: 6px 0;
-            font-size: 11px;
+            font-size: 12px;
             color: #1a365d;
         }
         
@@ -364,7 +340,7 @@
             padding: 8px;
             border: 1px solid #cbd5e0;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 12px;
             box-sizing: border-box;
         }
         
@@ -377,12 +353,12 @@
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin-top: 12px;
             padding: 8px 15px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 14px;
         }
         
         .image-modal {
@@ -441,11 +417,11 @@
             }
             
             .filter-group, .duration-range, .sort-group {
-                min-width: 80px;
+                min-width: 100px;
             }
             
             .filters {
-                gap: 3px;
+                gap: 5px;
             }
         }
     </style>
@@ -455,13 +431,11 @@
         <h1>Mediabibliotheek van Marije</h1>
         
         <div class="tabs">
-            <button id="table-tab" class="tab active" onclick="switchTab('table')">Tabelweergave</button>
             <button id="grid-tab" class="tab" onclick="switchTab('grid')">Kaartweergave</button>
+            <button id="table-tab" class="tab active" onclick="switchTab('table')">Tabelweergave</button>
         </div>
 
-
-
-<div id="grid-view" class="tab-content">
+        <div id="grid-view" class="tab-content">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Zoek op titel...">
                 <button id="searchButton">Zoeken</button>
@@ -490,7 +464,7 @@
                 </div>
                 <div class="filter-group">
                     <label for="streamingFilter">Streamingdienst:</label>
-                    <select id="streamingFilter" multiple style="height: 22px; font-size: 10px;">
+                    <select id="streamingFilter" multiple>
                         <option value="">Alle streamingdiensten</option>
                         <option value="Netflix">Netflix</option>
                         <option value="Disney+">Disney+</option>
@@ -514,7 +488,7 @@
                 </div>
                 <div class="duration-range">
                     <label>Duur:</label>
-                    <div style="display: flex; gap: 3px; align-items: center;">
+                    <div style="display: flex; gap: 5px; align-items: center;">
                         <input type="number" id="durationMinFilter" placeholder="Min" min="0">
                         <span>tot</span>
                         <input type="number" id="durationMaxFilter" placeholder="Max" min="0">
@@ -523,7 +497,7 @@
                 <div class="sort-group">
                     <label for="sortFilter">Sorteer:</label>
                     <select id="sortFilter">
-                        <option value="">Standaard (Nieuwste eerst)</option>
+                        <option value="">Geen</option>
                         <option value="title-asc">Titel (A-Z)</option>
                         <option value="title-desc">Titel (Z-A)</option>
                         <option value="year-asc">Jaar (oud→nieuw)</option>
@@ -531,21 +505,6 @@
                         <option value="duration-asc">Duur (kort→lang)</option>
                         <option value="duration-desc">Duur (lang→kort)</option>
                     </select>
-                </div>
-                <div class="filter-group">
-                    <label for="subscriptionFilter">Mijn abonnementen:</label>
-                    <select id="subscriptionFilter" multiple style="height: 22px; font-size: 10px;">
-                        <option value="Netflix">Netflix</option>
-                        <option value="Disney+">Disney+</option>
-                        <option value="Amazon Prime Video">Prime Video</option>
-                        <option value="HBO Max">HBO Max</option>
-                        <option value="NPO Start">NPO Start</option>
-                        <option value="Videoland">Videoland</option>
-                        <option value="Pathé Thuis">Pathé Thuis</option>
-                        <option value="Apple TV+">Apple TV+</option>
-                        <option value="Sky Showtime">Sky Showtime</option>
-                    </select>
-                    <button onclick="saveSubscriptions()" style="margin-top: 5px; padding: 4px 8px; font-size: 11px;">Opslaan</button>
                 </div>
             </div>
             
@@ -553,155 +512,11 @@
                 <button onclick="exportToExcel()">Exporteer naar Excel</button>
             </div>
             
-                        <div class="search-box">
-                <input type="text" id="gridSearchInput" placeholder="Zoek op titel...">
-                <button id="gridSearchButton">Zoeken</button>
-            </div>
-            
-            <div class="library-search-box">
-                <input type="text" id="gridLibrarySearchInput" placeholder="Zoek in bibliotheek...">
-                <button id="gridLibrarySearchButton">Zoeken</button>
-            </div>
-
-            <div class="filters" style="flex-wrap: wrap;">
-                <div class="filter-group" style="min-width: 100px;">
-                    <label for="gridTypeFilter" style="font-size: 10px; margin-bottom: 1px;">Type:</label>
-                    <select id="gridTypeFilter" style="padding: 1px; font-size: 10px; height: 22px;">
-                        <option value="">Alle types</option>
-                        <option value="movie">Films</option>
-                        <option value="tv">Series</option>
-                        <option value="documentary">Documentaires</option>
-                    </select>
-                </div>
-                <div class="filter-group" style="min-width: 100px;">
-                    <label for="gridWatchedFilter" style="font-size: 10px; margin-bottom: 1px;">Status:</label>
-                    <select id="gridWatchedFilter" style="padding: 1px; font-size: 10px; height: 22px;">
-                        <option value="">Alle status</option>
-                        <option value="watched">Bekeken</option>
-                        <option value="not-watched">Niet bekeken</option>
-                        <option value="watching">Nu aan het kijken</option>
-                    </select>
-                </div>
-                <div class="filter-group" style="min-width: 100px;">
-                    <label for="gridSortFilter" style="font-size: 10px; margin-bottom: 1px;">Sorteer:</label>
-                    <select id="gridSortFilter" style="padding: 1px; font-size: 10px; height: 22px;">
-                        <option value="">Nieuwste eerst</option>
-                        <option value="title-asc">Titel A-Z</option>
-                        <option value="title-desc">Titel Z-A</option>
-                        <option value="year-desc">Jaar nieuw→oud</option>
-                    </select>
-                </div>
-                <div class="filter-group" style="min-width: 100px;">
-                    <label for="gridGenreFilter" style="font-size: 10px; margin-bottom: 1px;">Genre:</label>
-                    <select id="gridGenreFilter" style="padding: 1px; font-size: 10px; height: 22px;">
-                        <option value="">Alle genres</option>
-                    </select>
-                </div>
-                <div class="filter-group" style="min-width: 120px;">
-                    <label for="gridStreamingFilter" style="font-size: 10px; margin-bottom: 1px;">Streaming:</label>
-                    <select id="gridStreamingFilter" multiple style="padding: 1px; font-size: 10px; height: 22px;">
-                        <option value="">Alle</option>
-                        <option value="Netflix">Netflix</option>
-                        <option value="Disney+">Disney+</option>
-                        <option value="Prime Video">Prime Video</option>
-                        <option value="HBO Max">HBO Max</option>
-                        <option value="NPO Start">NPO Start</option>
-                        <option value="Videoland">Videoland</option>
-                        <option value="Pathé Thuis">Pathé Thuis</option>
-                        <option value="Apple TV+">Apple TV+</option>
-                        <option value="Sky Showtime">Sky Showtime</option>
-                    </select>
-                </div>
-                <div class="duration-range" style="min-width: 100px;">
-                    <label style="font-size: 10px; margin-bottom: 1px;">Duur:</label>
-                    <div style="display: flex; gap: 2px; align-items: center;">
-                        <input type="number" id="gridDurationMinFilter" placeholder="Min" min="0" style="padding: 1px; font-size: 10px; height: 20px; width: 45px;">
-                        <span style="font-size: 10px;">tot</span>
-                        <input type="number" id="gridDurationMaxFilter" placeholder="Max" min="0" style="padding: 1px; font-size: 10px; height: 20px; width: 45px;">
-                    </div>
-                </div>
-            </div>
-            
-                        
-<div class="media-grid" id="mediaGrid"></div>
+            <div class="media-grid" id="mediaGrid"></div>
         </div>
 
         <div id="table-view" class="tab-content active">
-                        <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Zoek op titel...">
-                <button id="searchButton">Zoeken</button>
-            </div>
-            
-            <div class="library-search-box">
-                <input type="text" id="librarySearchInput" placeholder="Zoek in bibliotheek...">
-                <button id="librarySearchButton">Zoeken</button>
-            </div>
-
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="typeFilter">Type:</label>
-                    <select id="typeFilter">
-                        <option value="">Alle types</option>
-                        <option value="movie">Films</option>
-                        <option value="tv">Series</option>
-                        <option value="documentary">Documentaires</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="genreFilter">Genre:</label>
-                    <select id="genreFilter">
-                        <option value="">Alle genres</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="streamingFilter">Streamingdienst:</label>
-                    <select id="streamingFilter" multiple style="height: 22px; font-size: 10px;">
-                        <option value="">Alle streamingdiensten</option>
-                        <option value="Netflix">Netflix</option>
-                        <option value="Disney+">Disney+</option>
-                        <option value="Amazon Prime Video">Prime Video</option>
-                        <option value="HBO Max">HBO Max</option>
-                        <option value="NPO Start">NPO Start</option>
-                        <option value="Videoland">Videoland</option>
-                        <option value="Pathé Thuis">Pathé Thuis</option>
-                        <option value="Apple TV+">Apple TV+</option>
-                        <option value="Sky Showtime">Sky Showtime</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="watchedFilter">Bekeken:</label>
-                    <select id="watchedFilter">
-                        <option value="">Alle status</option>
-                        <option value="watched">Bekeken</option>
-                        <option value="not-watched">Niet bekeken</option>
-                        <option value="watching">Nu aan het kijken</option>
-                    </select>
-                </div>
-                <div class="duration-range">
-                    <label>Duur:</label>
-                    <div style="display: flex; gap: 3px; align-items: center;">
-                        <input type="number" id="durationMinFilter" placeholder="Min" min="0" style="padding: 1px; font-size: 10px;">
-                        <span>tot</span>
-                        <input type="number" id="durationMaxFilter" placeholder="Max" min="0" style="padding: 1px; font-size: 10px;">
-                    </div>
-                </div>
-                <div class="sort-group">
-                    <label for="sortFilter">Sorteer:</label>
-                    <select id="sortFilter">
-                        <option value="">Standaard (Nieuwste eerst)</option>
-                        <option value="title-asc">Titel (A-Z)</option>
-                        <option value="title-desc">Titel (Z-A)</option>
-                        <option value="year-asc">Jaar (oud→nieuw)</option>
-                        <option value="year-desc">Jaar (nieuw→oud)</option>
-                        <option value="duration-asc">Duur (kort→lang)</option>
-                        <option value="duration-desc">Duur (lang→kort)</option>
-                    </select>
-                </div>
-
-            </div>
-            
-                        
-<div class="table-container">
+            <div class="table-container">
                 <table>
                     <thead>
                         <tr>
@@ -723,1191 +538,7 @@
                     <tbody id="tableBody"></tbody>
                 </table>
             </div>
-                    </div>
-    </div>
-
-    <!-- Modal voor streamingdiensten -->
-    <div id="streamingModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Streamingdiensten</h2>
-            <p id="modalMediaTitle"></p>
-            <div class="streaming-options">
-                <label><input type="checkbox" id="netflixCheckbox"> Netflix</label>
-                <label><input type="checkbox" id="disneyCheckbox"> Disney+</label>
-                <label><input type="checkbox" id="primeCheckbox"> Amazon Prime Video</label>
-                <label><input type="checkbox" id="hboCheckbox"> HBO Max</label>
-                <label><input type="checkbox" id="npoCheckbox"> NPO Start</label>
-                <label><input type="checkbox" id="videolandCheckbox"> Videoland</label>
-                <label><input type="checkbox" id="patheCheckbox"> Pathé Thuis</label>
-                <label><input type="checkbox" id="appleCheckbox"> Apple TV+</label>
-                <button onclick="saveStreamingServices()">Opslaan</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal voor bewerken -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeEditModal()">&times;</span>
-            <h2>Bewerken</h2>
-            <p id="editModalMediaTitle"></p>
-            <div class="edit-options">
-                <label for="editTitle">Titel:</label>
-                <input type="text" id="editTitle">
-                
-                <label for="editTranslatedTitle">Nederlandse titel:</label>
-                <input type="text" id="editTranslatedTitle">
-                
-                <label for="editType">Type:</label>
-                <select id="editType">
-                    <option value="movie">Film</option>
-                    <option value="tv">Serie</option>
-                    <option value="documentary">Documentaire</option>
-                </select>
-                
-                <label for="editYear">Jaar:</label>
-                <input type="number" id="editYear" min="1900" max="2100">
-                
-                <label for="editGenre">Genre:</label>
-                <input type="text" id="editGenre">
-                
-                <label for="editCountry">Land:</label>
-                <input type="text" id="editCountry">
-                
-                <label for="editDuration">Duur:</label>
-                <input type="text" id="editDuration">
-                
-                <label for="editActor">Bekendste acteur:</label>
-                <input type="text" id="editActor">
-                
-                <label for="editPrice">Prijs (€):</label>
-                <input type="text" id="editPrice" placeholder="Bijv. 4.99 of Gratis">
-                
-                <label for="editDescription">Omschrijving:</label>
-                <textarea id="editDescription"></textarea>
-                
-                <button onclick="saveEditedMedia()">Opslaan</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal voor afbeelding -->
-    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
-        <span class="close">&times;</span>
-        <img id="modalImage" src="">
-    </div>
-
-    <script>
-        // TMDB API-sleutel
-        const TMDB_API_KEY = 'b3c84b99009c4433ff150044a2ae34ee';
-        const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-        const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w200';
-
-        // Lokale opslag
-        let mediaLibrary = JSON.parse(localStorage.getItem('mediaLibrary')) || [];
-        let currentMediaIdForStreaming = null;
-        let currentMediaIdForEdit = null;
-        let currentSortColumn = null;
-        let currentSortDirection = 1;
-        let userSubscriptions = JSON.parse(localStorage.getItem('userSubscriptions')) || [];
-        let multiStreamingFilter = false;
-
-        // DOM elementen
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const librarySearchInput = document.getElementById('librarySearchInput');
-        const librarySearchButton = document.getElementById('librarySearchButton');
-        const mediaGrid = document.getElementById('mediaGrid');
-        const tableBody = document.getElementById('tableBody');
-        const typeFilter = document.getElementById('typeFilter');
-        const genreFilter = document.getElementById('genreFilter');
-        const streamingFilter = document.getElementById('streamingFilter');
-        const watchedFilter = document.getElementById('watchedFilter');
-        const durationMinFilter = document.getElementById('durationMinFilter');
-        const durationMaxFilter = document.getElementById('durationMaxFilter');
-        const sortFilter = document.getElementById('sortFilter');
-        
-        // Grid view elementen
-        const gridSearchInput = document.getElementById('gridSearchInput');
-        const gridSearchButton = document.getElementById('gridSearchButton');
-        const gridLibrarySearchInput = document.getElementById('gridLibrarySearchInput');
-        const gridLibrarySearchButton = document.getElementById('gridLibrarySearchButton');
-        const gridTypeFilter = document.getElementById('gridTypeFilter');
-        const gridGenreFilter = document.getElementById('gridGenreFilter');
-        const gridStreamingFilter = document.getElementById('gridStreamingFilter');
-        const gridWatchedFilter = document.getElementById('gridWatchedFilter');
-        const gridDurationMinFilter = document.getElementById('gridDurationMinFilter');
-        const gridDurationMaxFilter = document.getElementById('gridDurationMaxFilter');
-        const gridSortFilter = document.getElementById('gridSortFilter');
-        const streamingModal = document.getElementById('streamingModal');
-        const editModal = document.getElementById('editModal');
-        const imageModal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalMediaTitle = document.getElementById('modalMediaTitle');
-        const editModalMediaTitle = document.getElementById('editModalMediaTitle');
-
-        // Tab switching
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            if (tabName === 'grid') {
-                document.getElementById('grid-tab').classList.add('active');
-                document.getElementById('grid-view').classList.add('active');
-            } else {
-                document.getElementById('table-tab').classList.add('active');
-                document.getElementById('table-view').classList.add('active');
-                renderTable();
-            }
-        }
-
-        // Zoekfunctie voor TMDB
-        async function searchMedia() {
-            const query = searchInput.value.trim();
-            if (!query) return;
-
-            try {
-                const searchUrl = `${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`;
-                const response = await fetch(searchUrl);
-                const data = await response.json();
-
-                const detailedResults = await Promise.all(
-                    data.results.map(async (result) => {
-                        if (result.media_type === 'movie' || result.media_type === 'tv') {
-                            const detailsUrl = `${TMDB_BASE_URL}/${result.media_type}/${result.id}?api_key=${TMDB_API_KEY}&language=nl-NL&append_to_response=credits,watch/providers`;
-                            const detailsResponse = await fetch(detailsUrl);
-                            const details = await detailsResponse.json();
-                            return { ...result, ...details };
-                        }
-                        return result;
-                    })
-                );
-
-                displaySearchResults(detailedResults);
-            } catch (error) {
-                console.error('Fout bij zoeken:', error);
-                alert('Er is een fout opgetreden. Controleer je internetverbinding.');
-            }
-        }
-
-        // Zoekfunctie voor bibliotheek
-        function searchLibrary() {
-            const query = librarySearchInput.value.trim().toLowerCase();
-            if (!query) {
-                displayLibrary();
-                return;
-            }
-
-            const filteredLibrary = mediaLibrary.filter(media => {
-                const title = (media.title || media.name || '').toLowerCase();
-                const translatedTitle = (media.translated_title || '').toLowerCase();
-                const overview = (media.overview || media.description || '').toLowerCase();
-                const actor = (media.lead_actor || '').toLowerCase();
-                const genres = media.genres ? media.genres.map(g => g.name.toLowerCase()).join(' ') : '';
-                return title.includes(query) || translatedTitle.includes(query) || overview.includes(query) || actor.includes(query) || genres.includes(query);
-            });
-
-            displayFilteredLibrary(filteredLibrary);
-        }
-
-        // Toon zoekresultaten
-        function displaySearchResults(results) {
-            mediaGrid.innerHTML = '';
-
-            results.forEach(result => {
-                if (result.media_type === 'movie' || result.media_type === 'tv') {
-                    const mediaCard = createMediaCard(result);
-                    mediaGrid.appendChild(mediaCard);
-                }
-            });
-
-            updateFilters();
-        }
-
-        // Toon gefilterde bibliotheek
-        function displayFilteredLibrary(filteredLibrary) {
-            mediaGrid.innerHTML = '';
-            filteredLibrary.forEach(media => {
-                const card = createLibraryCard(media);
-                mediaGrid.appendChild(card);
-            });
-        }
-
-        // Maak een media kaart
-        function createMediaCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
-
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.overview || media.description || 'Geen beschrijving beschikbaar.';
-
-            // Genres
-            let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-
-            // Streamingdiensten
-            let streamingServices = 'Onbekend';
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const flatrate = nlProviders.flatrate || [];
-                const free = nlProviders.free || [];
-                const allProviders = [...flatrate, ...free];
-                if (allProviders.length > 0) {
-                    streamingServices = allProviders.map(provider => provider.provider_name).join(', ');
-                }
-            }
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Bekendste acteur
-            let leadActor = 'Onbekend';
-            if (media.credits && media.credits.cast && media.credits.cast.length > 0) {
-                leadActor = media.credits.cast[0].name;
-            }
-
-            // Prijs (voor Pathé Thuis)
-            let price = 'Onbekend';
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const rent = nlProviders.rent || [];
-                const buy = nlProviders.buy || [];
-                const allProviders = [...rent, ...buy];
-                const patheProvider = allProviders.find(p => p.provider_name === 'Pathé Thuis');
-                if (patheProvider) {
-                    price = `€${patheProvider.price || '?'}`;
-                } else {
-                    price = 'Gratis';
-                }
-            }
-
-            // Vertaling
-            let translatedTitle = '';
-            if (media.title && !/^[a-zA-Z0-9\s\-:,'.]+$/.test(media.title)) {
-                translatedTitle = getDutchTranslation(media.title);
-            }
-
-            const existingMedia = mediaLibrary.find(item => item.id === media.id);
-            const isInLibrary = !!existingMedia;
-
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
-                    ${isInLibrary ? 
-                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
-                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
-                    }
-                    ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched === true ? 'Niet bekeken' : existingMedia.watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
-                    }
-                    ${isInLibrary ? 
-                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
-                    }
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
-                </div>
-            `;
-
-            return card;
-        }
-
-        // Voeg toe aan bibliotheek
-        function addToLibrary(media) {
-            const mediaToAdd = {
-                id: media.id,
-                title: media.title || media.name,
-                translated_title: '',
-                media_type: media.media_type,
-                poster_path: media.poster_path,
-                release_date: media.release_date || media.first_air_date,
-                overview: media.overview || '',
-                description: media.overview || '',
-                genre_ids: media.genre_ids || [],
-                genres: media.genres || [],
-                runtime: media.runtime,
-                number_of_episodes: media.number_of_episodes,
-                production_countries: media.production_countries || [],
-                lead_actor: '',
-                price: '',
-                watched: false,
-                streaming_services: [],
-                added_date: new Date().toISOString()
-            };
-
-            // Voeg streamingdiensten toe
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const flatrate = nlProviders.flatrate || [];
-                const free = nlProviders.free || [];
-                const allProviders = [...flatrate, ...free];
-                mediaToAdd.streaming_services = allProviders.map(provider => provider.provider_name);
-            }
-
-            // Voeg acteur toe
-            if (media.credits && media.credits.cast && media.credits.cast.length > 0) {
-                mediaToAdd.lead_actor = media.credits.cast[0].name;
-            }
-
-            // Voeg prijs toe
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const rent = nlProviders.rent || [];
-                const buy = nlProviders.buy || [];
-                const allProviders = [...rent, ...buy];
-                const patheProvider = allProviders.find(p => p.provider_name === 'Pathé Thuis');
-                if (patheProvider) {
-                    mediaToAdd.price = `€${patheProvider.price || '?'}`;
-                } else {
-                    mediaToAdd.price = 'Gratis';
-                }
-            }
-
-            // Voeg vertaling toe
-            if (media.title && !/^[a-zA-Z0-9\s\-:,'.]+$/.test(media.title)) {
-                mediaToAdd.translated_title = getDutchTranslation(media.title);
-            }
-
-            mediaLibrary.push(mediaToAdd);
-            saveLibrary();
-            displayLibrary();
-        }
-
-        // Verwijder uit bibliotheek
-        function removeFromLibrary(id) {
-            mediaLibrary = mediaLibrary.filter(item => item.id !== id);
-            saveLibrary();
-            displayLibrary();
-            renderTable();
-        }
-
-        // Toggle bekeken status
-        function toggleWatched(id) {
-            const media = mediaLibrary.find(item => item.id === id);
-            if (media) {
-                if (media.watched === true) {
-                    media.watched = false;
-                } else if (media.watched === 'watching') {
-                    media.watched = false;
-                } else {
-                    media.watched = true;
-                }
-                saveLibrary();
-                displayLibrary();
-                renderTable();
-            }
-        }
-
-        // Sla bibliotheek op
-        function saveLibrary() {
-            localStorage.setItem('mediaLibrary', JSON.stringify(mediaLibrary));
-        }
-
-        // Toon bibliotheek
-        function displayLibrary() {
-            let filteredLibrary = [...mediaLibrary];
-
-            // Type filter
-            if (typeFilter.value) {
-                filteredLibrary = filteredLibrary.filter(item => item.media_type === typeFilter.value);
-            }
-
-            // Genre filter
-            if (genreFilter.value) {
-                filteredLibrary = filteredLibrary.filter(item => {
-                    const genreNames = item.genres ? item.genres.map(g => g.name) : [];
-                    const genreIds = item.genre_ids || [];
-                    const allGenres = [...genreNames, ...genreIds.map(id => getGenreName(id, item.media_type))];
-                    return allGenres.includes(genreFilter.value);
-                });
-            }
-
-            // Streaming filter
-            const selectedStreaming = Array.from(streamingFilter.selectedOptions).map(opt => opt.value);
-            if (selectedStreaming.length > 0 && !selectedStreaming.includes('')) {
-                filteredLibrary = filteredLibrary.filter(item => {
-                    if (!item.streaming_services || item.streaming_services.length === 0) return false;
-                    return selectedStreaming.some(service => item.streaming_services.includes(service));
-                });
-            }
-
-            // Bekeken filter
-            if (watchedFilter.value === 'watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched === true);
-            } else if (watchedFilter.value === 'not-watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched === false);
-            } else if (watchedFilter.value === 'watching') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched === 'watching');
-            }
-
-            // Duur filter
-            if (durationMinFilter.value || durationMaxFilter.value) {
-                const minDuration = parseInt(durationMinFilter.value) || 0;
-                const maxDuration = parseInt(durationMaxFilter.value) || Infinity;
-
-                filteredLibrary = filteredLibrary.filter(item => {
-                    if (item.media_type === 'movie' && item.runtime) {
-                        return item.runtime >= minDuration && item.runtime <= maxDuration;
-                    } else if (item.media_type === 'tv' && item.number_of_episodes) {
-                        return item.number_of_episodes >= minDuration && item.number_of_episodes <= maxDuration;
-                    }
-                    return false;
-                });
-            }
-
-            // Sorteer - Standaard: nieuwste eerst
-            if (gridSortFilter.value) {
-                filteredLibrary.sort((a, b) => {
-                    switch (gridSortFilter.value) {
-                        case 'title-asc':
-                            return (a.title || a.name || '').localeCompare(b.title || b.name || '');
-                        case 'title-desc':
-                            return (b.title || b.name || '').localeCompare(a.title || a.name || '');
-                        case 'year-asc':
-                            const aYear = a.release_date ? new Date(a.release_date).getFullYear() : 0;
-                            const bYear = b.release_date ? new Date(b.release_date).getFullYear() : 0;
-                            return aYear - bYear;
-                        case 'year-desc':
-                            const aYearDesc = a.release_date ? new Date(a.release_date).getFullYear() : 0;
-                            const bYearDesc = b.release_date ? new Date(b.release_date).getFullYear() : 0;
-                            return bYearDesc - aYearDesc;
-                        case 'duration-asc':
-                            const aDur = a.media_type === 'movie' ? a.runtime : a.number_of_episodes || 0;
-                            const bDur = b.media_type === 'movie' ? b.runtime : b.number_of_episodes || 0;
-                            return aDur - bDur;
-                        case 'duration-desc':
-                            const aDurDesc = a.media_type === 'movie' ? a.runtime : a.number_of_episodes || 0;
-                            const bDurDesc = b.media_type === 'movie' ? b.runtime : b.number_of_episodes || 0;
-                            return bDurDesc - aDurDesc;
-                        default:
-                            // Standaard: sorteren op added_date (nieuwste eerst)
-                            return new Date(b.added_date || 0) - new Date(a.added_date || 0);
-                    }
-                });
-            } else {
-                // Standaard sortering: nieuwste eerst
-                filteredLibrary.sort((a, b) => new Date(b.added_date || 0) - new Date(a.added_date || 0));
-            }
-
-            // Toon resultaten
-            mediaGrid.innerHTML = '';
-            filteredLibrary.forEach(media => {
-                const card = createLibraryCard(media);
-                mediaGrid.appendChild(card);
-            });
-        }
-
-        // Maak een bibliotheek kaart
-        function createLibraryCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
-
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
-
-            // Genres
-            let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-
-            // Streamingdiensten
-            let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
-                media.streaming_services.join(', ') : 'Onbekend';
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Acteur
-            const leadActor = media.lead_actor || 'Onbekend';
-
-            // Prijs
-            const price = media.price || 'Onbekend';
-
-            // Vertaling
-            const translatedTitle = media.translated_title || '';
-
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
-                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
-                    }
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
-                    }
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
-                    }
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
-                </div>
-            `;
-
-            return card;
-        }
-
-        // Render tabelweergave
-        function renderTable() {
-            tableBody.innerHTML = '';
-
-            let filteredLibrary = [...mediaLibrary];
-
-            // Filter op mijn abonnementen
-            filteredLibrary = filterBySubscriptions(filteredLibrary);
-
-            // Pas filters toe
-            if (typeFilter.value) {
-                filteredLibrary = filteredLibrary.filter(item => item.media_type === typeFilter.value);
-            }
-            if (genreFilter.value) {
-                filteredLibrary = filteredLibrary.filter(item => {
-                    const genreNames = item.genres ? item.genres.map(g => g.name) : [];
-                    const genreIds = item.genre_ids || [];
-                    const allGenres = [...genreNames, ...genreIds.map(id => getGenreName(id, item.media_type))];
-                    return allGenres.includes(genreFilter.value);
-                });
-            }
-            const selectedStreaming = Array.from(streamingFilter.selectedOptions).map(opt => opt.value);
-            if (selectedStreaming.length > 0 && !selectedStreaming.includes('')) {
-                filteredLibrary = filteredLibrary.filter(item => {
-                    if (!item.streaming_services || item.streaming_services.length === 0) return false;
-                    return selectedStreaming.some(service => item.streaming_services.includes(service));
-                });
-            }
-            if (watchedFilter.value === 'watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched === true);
-            } else if (watchedFilter.value === 'not-watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched === false);
-            } else if (watchedFilter.value === 'watching') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched === 'watching');
-            }
-            if (durationMinFilter.value || durationMaxFilter.value) {
-                const minDuration = parseInt(durationMinFilter.value) || 0;
-                const maxDuration = parseInt(durationMaxFilter.value) || Infinity;
-                filteredLibrary = filteredLibrary.filter(item => {
-                    if (item.media_type === 'movie' && item.runtime) {
-                        return item.runtime >= minDuration && item.runtime <= maxDuration;
-                    } else if (item.media_type === 'tv' && item.number_of_episodes) {
-                        return item.number_of_episodes >= minDuration && item.number_of_episodes <= maxDuration;
-                    }
-                    return false;
-                });
-            }
-
-            // Sorteer - Standaard: nieuwste eerst
-            if (currentSortColumn !== null) {
-                filteredLibrary.sort((a, b) => {
-                    let aValue, bValue;
-                    switch (currentSortColumn) {
-                        case 0: return 0;
-                        case 1:
-                            aValue = (a.title || a.name || '').toLowerCase();
-                            bValue = (b.title || b.name || '').toLowerCase();
-                            break;
-                        case 2:
-                            aValue = a.media_type;
-                            bValue = b.media_type;
-                            break;
-                        case 3:
-                            aValue = a.release_date ? new Date(a.release_date).getFullYear() : 0;
-                            bValue = b.release_date ? new Date(b.release_date).getFullYear() : 0;
-                            break;
-                        case 4:
-                            aValue = (a.genres ? a.genres.map(g => g.name).join(', ') : '').toLowerCase();
-                            bValue = (b.genres ? b.genres.map(g => g.name).join(', ') : '').toLowerCase();
-                            break;
-                        case 5:
-                            aValue = (a.production_countries && a.production_countries[0] ? a.production_countries[0].name : 'Onbekend').toLowerCase();
-                            bValue = (b.production_countries && b.production_countries[0] ? b.production_countries[0].name : 'Onbekend').toLowerCase();
-                            break;
-                        case 6:
-                            aValue = a.media_type === 'movie' ? a.runtime : a.number_of_episodes || 0;
-                            bValue = b.media_type === 'movie' ? b.runtime : b.number_of_episodes || 0;
-                            break;
-                        case 7:
-                            aValue = (a.lead_actor || 'Onbekend').toLowerCase();
-                            bValue = (b.lead_actor || 'Onbekend').toLowerCase();
-                            break;
-                        case 8:
-                            aValue = (a.price || 'Onbekend').toLowerCase();
-                            bValue = (b.price || 'Onbekend').toLowerCase();
-                            break;
-                        case 9:
-                            aValue = (a.streaming_services || []).join(', ').toLowerCase();
-                            bValue = (b.streaming_services || []).join(', ').toLowerCase();
-                            break;
-                        case 10:
-                            aValue = (a.description || a.overview || '').toLowerCase();
-                            bValue = (b.description || b.overview || '').toLowerCase();
-                            break;
-                        case 11:
-                            aValue = a.watched ? 1 : 0;
-                            bValue = b.watched ? 1 : 0;
-                            break;
-                    }
-
-                    if (aValue < bValue) return -1 * currentSortDirection;
-                    if (aValue > bValue) return 1 * currentSortDirection;
-                    return 0;
-                });
-            } else {
-                // Standaard sortering: nieuwste eerst
-                filteredLibrary.sort((a, b) => new Date(b.added_date || 0) - new Date(a.added_date || 0));
-            }
-
-            // Voeg rijen toe aan de tabel
-            filteredLibrary.forEach(media => {
-                const row = document.createElement('tr');
-
-                const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-                const title = media.title || media.name;
-                const translatedTitle = media.translated_title || '';
-                const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/50x75?text=No+Poster';
-                const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-                const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-                const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
-
-                // Genres
-                let genres = 'Onbekend';
-                if (media.genres && media.genres.length > 0) {
-                    genres = media.genres.map(genre => genre.name).join(', ');
-                } else if (media.genre_ids && media.genre_ids.length > 0) {
-                    genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-                }
-
-                // Land
-                let productionCountry = 'Onbekend';
-                if (media.production_countries && media.production_countries.length > 0) {
-                    productionCountry = media.production_countries[0].name;
-                }
-
-                // Duur
-                let duration = '';
-                if (media.media_type === 'movie' && media.runtime) {
-                    duration = `${media.runtime} min`;
-                } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                    duration = `${media.number_of_episodes} afl.`;
-                }
-
-                // Acteur
-                const leadActor = media.lead_actor || 'Onbekend';
-
-                // Prijs
-                const price = media.price || 'Onbekend';
-
-                // Streaming
-                let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
-                    media.streaming_services.join(', ') : 'Onbekend';
-
-                row.innerHTML = `
-                    <td class="poster-cell"><img src="${posterPath}" alt="${title}" onclick="openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});"></td>
-                    <td>${title} ${translatedTitle ? `<br><span class="translated-title">(${translatedTitle})</span>` : ''}</td>
-                    <td>${type}</td>
-                    <td>${year}</td>
-                    <td>${genres}</td>
-                    <td>${productionCountry}</td>
-                    <td>${duration || 'Onbekend'}</td>
-                    <td>${leadActor}</td>
-                    <td>${price}</td>
-                    <td>${streamingServices}</td>
-                    <td>${overview.substring(0, 40)}...</td>
-                    <td>${media.watched === true ? 'Ja' : media.watched === 'watching' ? 'Nu kijkend' : 'Nee'}</td>
-                    <td>
-                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Verwijder</button>
-                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
-                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Bewerk</button>
-                    </td>
-                `;
-
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Sorteer tabel
-        function sortTable(columnIndex) {
-            if (currentSortColumn === columnIndex) {
-                currentSortDirection *= -1;
-            } else {
-                currentSortColumn = columnIndex;
-                currentSortDirection = 1;
-            }
-            renderTable();
-        }
-
-        // Open streaming modal
-        function openStreamingModal(id, title) {
-            currentMediaIdForStreaming = id;
-            modalMediaTitle.textContent = `Streamingdiensten voor: ${title}`;
-            streamingModal.style.display = 'block';
-
-            // Reset checkboxes
-            ['netflixCheckbox', 'disneyCheckbox', 'primeCheckbox', 'hboCheckbox', 'npoCheckbox', 'videolandCheckbox', 'patheCheckbox', 'appleCheckbox'].forEach(id => {
-                document.getElementById(id).checked = false;
-            });
-
-            // Vul checkboxes in
-            const media = mediaLibrary.find(item => item.id === id);
-            if (media && media.streaming_services) {
-                media.streaming_services.forEach(service => {
-                    const checkboxId = `${service.toLowerCase().replace(/\+/g, '').replace(/\s/g, '')}Checkbox`;
-                    if (document.getElementById(checkboxId)) {
-                        document.getElementById(checkboxId).checked = true;
-                    }
-                });
-            }
-        }
-
-        // Open edit modal
-        function openEditModal(id) {
-            currentMediaIdForEdit = id;
-            const media = mediaLibrary.find(item => item.id === id);
-            if (!media) return;
-
-            editModalMediaTitle.textContent = `Bewerken: ${media.title || media.name}`;
-            document.getElementById('editTitle').value = media.title || media.name || '';
-            document.getElementById('editTranslatedTitle').value = media.translated_title || '';
-            document.getElementById('editType').value = media.media_type || '';
-            document.getElementById('editYear').value = media.release_date ? new Date(media.release_date).getFullYear() : '';
-            
-            // Genres
-            let genres = '';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(g => g.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-            document.getElementById('editGenre').value = genres || '';
-
-            // Land
-            document.getElementById('editCountry').value = media.production_countries && media.production_countries[0] ? media.production_countries[0].name : '';
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-            document.getElementById('editDuration').value = duration || '';
-
-            // Acteur
-            document.getElementById('editActor').value = media.lead_actor || '';
-            
-            // Status (watched/watching)
-            const statusSelect = document.createElement('select');
-            statusSelect.id = 'editStatus';
-            statusSelect.innerHTML = '
-                <option value="false">Niet bekeken</option>
-                <option value="true">Bekeken</option>
-                <option value="watching">Nu aan het kijken</option>
-            ';
-            statusSelect.value = media.watched === true ? 'true' : media.watched === 'watching' ? 'watching' : 'false';
-
-            // Prijs
-            document.getElementById('editPrice').value = media.price || '';
-
-            // Omschrijving
-            document.getElementById('editDescription').value = media.description || media.overview || '';
-
-            editModal.style.display = 'block';
-        }
-
-        // Close modals
-        function closeModal() {
-            streamingModal.style.display = 'none';
-        }
-
-        function closeEditModal() {
-            editModal.style.display = 'none';
-        }
-
-                // Update sorteerindicatie
-        function updateSortIndicators() {
-            document.querySelectorAll('th').forEach((th, index) => {
-                th.classList.remove('sorted-asc', 'sorted-desc');
-                if (index === currentSortColumn) {
-                    th.classList.add(currentSortDirection === 1 ? 'sorted-asc' : 'sorted-desc');
-                }
-            });
-        }
-
-                // Sla abonnementen op
-        function saveSubscriptions() {
-            const select = document.getElementById('subscriptionFilter');
-            const selected = Array.from(select.selectedOptions).map(option => option.value);
-            userSubscriptions = selected;
-            localStorage.setItem('userSubscriptions', JSON.stringify(userSubscriptions));
-            alert('Abonnementen opgeslagen!');
-            renderTable();
-            displayLibrary();
-        }
-
-        // Laad abonnementen bij starten
-        function loadSubscriptions() {
-            const select = document.getElementById('subscriptionFilter');
-            if (select && userSubscriptions.length > 0) {
-                userSubscriptions.forEach(sub => {
-                    const option = select.querySelector(`option[value="${sub}"]`);
-                    if (option) option.selected = true;
-                });
-            }
-        }
-
-        // Filter op mijn abonnementen
-        function filterBySubscriptions(library) {
-            if (userSubscriptions.length === 0) return library;
-            return library.filter(media => {
-                if (!media.streaming_services || media.streaming_services.length === 0) return false;
-                return media.streaming_services.some(service => userSubscriptions.includes(service));
-            });
-        }
-
-        function closeImageModal() {
-            imageModal.style.display = 'none';
-        }
-
-        // Save streaming services
-        function saveStreamingServices() {
-            if (!currentMediaIdForStreaming) return;
-
-            const media = mediaLibrary.find(item => item.id === currentMediaIdForStreaming);
-            if (!media) return;
-
-            media.streaming_services = [];
-            const checkboxes = {
-                'netflixCheckbox': 'Netflix',
-                'disneyCheckbox': 'Disney+',
-                'primeCheckbox': 'Amazon Prime Video',
-                'hboCheckbox': 'HBO Max',
-                'npoCheckbox': 'NPO Start',
-                'videolandCheckbox': 'Videoland',
-                'patheCheckbox': 'Pathé Thuis',
-                'appleCheckbox': 'Apple TV+'
-            };
-
-            for (const [id, name] of Object.entries(checkboxes)) {
-                if (document.getElementById(id).checked) {
-                    media.streaming_services.push(name);
-                }
-            }
-
-            saveLibrary();
-            displayLibrary();
-            renderTable();
-            closeModal();
-        }
-
-        // Save edited media
-        function saveEditedMedia() {
-            if (!currentMediaIdForEdit) return;
-
-            const media = mediaLibrary.find(item => item.id === currentMediaIdForEdit);
-            if (!media) return;
-
-            media.title = document.getElementById('editTitle').value || media.title || media.name;
-            media.translated_title = document.getElementById('editTranslatedTitle').value || '';
-            media.media_type = document.getElementById('editType').value || media.media_type;
-            
-            // Jaar
-            const year = document.getElementById('editYear').value;
-            if (year) {
-                media.release_date = new Date(year, 0, 1).toISOString().split('T')[0];
-            }
-
-            // Genres
-            const genresInput = document.getElementById('editGenre').value;
-            if (genresInput) {
-                media.genres = genresInput.split(',').map(name => ({ name: name.trim() }));
-            }
-
-            // Land
-            const country = document.getElementById('editCountry').value;
-            if (country) {
-                media.production_countries = [{ name: country }];
-            }
-
-            // Duur
-            const durationInput = document.getElementById('editDuration').value;
-            if (durationInput) {
-                if (media.media_type === 'movie') {
-                    const runtime = parseInt(durationInput);
-                    if (!isNaN(runtime)) media.runtime = runtime;
-                } else if (media.media_type === 'tv') {
-                    const episodes = parseInt(durationInput);
-                    if (!isNaN(episodes)) media.number_of_episodes = episodes;
-                }
-            }
-
-            // Acteur
-            media.lead_actor = document.getElementById('editActor').value || '';
-
-            // Prijs
-            media.price = document.getElementById('editPrice').value || '';
-            
-            // Status
-            const statusValue = document.getElementById('editStatus').value;
-            media.watched = statusValue === 'true' ? true : statusValue === 'watching' ? 'watching' : false;
-
-            // Omschrijving
-            media.description = document.getElementById('editDescription').value;
-
-            saveLibrary();
-            displayLibrary();
-            renderTable();
-            closeEditModal();
-        }
-
-        // Open image modal
-        function openImageModal(media) {
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/400x600?text=No+Poster';
-            modalImage.src = posterPath;
-            imageModal.style.display = 'block';
-        }
-
-        // Update filters
-        function updateFilters() {
-            const allGenres = new Set();
-            mediaLibrary.forEach(media => {
-                if (media.genres && media.genres.length > 0) {
-                    media.genres.forEach(genre => allGenres.add(genre.name));
-                } else if (media.genre_ids && media.genre_ids.length > 0) {
-                    media.genre_ids.forEach(id => {
-                        const genreName = getGenreName(id, media.media_type);
-                        if (genreName) allGenres.add(genreName);
-                    });
-                }
-            });
-
-            genreFilter.innerHTML = '<option value="">Alle genres</option>';
-            Array.from(allGenres).sort().forEach(genre => {
-                const option = document.createElement('option');
-                option.value = genre;
-                option.textContent = genre;
-                genreFilter.appendChild(option);
-            });
-
-            // Update grid filters ook
-            if (gridGenreFilter) {
-                gridGenreFilter.innerHTML = '<option value="">Alle genres</option>';
-                Array.from(allGenres).sort().forEach(genre => {
-                    const option = document.createElement('option');
-                    option.value = genre;
-                    option.textContent = genre;
-                    gridGenreFilter.appendChild(option);
-                });
-            }
-        }
-
-        // Haal genre naam op
-        function getGenreName(id, mediaType) {
-            const movieGenres = {
-                28: 'Actie', 12: 'Avontuur', 16: 'Animatie', 35: 'Comedy', 80: 'Misdaad',
-                99: 'Documentaire', 18: 'Drama', 10751: 'Familie', 14: 'Fantasy', 36: 'Geschiedenis',
-                27: 'Horror', 10402: 'Muziek', 9648: 'Mysterie', 10749: 'Romantiek',
-                878: 'Science Fiction', 10770: 'TV Film', 53: 'Thriller', 10752: 'Oorlog', 37: 'Western'
-            };
-
-            const tvGenres = {
-                10759: 'Actie & Avontuur', 16: 'Animatie', 35: 'Comedy', 80: 'Misdaad',
-                99: 'Documentaire', 18: 'Drama', 10751: 'Familie', 10762: 'Kinder',
-                9648: 'Mysterie', 10763: 'Nieuws', 10764: 'Reality', 10765: 'Sci-Fi & Fantasy',
-                10766: 'Soap', 10767: 'Talk', 10768: 'Oorlog & Politiek', 37: 'Western'
-            };
-
-            const genres = mediaType === 'tv' ? tvGenres : movieGenres;
-            return genres[id] || 'Onbekend';
-        }
-
-        // Vertaling voor niet-Latijnse titels
-        function getDutchTranslation(title) {
-            const translations = {
-                'Брат': 'Broer',
-                'Брат 2': 'Broer 2',
-                'Иди и смотри': 'Ga en kijk',
-                'Сталкер': 'Stalker',
-                'Метрополис': 'Metropolis',
-                '七武士': 'De zeven samurai',
-                '神隠し': 'Geestenwereld',
-                '千と千尋の神隠し': 'Chihiro en de geestenwereld'
-            };
-            return translations[title] || title;
-        }
-
-        // Exporteer naar Excel
-        function exportToExcel() {
-            if (mediaLibrary.length === 0) {
-                alert('Je bibliotheek is leeg.');
-                return;
-            }
-
-            let csv = 'Titel,Nederlandse Titel,Type,Jaar,Genre,Land,Duur,Bekendste Acteur,Prijs,Streaming (NL),Omschrijving,Bekeken,Toegevoegd op\n';
-
-            mediaLibrary.forEach(media => {
-                const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-                const title = media.title || media.name;
-                const translatedTitle = media.translated_title || '';
-                const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-                const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-
-                let genres = 'Onbekend';
-                if (media.genres && media.genres.length > 0) {
-                    genres = media.genres.map(genre => genre.name).join(', ');
-                } else if (media.genre_ids && media.genre_ids.length > 0) {
-                    genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-                }
-
-                let productionCountry = 'Onbekend';
-                if (media.production_countries && media.production_countries.length > 0) {
-                    productionCountry = media.production_countries[0].name;
-                }
-
-                let duration = '';
-                if (media.media_type === 'movie' && media.runtime) {
-                    duration = `${media.runtime} min`;
-                } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                    duration = `${media.number_of_episodes} afl.`;
-                }
-
-                const leadActor = media.lead_actor || 'Onbekend';
-                const price = media.price || 'Onbekend';
-                let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
-                    media.streaming_services.join(', ') : 'Onbekend';
-                let description = media.description || media.overview || 'Geen omschrijving';
-                description = description.replace(/"/g, '""');
-                const watched = media.watched ? 'Ja' : 'Nee';
-                const addedDate = media.added_date ? new Date(media.added_date).toLocaleDateString('nl-NL') : 'Onbekend';
-
-                csv += `"${title}","${translatedTitle}","${type}","${year}","${genres}","${productionCountry}","${duration}","${leadActor}","${price}","${streamingServices}","${description}","${watched}","${addedDate}"\n`;
-            });
-
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'mediabibliotheek_van_marije.xlsx';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Event listeners
-        searchButton.addEventListener('click', searchMedia);
-        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchMedia(); });
-        librarySearchButton.addEventListener('click', searchLibrary);
-        librarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchLibrary(); });
-
-        typeFilter.addEventListener('change', () => { renderTable(); });
-        genreFilter.addEventListener('change', () => { renderTable(); });
-        streamingFilter.addEventListener('change', () => { renderTable(); });
-        watchedFilter.addEventListener('change', () => { renderTable(); });
-        durationMinFilter.addEventListener('input', () => { renderTable(); });
-        durationMaxFilter.addEventListener('input', () => { renderTable(); });
-        sortFilter.addEventListener('change', () => { renderTable(); });
-        
-        // Grid view event listeners
-        if (gridSearchButton) {
-            gridSearchButton.addEventListener('click', searchMedia);
-        }
-        if (gridSearchInput) {
-            gridSearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchMedia(); });
-        }
-        if (gridLibrarySearchButton) {
-            gridLibrarySearchButton.addEventListener('click', searchGridLibrary);
-        }
-        if (gridLibrarySearchInput) {
-            gridLibrarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchGridLibrary(); });
-        }
-        if (gridTypeFilter) {
-            gridTypeFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridGenreFilter) {
-            gridGenreFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridStreamingFilter) {
-            gridStreamingFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridWatchedFilter) {
-            gridWatchedFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridDurationMinFilter) {
-            gridDurationMinFilter.addEventListener('input', () => { displayLibrary(); });
-        }
-        if (gridDurationMaxFilter) {
-            gridDurationMaxFilter.addEventListener('input', () => { displayLibrary(); });
-        }
-        if (gridSortFilter) {
-            gridSortFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-
-        window.onclick = function(event) {
-            if (event.target == streamingModal) closeModal();
-            if (event.target == editModal) closeEditModal();
-        }
-
-        // Laad bibliotheek bij starten
-        renderTable();
-        displayLibrary();
-        updateFilters();
-        loadSubscriptions();
-    </script>
-</body>
-</html<div class="export-section">
+            <div class="export-section">
                 <button onclick="exportToExcel()">Exporteer naar Excel</button>
             </div>
         </div>
@@ -1997,8 +628,6 @@
         let currentMediaIdForEdit = null;
         let currentSortColumn = null;
         let currentSortDirection = 1;
-        let userSubscriptions = JSON.parse(localStorage.getItem('userSubscriptions')) || [];
-        let multiStreamingFilter = false;
 
         // DOM elementen
         const searchInput = document.getElementById('searchInput');
@@ -2014,19 +643,6 @@
         const durationMinFilter = document.getElementById('durationMinFilter');
         const durationMaxFilter = document.getElementById('durationMaxFilter');
         const sortFilter = document.getElementById('sortFilter');
-        
-        // Grid view elementen
-        const gridSearchInput = document.getElementById('gridSearchInput');
-        const gridSearchButton = document.getElementById('gridSearchButton');
-        const gridLibrarySearchInput = document.getElementById('gridLibrarySearchInput');
-        const gridLibrarySearchButton = document.getElementById('gridLibrarySearchButton');
-        const gridTypeFilter = document.getElementById('gridTypeFilter');
-        const gridGenreFilter = document.getElementById('gridGenreFilter');
-        const gridStreamingFilter = document.getElementById('gridStreamingFilter');
-        const gridWatchedFilter = document.getElementById('gridWatchedFilter');
-        const gridDurationMinFilter = document.getElementById('gridDurationMinFilter');
-        const gridDurationMaxFilter = document.getElementById('gridDurationMaxFilter');
-        const gridSortFilter = document.getElementById('gridSortFilter');
         const streamingModal = document.getElementById('streamingModal');
         const editModal = document.getElementById('editModal');
         const imageModal = document.getElementById('imageModal');
@@ -2215,7 +831,7 @@
                         `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
                     }
                     ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched === true ? 'Niet bekeken' : existingMedia.watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
                     }
                     ${isInLibrary ? 
                         `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
@@ -2348,9 +964,11 @@
 
             // Bekeken filter
             if (watchedFilter.value === 'watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === true);
             } else if (watchedFilter.value === 'not-watched') {
-                filteredLibrary = filteredLibrary.filter(item => !item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === false);
+            } else if (watchedFilter.value === 'watching') {
+                filteredLibrary = filteredLibrary.filter(item => item.watched === 'watching');
             }
 
             // Duur filter
@@ -2493,9 +1111,6 @@
 
             let filteredLibrary = [...mediaLibrary];
 
-            // Filter op mijn abonnementen
-            filteredLibrary = filterBySubscriptions(filteredLibrary);
-
             // Pas filters toe
             if (typeFilter.value) {
                 filteredLibrary = filteredLibrary.filter(item => item.media_type === typeFilter.value);
@@ -2516,9 +1131,11 @@
                 });
             }
             if (watchedFilter.value === 'watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === true);
             } else if (watchedFilter.value === 'not-watched') {
-                filteredLibrary = filteredLibrary.filter(item => !item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === false);
+            } else if (watchedFilter.value === 'watching') {
+                filteredLibrary = filteredLibrary.filter(item => item.watched === 'watching');
             }
             if (durationMinFilter.value || durationMaxFilter.value) {
                 const minDuration = parseInt(durationMinFilter.value) || 0;
@@ -2580,8 +1197,8 @@
                             bValue = (b.description || b.overview || '').toLowerCase();
                             break;
                         case 11:
-                            aValue = a.watched ? 1 : 0;
-                            bValue = b.watched ? 1 : 0;
+                            aValue = a.watched === true ? 2 : a.watched === 'watching' ? 1 : 0;
+                            bValue = b.watched === true ? 2 : b.watched === 'watching' ? 1 : 0;
                             break;
                     }
 
@@ -2652,9 +1269,9 @@
                     <td>${overview.substring(0, 40)}...</td>
                     <td>${media.watched === true ? 'Ja' : media.watched === 'watching' ? 'Nu kijkend' : 'Nee'}</td>
                     <td>
-                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Verwijder</button>
-                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
-                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Bewerk</button>
+                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px;">Verwijder</button>
+                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px;">${media.watched === true ? 'Niet' : media.watched === 'watching' ? 'Stop' : 'Bekeken'}</button>
+                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px;">Bewerk</button>
                     </td>
                 `;
 
@@ -2731,16 +1348,6 @@
 
             // Acteur
             document.getElementById('editActor').value = media.lead_actor || '';
-            
-            // Status (watched/watching)
-            const statusSelect = document.createElement('select');
-            statusSelect.id = 'editStatus';
-            statusSelect.innerHTML = '
-                <option value="false">Niet bekeken</option>
-                <option value="true">Bekeken</option>
-                <option value="watching">Nu aan het kijken</option>
-            ';
-            statusSelect.value = media.watched === true ? 'true' : media.watched === 'watching' ? 'watching' : 'false';
 
             // Prijs
             document.getElementById('editPrice').value = media.price || '';
@@ -2758,47 +1365,6 @@
 
         function closeEditModal() {
             editModal.style.display = 'none';
-        }
-
-                // Update sorteerindicatie
-        function updateSortIndicators() {
-            document.querySelectorAll('th').forEach((th, index) => {
-                th.classList.remove('sorted-asc', 'sorted-desc');
-                if (index === currentSortColumn) {
-                    th.classList.add(currentSortDirection === 1 ? 'sorted-asc' : 'sorted-desc');
-                }
-            });
-        }
-
-                // Sla abonnementen op
-        function saveSubscriptions() {
-            const select = document.getElementById('subscriptionFilter');
-            const selected = Array.from(select.selectedOptions).map(option => option.value);
-            userSubscriptions = selected;
-            localStorage.setItem('userSubscriptions', JSON.stringify(userSubscriptions));
-            alert('Abonnementen opgeslagen!');
-            renderTable();
-            displayLibrary();
-        }
-
-        // Laad abonnementen bij starten
-        function loadSubscriptions() {
-            const select = document.getElementById('subscriptionFilter');
-            if (select && userSubscriptions.length > 0) {
-                userSubscriptions.forEach(sub => {
-                    const option = select.querySelector(`option[value="${sub}"]`);
-                    if (option) option.selected = true;
-                });
-            }
-        }
-
-        // Filter op mijn abonnementen
-        function filterBySubscriptions(library) {
-            if (userSubscriptions.length === 0) return library;
-            return library.filter(media => {
-                if (!media.streaming_services || media.streaming_services.length === 0) return false;
-                return media.streaming_services.some(service => userSubscriptions.includes(service));
-            });
         }
 
         function closeImageModal() {
@@ -2882,10 +1448,6 @@
 
             // Prijs
             media.price = document.getElementById('editPrice').value || '';
-            
-            // Status
-            const statusValue = document.getElementById('editStatus').value;
-            media.watched = statusValue === 'true' ? true : statusValue === 'watching' ? 'watching' : false;
 
             // Omschrijving
             media.description = document.getElementById('editDescription').value;
@@ -2924,17 +1486,6 @@
                 option.textContent = genre;
                 genreFilter.appendChild(option);
             });
-
-            // Update grid filters ook
-            if (gridGenreFilter) {
-                gridGenreFilter.innerHTML = '<option value="">Alle genres</option>';
-                Array.from(allGenres).sort().forEach(genre => {
-                    const option = document.createElement('option');
-                    option.value = genre;
-                    option.textContent = genre;
-                    gridGenreFilter.appendChild(option);
-                });
-            }
         }
 
         // Haal genre naam op
@@ -3035,48 +1586,13 @@
         librarySearchButton.addEventListener('click', searchLibrary);
         librarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchLibrary(); });
 
-        typeFilter.addEventListener('change', () => { renderTable(); });
-        genreFilter.addEventListener('change', () => { renderTable(); });
-        streamingFilter.addEventListener('change', () => { renderTable(); });
-        watchedFilter.addEventListener('change', () => { renderTable(); });
-        durationMinFilter.addEventListener('input', () => { renderTable(); });
-        durationMaxFilter.addEventListener('input', () => { renderTable(); });
-        sortFilter.addEventListener('change', () => { renderTable(); });
-        
-        // Grid view event listeners
-        if (gridSearchButton) {
-            gridSearchButton.addEventListener('click', searchMedia);
-        }
-        if (gridSearchInput) {
-            gridSearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchMedia(); });
-        }
-        if (gridLibrarySearchButton) {
-            gridLibrarySearchButton.addEventListener('click', searchGridLibrary);
-        }
-        if (gridLibrarySearchInput) {
-            gridLibrarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchGridLibrary(); });
-        }
-        if (gridTypeFilter) {
-            gridTypeFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridGenreFilter) {
-            gridGenreFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridStreamingFilter) {
-            gridStreamingFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridWatchedFilter) {
-            gridWatchedFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridDurationMinFilter) {
-            gridDurationMinFilter.addEventListener('input', () => { displayLibrary(); });
-        }
-        if (gridDurationMaxFilter) {
-            gridDurationMaxFilter.addEventListener('input', () => { displayLibrary(); });
-        }
-        if (gridSortFilter) {
-            gridSortFilter.addEventListener('change', () => { displayLibrary(); });
-        }
+        typeFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        genreFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        streamingFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        watchedFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        durationMinFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
+        durationMaxFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
+        sortFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
 
         window.onclick = function(event) {
             if (event.target == streamingModal) closeModal();
@@ -3084,10 +1600,7 @@
         }
 
         // Laad bibliotheek bij starten
-        renderTable();
         displayLibrary();
-        updateFilters();
-        loadSubscriptions();
     </script>
 </body>
 </html>
