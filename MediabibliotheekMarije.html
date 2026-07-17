@@ -364,6 +364,19 @@
                 </select>
             </div>
             <div class="filter-group">
+                <label for="continentFilter">Continent:</label>
+                <select id="continentFilter">
+                    <option value="">Alle continenten</option>
+                    <option value="Amerikaans">Amerikaans</option>
+                    <option value="Europees">Europees</option>
+                    <option value="Oost-Europees">Oost-Europees</option>
+                    <option value="Aziatisch">Aziatisch</option>
+                    <option value="Afrikaans">Afrikaans</option>
+                    <option value="Zuid-Amerikaans">Zuid-Amerikaans</option>
+                    <option value="Oceanië">Oceanië</option>
+                </select>
+            </div>
+            <div class="filter-group">
                 <label for="streamingFilter">Streamingdienst:</label>
                 <select id="streamingFilter" multiple size="4">
                     <option value="">Alle streamingdiensten</option>
@@ -530,6 +543,7 @@
         const tableBody = document.getElementById('tableBody');
         const typeFilter = document.getElementById('typeFilter');
         const genreFilter = document.getElementById('genreFilter');
+        const continentFilter = document.getElementById('continentFilter');
         const streamingFilter = document.getElementById('streamingFilter');
         const watchedFilter = document.getElementById('watchedFilter');
         const durationMinFilter = document.getElementById('durationMinFilter');
@@ -818,6 +832,14 @@
                 filteredLibrary = filteredLibrary.filter(item => 
                     item.streaming_services && item.streaming_services.includes(streamingFilter.value)
                 );
+            }
+
+            // Continent filter
+            if (continentFilter.value) {
+                filteredLibrary = filteredLibrary.filter(item => {
+                    const productionCountry = item.production_countries && item.production_countries[0] ? item.production_countries[0].name : '';
+                    return getContinent(productionCountry) === continentFilter.value;
+                });
             }
 
             // Bekeken filter
@@ -1236,6 +1258,31 @@
             return genres[id] || 'Onbekend';
         }
 
+        // Haal continent op basis van land
+        function getContinent(country) {
+            if (!country) return 'Onbekend';
+            
+            const northAmerica = ['United States', 'USA', 'Canada', 'Mexico', 'United States of America'];
+            const southAmerica = ['Brazil', 'Argentina', 'Colombia', 'Peru', 'Chile', 'Venezuela', 'Ecuador', 'Bolivia', 'Paraguay', 'Uruguay'];
+            const westernEurope = ['Netherlands', 'Belgium', 'France', 'Germany', 'United Kingdom', 'UK', 'Ireland', 'Luxembourg', 'Switzerland', 'Austria', 'Scandinavia', 'Denmark', 'Norway', 'Sweden', 'Finland', 'Iceland', 'Spain', 'Portugal', 'Italy'];
+            const easternEurope = ['Poland', 'Russia', 'Hungary', 'Czech Republic', 'Slovakia', 'Romania', 'Bulgaria', 'Ukraine', 'Belarus', 'Moldova', 'Serbia', 'Croatia', 'Slovenia', 'Bosnia', 'Montenegro', 'Albania', 'Greece', 'Turkey', 'Cyprus'];
+            const asia = ['Japan', 'China', 'South Korea', 'North Korea', 'India', 'Thailand', 'Vietnam', 'Indonesia', 'Malaysia', 'Singapore', 'Philippines', 'Taiwan', 'Hong Kong'];
+            const africa = ['South Africa', 'Nigeria', 'Egypt', 'Morocco', 'Kenya', 'Ghana', 'Algeria', 'Ethiopia'];
+            const oceania = ['Australia', 'New Zealand', 'Fiji', 'Papua New Guinea'];
+
+            const countryLower = country.toLowerCase();
+            
+            if (northAmerica.some(c => c.toLowerCase() === countryLower)) return 'Amerikaans';
+            if (southAmerica.some(c => c.toLowerCase() === countryLower)) return 'Zuid-Amerikaans';
+            if (westernEurope.some(c => c.toLowerCase() === countryLower)) return 'Europees';
+            if (easternEurope.some(c => c.toLowerCase() === countryLower)) return 'Oost-Europees';
+            if (asia.some(c => c.toLowerCase() === countryLower)) return 'Aziatisch';
+            if (africa.some(c => c.toLowerCase() === countryLower)) return 'Afrikaans';
+            if (oceania.some(c => c.toLowerCase() === countryLower)) return 'Oceanië';
+            
+            return 'Onbekend';
+        }
+
         // Vertaling voor niet-Latijnse titels
         function getDutchTranslation(title) {
             const translations = {
@@ -1316,6 +1363,7 @@
 
         typeFilter.addEventListener('change', renderTable);
         genreFilter.addEventListener('change', renderTable);
+        continentFilter.addEventListener('change', renderTable);
         streamingFilter.addEventListener('change', renderTable);
         watchedFilter.addEventListener('change', renderTable);
         durationMinFilter.addEventListener('input', renderTable);
