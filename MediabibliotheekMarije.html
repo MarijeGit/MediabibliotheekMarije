@@ -542,7 +542,7 @@
         let currentMediaIdForEdit = null;
         let currentSortColumn = null;
         let currentSortDirection = 1;
-        let lastSearchResults = []; // Slaat laatste zoekresultaten op voor addToLibraryFromSearch
+
 
         // DOM elementen
         const searchInput = document.getElementById('searchInput');
@@ -566,144 +566,101 @@
         const editModalMediaTitle = document.getElementById('editModalMediaTitle');
 
         // Zoekfunctie voor TMDB
-        async function searchMedia() {
-            console.log('searchMedia aangeroepen met query:', searchInput.value);
-            const query = searchInput.value.trim();
+        function searchMedia() {
+            const query = searchInput.value.trim().toLowerCase();
             if (!query) {
                 renderTable(); // Als leeg, toon de bibliotheek
                 return;
             }
 
-            try {
-                const searchUrl = `${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`;
-                const response = await fetch(searchUrl);
-                const data = await response.json();
-
-                const detailedResults = await Promise.all(
-                    data.results.slice(0, 10).map(async (result) => {
-                        if (result.media_type === 'movie' || result.media_type === 'tv') {
-                            const detailsUrl = `${TMDB_BASE_URL}/${result.media_type}/${result.id}?api_key=${TMDB_API_KEY}&language=nl-NL&append_to_response=credits,watch/providers`;
-                            const detailsResponse = await fetch(detailsUrl);
-                            const details = await detailsResponse.json();
-                            return { ...result, ...details };
-                        }
-                        return result;
-                    })
-                );
-
-                lastSearchResults = detailedResults; // Sla resultaten op
-                displaySearchResults(detailedResults);
-            } catch (error) {
-                console.error('Fout bij zoeken:', error);
-                alert('Er is een fout opgetreden. Controleer je internetverbinding.');
-            }
-        }
-
-        // Voeg toe aan bibliotheek vanaf zoekresultaten
-        function addToLibraryFromSearch(mediaId) {
-            const media = lastSearchResults.find(item => item.id === mediaId);
-            if (media) {
-                addToLibrary(media);
-            }
-        }
-
-        // Toon zoekresultaten in een tabel
-        // Toon zoekresultaten in een tabel
-        function displaySearchResults(results) {
-            console.log('displaySearchResults aangeroepen met', results.length, 'resultaten');
-            tableBody.innerHTML = '';
-
-            if (results.length === 0) {
-                const row = document.createElement('tr');
-                row.innerHTML = '<td colspan="13" style="text-align: center;">Geen resultaten gevonden.</td>';
-                tableBody.appendChild(row);
-                return;
-            }
-
-            results.forEach(result => {
-                if (result.media_type === 'movie' || result.media_type === 'tv') {
-                    const row = createSearchResultRow(result);
-                    tableBody.appendChild(row);
-                }
+            // Zoek in de bibliotheek
+            const filteredLibrary = mediaLibrary.filter(media => {
+                const title = (media.title || media.name || '').toLowerCase();
+                const translatedTitle = (media.translated_title || '').toLowerCase();
+                const overview = (media.description || media.overview || '').toLowerCase();
+                const actor = (media.lead_actor || '').toLowerCase();
+                return title.includes(query) || translatedTitle.includes(query) || overview.includes(query) || actor.includes(query);
             });
-        }
 
-        // Maak een rij voor zoekresultaten
-        // Maak een rij voor zoekresultaten
-        function createSearchResultRow(media) {
-            console.log('createSearchResultRow aangeroepen voor:', media.title || media.name);
-            const row = document.createElement('tr');
-            row.style.backgroundColor = '#ebf8ff';
+            // Toon resultaten in de tabel
+            tableBody.innerHTML = '';
+            if (filteredLibrary.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="13" style="text-align: center;">Geen resultaten gevonden in je bibliotheek.</td>';
+                tableBody.appendChild(row);
+            } else {
+                filteredLibrary.forEach(media => {
+                    const row = document.createElement('tr');
+                    row.style.backgroundColor = '#ebf8ff';
 
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name || 'Onbekend';
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/50x75?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.overview || 'Geen beschrijving beschikbaar.';
+                    const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
+                    const title = media.title || media.name || 'Onbekend';
+                    const translatedTitle = media.translated_title || '';
+                    const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/50x75?text=No+Poster';
+                    const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
+                    const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
+                    const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
 
-            // Genres (gebruik genre_ids als beschikbaar, anders genres)
-            let genres = 'Onbekend';
-            if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            } else if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(g => g.name).join(', ');
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Acteur
-            let leadActor = 'Onbekend';
-            if (media.credits && media.credits.cast && media.credits.cast.length > 0) {
-                leadActor = media.credits.cast[0].name;
-            }
-
-            // Prijs
-            let price = 'Onbekend';
-
-            // Streamingdiensten
-            let streamingServices = 'Onbekend';
-
-            // Check of media al in bibliotheek zit
-            const isInLibrary = mediaLibrary.some(item => item.id === media.id);
-
-            row.innerHTML = `
-                <td class="poster-cell"><img src="${posterPath}" alt="${title}" onclick="openImageModalFromSearch(${media.id});" style="cursor: pointer;"></td>
-                <td>${title}</td>
-                <td>${type}</td>
-                <td>${year}</td>
-                <td>${genres}</td>
-                <td>${productionCountry}</td>
-                <td>${duration || 'Onbekend'}</td>
-                <td>${leadActor}</td>
-                <td>${price}</td>
-                <td>${streamingServices}</td>
-                <td>${overview.substring(0, 40)}...</td>
-                <td>${isInLibrary ? 'Ja' : 'Nee'}</td>
-                <td>
-                    ${isInLibrary ? 
-                        '<button class="remove-button" onclick="removeFromLibrary(' + media.id + ')" style="padding: 2px 4px; font-size: 10px; background-color: #e53e3e; color: white; border: none; border-radius: 4px; cursor: pointer;">Verwijder</button>' :
-                        '<button class="add-button" onclick="addToLibraryFromSearch(' + media.id + ')" style="padding: 2px 4px; font-size: 10px; background-color: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer;">Toevoegen</button>'
+                    // Genres
+                    let genres = 'Onbekend';
+                    if (media.genres && media.genres.length > 0) {
+                        genres = media.genres.map(g => g.name).join(', ');
+                    } else if (media.genre_ids && media.genre_ids.length > 0) {
+                        genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
                     }
-                </td>
-            `;
 
-            return row;
+                    // Land
+                    let productionCountry = 'Onbekend';
+                    if (media.production_countries && media.production_countries.length > 0) {
+                        productionCountry = media.production_countries[0].name;
+                    }
+
+                    // Duur
+                    let duration = '';
+                    if (media.media_type === 'movie' && media.runtime) {
+                        duration = `${media.runtime} min`;
+                    } else if (media.media_type === 'tv' && media.number_of_episodes) {
+                        duration = `${media.number_of_episodes} afl.`;
+                    }
+
+                    // Acteur
+                    const leadActor = media.lead_actor || 'Onbekend';
+
+                    // Prijs
+                    const price = media.price || 'Onbekend';
+
+                    // Streaming
+                    let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
+                        media.streaming_services.join(', ') : 'Onbekend';
+
+                    row.innerHTML = `
+                        <td class="poster-cell"><img src="${posterPath}" alt="${title}" onclick="openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});" style="cursor: pointer;"></td>
+                        <td>${title} ${translatedTitle ? `<br><span class="translated-title">(${translatedTitle})</span>` : ''}</td>
+                        <td>${type}</td>
+                        <td>${year}</td>
+                        <td>${genres}</td>
+                        <td>${productionCountry}</td>
+                        <td>${duration || 'Onbekend'}</td>
+                        <td>${leadActor}</td>
+                        <td>${price}</td>
+                        <td>${streamingServices}</td>
+                        <td>${overview.substring(0, 40)}...</td>
+                        <td>${media.watched ? 'Ja' : 'Nee'}</td>
+                        <td>
+                            <button onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #e53e3e; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">Verwijder</button>
+                            <button onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #3182ce; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
+                            <button onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #4299e1; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">Bewerk</button>
+                            <button onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\'")}')" style="padding: 2px 4px; font-size: 10px; background-color: #319795; color: white; border: none; border-radius: 4px; cursor: pointer;">Streaming</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
         }
 
-        // Voeg toe aan bibliotheek
+// Toon zoekresultaten in een tabel
+// Maak een rij voor zoekresultaten
+// Voeg toe aan bibliotheek
         function addToLibrary(media) {
             const mediaToAdd = {
                 id: media.id,
@@ -1205,15 +1162,7 @@
             closeEditModal();
         }
 
-        // Open image modal vanaf zoekresultaten
-        function openImageModalFromSearch(mediaId) {
-            const media = lastSearchResults.find(item => item.id === mediaId);
-            if (media) {
-                openImageModal(media);
-            }
-        }
-
-        // Open image modal
+// Open image modal
         function openImageModal(media) {
             const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/400x600?text=No+Poster';
             modalImage.src = posterPath;
