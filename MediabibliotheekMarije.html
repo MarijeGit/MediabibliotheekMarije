@@ -42,15 +42,15 @@
         
         .tabs {
             display: flex;
-            margin-bottom: 8px;
-            gap: 5px;
+            margin-bottom: 4px;
+            gap: 3px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
         
         .tab {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 4px 6px;
+            padding: 1px;
             background-color: #e2e8f0;
             border: none;
             border-radius: 6px;
@@ -104,7 +104,7 @@
         .filters {
             display: flex;
             gap: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             flex-wrap: wrap;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -139,7 +139,7 @@
         .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 5px;
+            gap: 3px;
         }
         
         .media-card {
@@ -155,7 +155,7 @@
             width: 100%;
             height: auto;
             border-radius: 4px;
-            margin-bottom: 6px;
+            margin-bottom: 2px;
         }
         
         .media-card h3 {
@@ -180,7 +180,7 @@
         
         .media-card .actions {
             display: flex;
-            gap: 5px;
+            gap: 3px;
             margin-top: 8px;
             flex-wrap: wrap;
         }
@@ -228,7 +228,7 @@
         
         .export-section button {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 4px 6px;
+            padding: 1px;
             background: linear-gradient(135deg, #1a365d 0%, #15202b 100%);
             color: white;
             border: none;
@@ -441,11 +441,11 @@
             }
             
             .filter-group, .duration-range, .sort-group {
-                min-width: 100px;
+                min-width: 80px;
             }
             
             .filters {
-                gap: 5px;
+                gap: 3px;
             }
         }
     </style>
@@ -455,11 +455,13 @@
         <h1>Mediabibliotheek van Marije</h1>
         
         <div class="tabs">
-            <button id="grid-tab" class="tab" onclick="switchTab('grid')">Kaartweergave</button>
             <button id="table-tab" class="tab active" onclick="switchTab('table')">Tabelweergave</button>
+            <button id="grid-tab" class="tab" onclick="switchTab('grid')">Kaartweergave</button>
         </div>
 
-        <div id="grid-view" class="tab-content">
+
+
+<div id="grid-view" class="tab-content">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Zoek op titel...">
                 <button id="searchButton">Zoeken</button>
@@ -488,7 +490,7 @@
                 </div>
                 <div class="filter-group">
                     <label for="streamingFilter">Streamingdienst:</label>
-                    <select id="streamingFilter" multiple style="height: 60px;">
+                    <select id="streamingFilter" multiple style="height: 22px; font-size: 10px;">
                         <option value="">Alle streamingdiensten</option>
                         <option value="Netflix">Netflix</option>
                         <option value="Disney+">Disney+</option>
@@ -510,7 +512,7 @@
                 </div>
                 <div class="duration-range">
                     <label>Duur:</label>
-                    <div style="display: flex; gap: 5px; align-items: center;">
+                    <div style="display: flex; gap: 3px; align-items: center;">
                         <input type="number" id="durationMinFilter" placeholder="Min" min="0">
                         <span>tot</span>
                         <input type="number" id="durationMaxFilter" placeholder="Max" min="0">
@@ -530,7 +532,7 @@
                 </div>
                 <div class="filter-group">
                     <label for="subscriptionFilter">Mijn abonnementen:</label>
-                    <select id="subscriptionFilter" multiple style="height: 60px;">
+                    <select id="subscriptionFilter" multiple style="height: 22px; font-size: 10px;">
                         <option value="Netflix">Netflix</option>
                         <option value="Disney+">Disney+</option>
                         <option value="Amazon Prime Video">Prime Video</option>
