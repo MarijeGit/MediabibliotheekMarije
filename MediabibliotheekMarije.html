@@ -16,32 +16,35 @@
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
+            background: linear-gradient(135deg, #e6f7ff 0%, #b3e5fc 100%);
             color: #1a202c;
             line-height: 1.4;
         }
         
         .container {
-            max-width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
-            padding: 10px;
-            border-radius: 0;
-            box-shadow: none;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         
         h1 {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 20px;
+            font-size: 24px;
             color: #1a365d;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: center;
             letter-spacing: 0.5px;
+            font-weight: bold;
         }
         
         .tabs {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             gap: 5px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -60,7 +63,7 @@
         }
         
         .tab.active {
-            background-color: #2563eb;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
         }
         
@@ -81,7 +84,7 @@
         #searchInput, #librarySearchInput {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             flex: 1;
-            padding: 10px;
+            padding: 20px;
             font-size: 14px;
             border: 1px solid #cbd5e0;
             border-radius: 6px;
@@ -91,7 +94,7 @@
         #searchButton, #librarySearchButton {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 10px 15px;
-            background-color: #2563eb;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             border: none;
             border-radius: 6px;
@@ -103,7 +106,7 @@
         .filters {
             display: flex;
             gap: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -195,7 +198,7 @@
         }
         
         .media-card .add-button {
-            background-color: #2563eb;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
         }
         
@@ -228,7 +231,7 @@
         .export-section button {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 8px 12px;
-            background-color: #1a365d;
+            background: linear-gradient(135deg, #1a365d 0%, #15202b 100%);
             color: white;
             border: none;
             border-radius: 6px;
@@ -257,20 +260,42 @@
         }
         
         th {
-            background-color: #e2e8f0;
+            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            white-space: nowrap;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
             cursor: pointer;
             position: sticky;
             top: 0;
             z-index: 10;
-            color: #1a365d;
+            font-weight: bold;
+            transition: background 0.2s ease;
         }
         
         th:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
             background-color: #cbd5e0;
         }
         
         tr:hover {
             background-color: #ebf8ff;
+        }
+        
+        .sort-indicator {
+            font-size: 10px;
+            color: #718096;
+            margin-left: 5px;
+        }
+        
+        th.sorted-asc::after {
+            content: " ↑";
+        }
+        
+        th.sorted-desc::after {
+            content: " ↓";
         }
         
         .poster-cell {
@@ -353,7 +378,7 @@
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin-top: 12px;
             padding: 8px 15px;
-            background-color: #2563eb;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             border: none;
             border-radius: 6px;
@@ -431,11 +456,11 @@
         <h1>Mediabibliotheek van Marije</h1>
         
         <div class="tabs">
-            <button id="grid-tab" class="tab active" onclick="switchTab('grid')">Kaartweergave</button>
-            <button id="table-tab" class="tab" onclick="switchTab('table')">Tabelweergave</button>
+            <button id="grid-tab" class="tab" onclick="switchTab('grid')">Kaartweergave</button>
+            <button id="table-tab" class="tab active" onclick="switchTab('table')">Tabelweergave</button>
         </div>
 
-        <div id="grid-view" class="tab-content active">
+        <div id="grid-view" class="tab-content">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Zoek op titel...">
                 <button id="searchButton">Zoeken</button>
@@ -495,7 +520,7 @@
                 <div class="sort-group">
                     <label for="sortFilter">Sorteer:</label>
                     <select id="sortFilter">
-                        <option value="">Geen</option>
+                        <option value="">Standaard (Nieuwste eerst)</option>
                         <option value="title-asc">Titel (A-Z)</option>
                         <option value="title-desc">Titel (Z-A)</option>
                         <option value="year-asc">Jaar (oud→nieuw)</option>
@@ -513,7 +538,7 @@
             <div class="media-grid" id="mediaGrid"></div>
         </div>
 
-        <div id="table-view" class="tab-content">
+        <div id="table-view" class="tab-content active">
             <div class="table-container">
                 <table>
                     <thead>
@@ -641,6 +666,19 @@
         const durationMinFilter = document.getElementById('durationMinFilter');
         const durationMaxFilter = document.getElementById('durationMaxFilter');
         const sortFilter = document.getElementById('sortFilter');
+        
+        // Grid view elementen
+        const gridSearchInput = document.getElementById('gridSearchInput');
+        const gridSearchButton = document.getElementById('gridSearchButton');
+        const gridLibrarySearchInput = document.getElementById('gridLibrarySearchInput');
+        const gridLibrarySearchButton = document.getElementById('gridLibrarySearchButton');
+        const gridTypeFilter = document.getElementById('gridTypeFilter');
+        const gridGenreFilter = document.getElementById('gridGenreFilter');
+        const gridStreamingFilter = document.getElementById('gridStreamingFilter');
+        const gridWatchedFilter = document.getElementById('gridWatchedFilter');
+        const gridDurationMinFilter = document.getElementById('gridDurationMinFilter');
+        const gridDurationMaxFilter = document.getElementById('gridDurationMaxFilter');
+        const gridSortFilter = document.getElementById('gridSortFilter');
         const streamingModal = document.getElementById('streamingModal');
         const editModal = document.getElementById('editModal');
         const imageModal = document.getElementById('imageModal');
@@ -974,10 +1012,10 @@
                 });
             }
 
-            // Sorteer
-            if (sortFilter.value) {
+            // Sorteer - Standaard: nieuwste eerst
+            if (gridSortFilter.value) {
                 filteredLibrary.sort((a, b) => {
-                    switch (sortFilter.value) {
+                    switch (gridSortFilter.value) {
                         case 'title-asc':
                             return (a.title || a.name || '').localeCompare(b.title || b.name || '');
                         case 'title-desc':
@@ -999,9 +1037,13 @@
                             const bDurDesc = b.media_type === 'movie' ? b.runtime : b.number_of_episodes || 0;
                             return bDurDesc - aDurDesc;
                         default:
-                            return 0;
+                            // Standaard: sorteren op added_date (nieuwste eerst)
+                            return new Date(b.added_date || 0) - new Date(a.added_date || 0);
                     }
                 });
+            } else {
+                // Standaard sortering: nieuwste eerst
+                filteredLibrary.sort((a, b) => new Date(b.added_date || 0) - new Date(a.added_date || 0));
             }
 
             // Toon resultaten
@@ -1130,7 +1172,7 @@
                 });
             }
 
-            // Sorteer
+            // Sorteer - Standaard: nieuwste eerst
             if (currentSortColumn !== null) {
                 filteredLibrary.sort((a, b) => {
                     let aValue, bValue;
@@ -1186,6 +1228,9 @@
                     if (aValue > bValue) return 1 * currentSortDirection;
                     return 0;
                 });
+            } else {
+                // Standaard sortering: nieuwste eerst
+                filteredLibrary.sort((a, b) => new Date(b.added_date || 0) - new Date(a.added_date || 0));
             }
 
             // Voeg rijen toe aan de tabel
@@ -1246,9 +1291,9 @@
                     <td>${overview.substring(0, 40)}...</td>
                     <td>${media.watched ? 'Ja' : 'Nee'}</td>
                     <td>
-                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px;">Verwijder</button>
-                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
-                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px;">Bewerk</button>
+                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Verwijder</button>
+                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
+                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Bewerk</button>
                     </td>
                 `;
 
@@ -1342,6 +1387,16 @@
 
         function closeEditModal() {
             editModal.style.display = 'none';
+        }
+
+                // Update sorteerindicatie
+        function updateSortIndicators() {
+            document.querySelectorAll('th').forEach((th, index) => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+                if (index === currentSortColumn) {
+                    th.classList.add(currentSortDirection === 1 ? 'sorted-asc' : 'sorted-desc');
+                }
+            });
         }
 
         function closeImageModal() {
@@ -1463,6 +1518,17 @@
                 option.textContent = genre;
                 genreFilter.appendChild(option);
             });
+
+            // Update grid filters ook
+            if (gridGenreFilter) {
+                gridGenreFilter.innerHTML = '<option value="">Alle genres</option>';
+                Array.from(allGenres).sort().forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    gridGenreFilter.appendChild(option);
+                });
+            }
         }
 
         // Haal genre naam op
@@ -1563,13 +1629,48 @@
         librarySearchButton.addEventListener('click', searchLibrary);
         librarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchLibrary(); });
 
-        typeFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        genreFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        streamingFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        watchedFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        durationMinFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
-        durationMaxFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
-        sortFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        typeFilter.addEventListener('change', () => { renderTable(); });
+        genreFilter.addEventListener('change', () => { renderTable(); });
+        streamingFilter.addEventListener('change', () => { renderTable(); });
+        watchedFilter.addEventListener('change', () => { renderTable(); });
+        durationMinFilter.addEventListener('input', () => { renderTable(); });
+        durationMaxFilter.addEventListener('input', () => { renderTable(); });
+        sortFilter.addEventListener('change', () => { renderTable(); });
+        
+        // Grid view event listeners
+        if (gridSearchButton) {
+            gridSearchButton.addEventListener('click', searchMedia);
+        }
+        if (gridSearchInput) {
+            gridSearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchMedia(); });
+        }
+        if (gridLibrarySearchButton) {
+            gridLibrarySearchButton.addEventListener('click', searchGridLibrary);
+        }
+        if (gridLibrarySearchInput) {
+            gridLibrarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchGridLibrary(); });
+        }
+        if (gridTypeFilter) {
+            gridTypeFilter.addEventListener('change', () => { displayLibrary(); });
+        }
+        if (gridGenreFilter) {
+            gridGenreFilter.addEventListener('change', () => { displayLibrary(); });
+        }
+        if (gridStreamingFilter) {
+            gridStreamingFilter.addEventListener('change', () => { displayLibrary(); });
+        }
+        if (gridWatchedFilter) {
+            gridWatchedFilter.addEventListener('change', () => { displayLibrary(); });
+        }
+        if (gridDurationMinFilter) {
+            gridDurationMinFilter.addEventListener('input', () => { displayLibrary(); });
+        }
+        if (gridDurationMaxFilter) {
+            gridDurationMaxFilter.addEventListener('input', () => { displayLibrary(); });
+        }
+        if (gridSortFilter) {
+            gridSortFilter.addEventListener('change', () => { displayLibrary(); });
+        }
 
         window.onclick = function(event) {
             if (event.target == streamingModal) closeModal();
@@ -1577,7 +1678,9 @@
         }
 
         // Laad bibliotheek bij starten
+        renderTable();
         displayLibrary();
+        updateFilters();
     </script>
 </body>
 </html>
