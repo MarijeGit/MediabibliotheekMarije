@@ -560,7 +560,10 @@
         // Zoekfunctie voor TMDB
         async function searchMedia() {
             const query = searchInput.value.trim();
-            if (!query) return;
+            if (!query) {
+                renderTable(); // Als leeg, toon de bibliotheek
+                return;
+            }
 
             try {
                 const searchUrl = `${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`;
@@ -612,10 +615,22 @@
 
             // Genres
             let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
+            if (media.genre_ids && media.genre_ids.length > 0) {
                 genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
+            } else if (media.genres && media.genres.length > 0) {
+                // Vertaal Engelse genre-namen naar Nederlands
+                const genreTranslation = {
+                    'Action': 'Actie', 'Adventure': 'Avontuur', 'Animation': 'Animatie',
+                    'Biography': 'Biografie', 'Comedy': 'Komedie', 'Crime': 'Misdaad',
+                    'Documentary': 'Documentaire', 'Drama': 'Drama', 'Family': 'Familie',
+                    'Fantasy': 'Fantasy', 'History': 'Geschiedenis', 'Horror': 'Horror',
+                    'Music': 'Muziek', 'Musical': 'Musical', 'Mystery': 'Mysterie',
+                    'News': 'Nieuws', 'Reality': 'Reality-TV', 'Romance': 'Romantiek',
+                    'Science Fiction': 'Science Fiction', 'Short': 'Kortfilm', 'Sport': 'Sport',
+                    'Talk': 'Praatprogramma', 'Thriller': 'Thriller', 'War': 'Oorlog',
+                    'Western': 'Western', 'Film-Noir': 'Film Noir', 'Game-Show': 'Spelshow'
+                };
+                genres = media.genres.map(genre => genreTranslation[genre.name] || genre.name).join(', ');
             }
 
             // Land
