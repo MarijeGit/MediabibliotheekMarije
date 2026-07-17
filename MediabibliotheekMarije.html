@@ -430,16 +430,11 @@
     <div class="container">
         <h1>Mediabibliotheek van Marije</h1>
         
-        <div class="tabs">
-            <button id="grid-tab" class="tab" onclick="switchTab('grid')">Kaartweergave</button>
-            <button id="table-tab" class="tab active" onclick="switchTab('table')">Tabelweergave</button>
-        </div>
-
-        <div id="grid-view" class="tab-content">
+        
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Zoek op titel...">
                 <button id="searchButton">Zoeken</button>
-            </div>
+            
             
             <div class="library-search-box">
                 <input type="text" id="librarySearchInput" placeholder="Zoek in bibliotheek...">
@@ -515,7 +510,7 @@
             <div class="media-grid" id="mediaGrid"></div>
         </div>
 
-        <div id="table-view" class="tab-content active">
+        <div id="table-view" class="tab-content">
             <div class="table-container">
                 <table>
                     <thead>
@@ -559,12 +554,12 @@
                 <label><input type="checkbox" id="videolandCheckbox"> Videoland</label>
                 <label><input type="checkbox" id="patheCheckbox"> Pathé Thuis</label>
                 <label><input type="checkbox" id="appleCheckbox"> Apple TV+</label>
-                <label><input type="checkbox" id="skyShowtimeCheckbox"> Sky Showtime</label>
                 <button onclick="saveStreamingServices()">Opslaan</button>
             </div>
         </div>
     </div>
 
+                <label><input type="checkbox" id="skyShowtimeCheckbox"> Sky Showtime</label>
     <!-- Modal voor bewerken -->
     <div id="editModal" class="modal">
         <div class="modal-content">
@@ -635,7 +630,7 @@
         const searchButton = document.getElementById('searchButton');
         const librarySearchInput = document.getElementById('librarySearchInput');
         const librarySearchButton = document.getElementById('librarySearchButton');
-        const mediaGrid = document.getElementById('mediaGrid');
+        
         const tableBody = document.getElementById('tableBody');
         const typeFilter = document.getElementById('typeFilter');
         const genreFilter = document.getElementById('genreFilter');
@@ -717,12 +712,12 @@
 
         // Toon zoekresultaten
         function displaySearchResults(results) {
-            mediaGrid.innerHTML = '';
+            
 
             results.forEach(result => {
                 if (result.media_type === 'movie' || result.media_type === 'tv') {
                     const mediaCard = createMediaCard(result);
-                    mediaGrid.appendChild(mediaCard);
+                    tableBody.appendChild(mediaCard);
                 }
             });
 
@@ -731,10 +726,10 @@
 
         // Toon gefilterde bibliotheek
         function displayFilteredLibrary(filteredLibrary) {
-            mediaGrid.innerHTML = '';
+            
             filteredLibrary.forEach(media => {
                 const card = createLibraryCard(media);
-                mediaGrid.appendChild(card);
+                tableBody.appendChild(card);
             });
         }
 
@@ -832,7 +827,7 @@
                         `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
                     }
                     ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched === true ? 'Niet bekeken' : existingMedia.watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
                     }
                     ${isInLibrary ? 
                         `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
@@ -902,7 +897,7 @@
 
             mediaLibrary.push(mediaToAdd);
             saveLibrary();
-            displayLibrary();
+            renderTable();
         }
 
         // Verwijder uit bibliotheek
@@ -925,7 +920,6 @@
                     media.watched = true;
                 }
                 saveLibrary();
-                displayLibrary();
                 renderTable();
             }
         }
@@ -988,9 +982,9 @@
             }
 
             // Sorteer - Standaard: nieuwste eerst
-            if (gridSortFilter.value) {
+            if (sortFilter.value) {
                 filteredLibrary.sort((a, b) => {
-                    switch (gridSortFilter.value) {
+                    switch (sortFilter.value) {
                         case 'title-asc':
                             return (a.title || a.name || '').localeCompare(b.title || b.name || '');
                         case 'title-desc':
@@ -1022,10 +1016,10 @@
             }
 
             // Toon resultaten
-            mediaGrid.innerHTML = '';
+            
             filteredLibrary.forEach(media => {
                 const card = createLibraryCard(media);
-                mediaGrid.appendChild(card);
+                tableBody.appendChild(card);
             });
         }
 
@@ -1094,7 +1088,7 @@
                         `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
                     }
                     ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched === true ? 'Niet bekeken' : mediaLibrary.find(item => item.id === media.id).watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
                     }
                     ${mediaLibrary.some(item => item.id === media.id) ? 
                         `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
@@ -1151,7 +1145,7 @@
                 });
             }
 
-            // Sorteer - Standaard: nieuwste eerst
+            // Sorteer
             if (currentSortColumn !== null) {
                 filteredLibrary.sort((a, b) => {
                     let aValue, bValue;
@@ -1198,8 +1192,8 @@
                             bValue = (b.description || b.overview || '').toLowerCase();
                             break;
                         case 11:
-                            aValue = a.watched === true ? 2 : a.watched === 'watching' ? 1 : 0;
-                            bValue = b.watched === true ? 2 : b.watched === 'watching' ? 1 : 0;
+                            aValue = a.watched ? 1 : 0;
+                            bValue = b.watched ? 1 : 0;
                             break;
                     }
 
@@ -1207,9 +1201,6 @@
                     if (aValue > bValue) return 1 * currentSortDirection;
                     return 0;
                 });
-            } else {
-                // Standaard sortering: nieuwste eerst
-                filteredLibrary.sort((a, b) => new Date(b.added_date || 0) - new Date(a.added_date || 0));
             }
 
             // Voeg rijen toe aan de tabel
@@ -1271,7 +1262,7 @@
                     <td>${media.watched === true ? 'Ja' : media.watched === 'watching' ? 'Nu kijkend' : 'Nee'}</td>
                     <td>
                         <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px;">Verwijder</button>
-                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px;">${media.watched === true ? 'Niet' : media.watched === 'watching' ? 'Stop' : 'Bekeken'}</button>
+                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
                         <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px;">Bewerk</button>
                     </td>
                 `;
@@ -1385,7 +1376,6 @@
                 'disneyCheckbox': 'Disney+',
                 'primeCheckbox': 'Amazon Prime Video',
                 'hboCheckbox': 'HBO Max',
-                'skyShowtimeCheckbox': 'Sky Showtime',
                 'npoCheckbox': 'NPO Start',
                 'videolandCheckbox': 'Videoland',
                 'patheCheckbox': 'Pathé Thuis',
@@ -1394,6 +1384,7 @@
 
             for (const [id, name] of Object.entries(checkboxes)) {
                 if (document.getElementById(id).checked) {
+                'skyShowtimeCheckbox': 'Sky Showtime',
                     media.streaming_services.push(name);
                 }
             }
