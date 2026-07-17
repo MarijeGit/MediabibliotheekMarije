@@ -470,6 +470,7 @@
                         <option value="Pathé Thuis">Pathé Thuis</option>
                         <option value="Apple TV+">Apple TV+</option>
                         <option value="Sky Showtime">Sky Showtime</option>
+                        <option value="Sky Showtime">Sky Showtime</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -478,6 +479,7 @@
                         <option value="">Alle status</option>
                         <option value="watched">Bekeken</option>
                         <option value="not-watched">Niet bekeken</option>
+                        <option value="watching">Nu aan het kijken</option>
                         <option value="watching">Nu aan het kijken</option>
                     </select>
                 </div>
@@ -532,8 +534,7 @@
                     </thead>
                     <tbody id="tableBody"></tbody>
                 </table>
-            </div>
-            <div class="export-section">
+                        <div class="export-section">
                 <button onclick="exportToExcel()">Exporteer naar Excel</button>
             </div>
         </div>
@@ -558,6 +559,7 @@
             </div>
         </div>
     </div>
+                <label><input type="checkbox" id="skyShowtimeCheckbox"> Sky Showtime</label>
 
                 <label><input type="checkbox" id="skyShowtimeCheckbox"> Sky Showtime</label>
     <!-- Modal voor bewerken -->
@@ -734,112 +736,6 @@
         }
 
         // Maak een media kaart
-        function createMediaCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
-
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.overview || media.description || 'Geen beschrijving beschikbaar.';
-
-            // Genres
-            let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-
-            // Streamingdiensten
-            let streamingServices = 'Onbekend';
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const flatrate = nlProviders.flatrate || [];
-                const free = nlProviders.free || [];
-                const allProviders = [...flatrate, ...free];
-                if (allProviders.length > 0) {
-                    streamingServices = allProviders.map(provider => provider.provider_name).join(', ');
-                }
-            }
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Bekendste acteur
-            let leadActor = 'Onbekend';
-            if (media.credits && media.credits.cast && media.credits.cast.length > 0) {
-                leadActor = media.credits.cast[0].name;
-            }
-
-            // Prijs (voor Pathé Thuis)
-            let price = 'Onbekend';
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const rent = nlProviders.rent || [];
-                const buy = nlProviders.buy || [];
-                const allProviders = [...rent, ...buy];
-                const patheProvider = allProviders.find(p => p.provider_name === 'Pathé Thuis');
-                if (patheProvider) {
-                    price = `€${patheProvider.price || '?'}`;
-                } else {
-                    price = 'Gratis';
-                }
-            }
-
-            // Vertaling
-            let translatedTitle = '';
-            if (media.title && !/^[a-zA-Z0-9\s\-:,'.]+$/.test(media.title)) {
-                translatedTitle = getDutchTranslation(media.title);
-            }
-
-            const existingMedia = mediaLibrary.find(item => item.id === media.id);
-            const isInLibrary = !!existingMedia;
-
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
-                    ${isInLibrary ? 
-                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
-                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
-                    }
-                    ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
-                    }
-                    ${isInLibrary ? 
-                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
-                    }
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
-                </div>
-            `;
-
-            return card;
-        }
-
-        // Voeg toe aan bibliotheek
         function addToLibrary(media) {
             const mediaToAdd = {
                 id: media.id,
@@ -1024,83 +920,6 @@
         }
 
         // Maak een bibliotheek kaart
-        function createLibraryCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
-
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
-
-            // Genres
-            let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-
-            // Streamingdiensten
-            let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
-                media.streaming_services.join(', ') : 'Onbekend';
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Acteur
-            const leadActor = media.lead_actor || 'Onbekend';
-
-            // Prijs
-            const price = media.price || 'Onbekend';
-
-            // Vertaling
-            const translatedTitle = media.translated_title || '';
-
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
-                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
-                    }
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
-                    }
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
-                    }
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
-                </div>
-            `;
-
-            return card;
-        }
-
-        // Render tabelweergave
         function renderTable() {
             tableBody.innerHTML = '';
 
@@ -1565,6 +1384,7 @@
 
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
+                'skyShowtimeCheckbox': 'Sky Showtime',
             const link = document.createElement('a');
             link.href = url;
             link.download = 'mediabibliotheek_van_marije.xlsx';
@@ -1579,13 +1399,13 @@
         librarySearchButton.addEventListener('click', searchLibrary);
         librarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchLibrary(); });
 
-        typeFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        genreFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        streamingFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        watchedFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        durationMinFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
-        durationMaxFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
-        sortFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        typeFilter.addEventListener('change', () => { renderTable(); });
+        genreFilter.addEventListener('change', () => { renderTable(); });
+        streamingFilter.addEventListener('change', () => { renderTable(); });
+        watchedFilter.addEventListener('change', () => { renderTable(); });
+        durationMinFilter.addEventListener('input', () => { renderTable(); });
+        durationMaxFilter.addEventListener('input', () => { renderTable(); });
+        sortFilter.addEventListener('change', () => { renderTable(); });
 
         window.onclick = function(event) {
             if (event.target == streamingModal) closeModal();
@@ -1593,7 +1413,7 @@
         }
 
         // Laad bibliotheek bij starten
-        displayLibrary();
+        renderTable();
     </script>
 </body>
 </html>
