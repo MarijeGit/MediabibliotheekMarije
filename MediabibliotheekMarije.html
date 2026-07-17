@@ -16,35 +16,32 @@
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #e6f7ff 0%, #b3e5fc 100%);
+            background-color: #f0f4f8;
             color: #1a202c;
             line-height: 1.4;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 0;
+            box-shadow: none;
         }
         
         h1 {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 24px;
+            font-size: 20px;
             color: #1a365d;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             letter-spacing: 0.5px;
-            font-weight: bold;
         }
         
         .tabs {
             display: flex;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             gap: 5px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -63,7 +60,7 @@
         }
         
         .tab.active {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
         }
         
@@ -84,7 +81,7 @@
         #searchInput, #librarySearchInput {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             flex: 1;
-            padding: 20px;
+            padding: 10px;
             font-size: 14px;
             border: 1px solid #cbd5e0;
             border-radius: 6px;
@@ -94,7 +91,7 @@
         #searchButton, #librarySearchButton {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 10px 15px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
             border: none;
             border-radius: 6px;
@@ -106,7 +103,7 @@
         .filters {
             display: flex;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -198,7 +195,7 @@
         }
         
         .media-card .add-button {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
         }
         
@@ -231,7 +228,7 @@
         .export-section button {
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 8px 12px;
-            background: linear-gradient(135deg, #1a365d 0%, #15202b 100%);
+            background-color: #1a365d;
             color: white;
             border: none;
             border-radius: 6px;
@@ -260,42 +257,20 @@
         }
         
         th {
-            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 12px 10px;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-            white-space: nowrap;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
+            background-color: #e2e8f0;
             cursor: pointer;
             position: sticky;
             top: 0;
             z-index: 10;
-            font-weight: bold;
-            transition: background 0.2s ease;
+            color: #1a365d;
         }
         
         th:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
             background-color: #cbd5e0;
         }
         
         tr:hover {
             background-color: #ebf8ff;
-        }
-        
-        .sort-indicator {
-            font-size: 10px;
-            color: #718096;
-            margin-left: 5px;
-        }
-        
-        th.sorted-asc::after {
-            content: " ↑";
-        }
-        
-        th.sorted-desc::after {
-            content: " ↓";
         }
         
         .poster-cell {
@@ -378,7 +353,7 @@
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin-top: 12px;
             padding: 8px 15px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background-color: #2563eb;
             color: white;
             border: none;
             border-radius: 6px;
@@ -460,23 +435,21 @@
             <button id="table-tab" class="tab active" onclick="switchTab('table')">Tabelweergave</button>
         </div>
 
-                </div>
-
         <div id="grid-view" class="tab-content">
             <div class="search-box">
-                <input type="text" id="gridSearchInput" placeholder="Zoek op titel in TMDB...">
-                <button id="gridSearchButton">Zoeken</button>
+                <input type="text" id="searchInput" placeholder="Zoek op titel...">
+                <button id="searchButton">Zoeken</button>
             </div>
             
             <div class="library-search-box">
-                <input type="text" id="gridLibrarySearchInput" placeholder="Zoek in bibliotheek...">
-                <button id="gridLibrarySearchButton">Zoeken</button>
+                <input type="text" id="librarySearchInput" placeholder="Zoek in bibliotheek...">
+                <button id="librarySearchButton">Zoeken</button>
             </div>
-
+            
             <div class="filters">
                 <div class="filter-group">
-                    <label for="gridTypeFilter">Type:</label>
-                    <select id="gridTypeFilter">
+                    <label for="typeFilter">Type:</label>
+                    <select id="typeFilter">
                         <option value="">Alle types</option>
                         <option value="movie">Films</option>
                         <option value="tv">Series</option>
@@ -484,14 +457,14 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="gridGenreFilter">Genre:</label>
-                    <select id="gridGenreFilter">
+                    <label for="genreFilter">Genre:</label>
+                    <select id="genreFilter">
                         <option value="">Alle genres</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="gridStreamingFilter">Streamingdienst:</label>
-                    <select id="gridStreamingFilter">
+                    <label for="streamingFilter">Streamingdienst:</label>
+                    <select id="streamingFilter">
                         <option value="">Alle streamingdiensten</option>
                         <option value="Netflix">Netflix</option>
                         <option value="Disney+">Disney+</option>
@@ -504,8 +477,8 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="gridWatchedFilter">Bekeken:</label>
-                    <select id="gridWatchedFilter">
+                    <label for="watchedFilter">Bekeken:</label>
+                    <select id="watchedFilter">
                         <option value="">Alle status</option>
                         <option value="watched">Bekeken</option>
                         <option value="not-watched">Niet bekeken</option>
@@ -514,15 +487,15 @@
                 <div class="duration-range">
                     <label>Duur:</label>
                     <div style="display: flex; gap: 5px; align-items: center;">
-                        <input type="number" id="gridDurationMinFilter" placeholder="Min" min="0">
+                        <input type="number" id="durationMinFilter" placeholder="Min" min="0">
                         <span>tot</span>
-                        <input type="number" id="gridDurationMaxFilter" placeholder="Max" min="0">
+                        <input type="number" id="durationMaxFilter" placeholder="Max" min="0">
                     </div>
                 </div>
                 <div class="sort-group">
-                    <label for="gridSortFilter">Sorteer:</label>
-                    <select id="gridSortFilter">
-                        <option value="">Standaard (Nieuwste eerst)</option>
+                    <label for="sortFilter">Sorteer:</label>
+                    <select id="sortFilter">
+                        <option value="">Geen</option>
                         <option value="title-asc">Titel (A-Z)</option>
                         <option value="title-desc">Titel (Z-A)</option>
                         <option value="year-asc">Jaar (oud→nieuw)</option>
@@ -540,7 +513,36 @@
             <div class="media-grid" id="mediaGrid"></div>
         </div>
 
-        <!-- Modal voor streamingdiensten -->
+        <div id="table-view" class="tab-content active">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Poster</th>
+                            <th onclick="sortTable(1)">Titel</th>
+                            <th onclick="sortTable(2)">Type</th>
+                            <th onclick="sortTable(3)">Jaar</th>
+                            <th onclick="sortTable(4)">Genre</th>
+                            <th onclick="sortTable(5)">Land</th>
+                            <th onclick="sortTable(6)">Duur</th>
+                            <th onclick="sortTable(7)">Acteur</th>
+                            <th onclick="sortTable(8)">Prijs</th>
+                            <th onclick="sortTable(9)">Streaming</th>
+                            <th onclick="sortTable(10)">Omschrijving</th>
+                            <th onclick="sortTable(11)">Bekeken</th>
+                            <th>Acties</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <div class="export-section">
+                <button onclick="exportToExcel()">Exporteer naar Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal voor streamingdiensten -->
     <div id="streamingModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -630,20 +632,7 @@
         const searchButton = document.getElementById('searchButton');
         const librarySearchInput = document.getElementById('librarySearchInput');
         const librarySearchButton = document.getElementById('librarySearchButton');
-        
-                // Grid view elementen
-        const gridSearchInput = document.getElementById('gridSearchInput');
-        const gridSearchButton = document.getElementById('gridSearchButton');
-        const gridLibrarySearchInput = document.getElementById('gridLibrarySearchInput');
-        const gridLibrarySearchButton = document.getElementById('gridLibrarySearchButton');
-        const gridTypeFilter = document.getElementById('gridTypeFilter');
-        const gridGenreFilter = document.getElementById('gridGenreFilter');
-        const gridStreamingFilter = document.getElementById('gridStreamingFilter');
-        const gridWatchedFilter = document.getElementById('gridWatchedFilter');
-        const gridDurationMinFilter = document.getElementById('gridDurationMinFilter');
-        const gridDurationMaxFilter = document.getElementById('gridDurationMaxFilter');
-        const gridSortFilter = document.getElementById('gridSortFilter');
-
+        const mediaGrid = document.getElementById('mediaGrid');
         const tableBody = document.getElementById('tableBody');
         const typeFilter = document.getElementById('typeFilter');
         const genreFilter = document.getElementById('genreFilter');
@@ -652,38 +641,9 @@
         const durationMinFilter = document.getElementById('durationMinFilter');
         const durationMaxFilter = document.getElementById('durationMaxFilter');
         const sortFilter = document.getElementById('sortFilter');
-        
-        // Grid view elementen
-        const gridSearchInput = document.getElementById('gridSearchInput');
-        const gridSearchButton = document.getElementById('gridSearchButton');
-        const gridLibrarySearchInput = document.getElementById('gridLibrarySearchInput');
-        const gridLibrarySearchButton = document.getElementById('gridLibrarySearchButton');
-        const gridTypeFilter = document.getElementById('gridTypeFilter');
-        const gridGenreFilter = document.getElementById('gridGenreFilter');
-        const gridStreamingFilter = document.getElementById('gridStreamingFilter');
-        const gridWatchedFilter = document.getElementById('gridWatchedFilter');
-        const gridDurationMinFilter = document.getElementById('gridDurationMinFilter');
-        const gridDurationMaxFilter = document.getElementById('gridDurationMaxFilter');
-        const gridSortFilter = document.getElementById('gridSortFilter');
         const streamingModal = document.getElementById('streamingModal');
         const editModal = document.getElementById('editModal');
         const imageModal = document.getElementById('imageModal');
-                // Tab switching
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            if (tabName === 'table') {
-                document.getElementById('table-tab').classList.add('active');
-                document.getElementById('table-view').classList.add('active');
-                renderTable();
-            } else {
-                document.getElementById('grid-tab').classList.add('active');
-                document.getElementById('grid-view').classList.add('active');
-                displayLibrary();
-            }
-        }
-
         const modalImage = document.getElementById('modalImage');
         const modalMediaTitle = document.getElementById('modalMediaTitle');
         const editModalMediaTitle = document.getElementById('editModalMediaTitle');
@@ -754,7 +714,7 @@
 
         // Toon zoekresultaten
         function displaySearchResults(results) {
-            
+            mediaGrid.innerHTML = '';
 
             results.forEach(result => {
                 if (result.media_type === 'movie' || result.media_type === 'tv') {
@@ -767,7 +727,121 @@
         }
 
         // Toon gefilterde bibliotheek
-// Maak een media kaart
+        function displayFilteredLibrary(filteredLibrary) {
+            mediaGrid.innerHTML = '';
+            filteredLibrary.forEach(media => {
+                const card = createLibraryCard(media);
+                mediaGrid.appendChild(card);
+            });
+        }
+
+        // Maak een media kaart
+        function createMediaCard(media) {
+            const card = document.createElement('div');
+            card.className = 'media-card';
+
+            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
+            const title = media.title || media.name;
+            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
+            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
+            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
+            const overview = media.overview || media.description || 'Geen beschrijving beschikbaar.';
+
+            // Genres
+            let genres = 'Onbekend';
+            if (media.genres && media.genres.length > 0) {
+                genres = media.genres.map(genre => genre.name).join(', ');
+            } else if (media.genre_ids && media.genre_ids.length > 0) {
+                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
+            }
+
+            // Streamingdiensten
+            let streamingServices = 'Onbekend';
+            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
+                const nlProviders = media['watch/providers'].results.NL;
+                const flatrate = nlProviders.flatrate || [];
+                const free = nlProviders.free || [];
+                const allProviders = [...flatrate, ...free];
+                if (allProviders.length > 0) {
+                    streamingServices = allProviders.map(provider => provider.provider_name).join(', ');
+                }
+            }
+
+            // Duur
+            let duration = '';
+            if (media.media_type === 'movie' && media.runtime) {
+                duration = `${media.runtime} min`;
+            } else if (media.media_type === 'tv' && media.number_of_episodes) {
+                duration = `${media.number_of_episodes} afl.`;
+            }
+
+            // Land
+            let productionCountry = 'Onbekend';
+            if (media.production_countries && media.production_countries.length > 0) {
+                productionCountry = media.production_countries[0].name;
+            }
+
+            // Bekendste acteur
+            let leadActor = 'Onbekend';
+            if (media.credits && media.credits.cast && media.credits.cast.length > 0) {
+                leadActor = media.credits.cast[0].name;
+            }
+
+            // Prijs (voor Pathé Thuis)
+            let price = 'Onbekend';
+            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
+                const nlProviders = media['watch/providers'].results.NL;
+                const rent = nlProviders.rent || [];
+                const buy = nlProviders.buy || [];
+                const allProviders = [...rent, ...buy];
+                const patheProvider = allProviders.find(p => p.provider_name === 'Pathé Thuis');
+                if (patheProvider) {
+                    price = `€${patheProvider.price || '?'}`;
+                } else {
+                    price = 'Gratis';
+                }
+            }
+
+            // Vertaling
+            let translatedTitle = '';
+            if (media.title && !/^[a-zA-Z0-9\s\-:,'.]+$/.test(media.title)) {
+                translatedTitle = getDutchTranslation(media.title);
+            }
+
+            const existingMedia = mediaLibrary.find(item => item.id === media.id);
+            const isInLibrary = !!existingMedia;
+
+            card.innerHTML = `
+                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
+                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
+                <p><strong>Type:</strong> ${type}</p>
+                <p><strong>Jaar:</strong> ${year}</p>
+                <p><strong>Genre:</strong> ${genres}</p>
+                <p><strong>Land:</strong> ${productionCountry}</p>
+                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
+                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
+                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
+                <p><strong>Streaming:</strong> ${streamingServices}</p>
+                <p>${overview.substring(0, 80)}...</p>
+                <div class="actions" onclick="event.stopPropagation();">
+                    ${isInLibrary ? 
+                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
+                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
+                    }
+                    ${isInLibrary ? 
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
+                    }
+                    ${isInLibrary ? 
+                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
+                    }
+                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Voeg toe aan bibliotheek
         function addToLibrary(media) {
             const mediaToAdd = {
                 id: media.id,
@@ -825,7 +899,7 @@
 
             mediaLibrary.push(mediaToAdd);
             saveLibrary();
-            renderTable();
+            displayLibrary();
         }
 
         // Verwijder uit bibliotheek
@@ -853,26 +927,6 @@
         }
 
         // Toon bibliotheek
-                // Zoekfunctie voor bibliotheek (grid)
-        function searchGridLibrary() {
-            const query = gridLibrarySearchInput.value.trim().toLowerCase();
-            if (!query) {
-                displayLibrary();
-                return;
-            }
-
-            const filteredLibrary = mediaLibrary.filter(media => {
-                const title = (media.title || media.name || '').toLowerCase();
-                const translatedTitle = (media.translated_title || '').toLowerCase();
-                const overview = (media.overview || media.description || '').toLowerCase();
-                const actor = (media.lead_actor || '').toLowerCase();
-                const genres = media.genres ? media.genres.map(g => g.name.toLowerCase()).join(' ') : '';
-                return title.includes(query) || translatedTitle.includes(query) || overview.includes(query) || actor.includes(query) || genres.includes(query);
-            });
-
-            displayFilteredLibrary(filteredLibrary);
-        }
-
         function displayLibrary() {
             let filteredLibrary = [...mediaLibrary];
 
@@ -920,10 +974,10 @@
                 });
             }
 
-            // Sorteer - Standaard: nieuwste eerst
-            if (gridSortFilter.value) {
+            // Sorteer
+            if (sortFilter.value) {
                 filteredLibrary.sort((a, b) => {
-                    switch (gridSortFilter.value) {
+                    switch (sortFilter.value) {
                         case 'title-asc':
                             return (a.title || a.name || '').localeCompare(b.title || b.name || '');
                         case 'title-desc':
@@ -945,17 +999,13 @@
                             const bDurDesc = b.media_type === 'movie' ? b.runtime : b.number_of_episodes || 0;
                             return bDurDesc - aDurDesc;
                         default:
-                            // Standaard: sorteren op added_date (nieuwste eerst)
-                            return new Date(b.added_date || 0) - new Date(a.added_date || 0);
+                            return 0;
                     }
                 });
-            } else {
-                // Standaard sortering: nieuwste eerst
-                filteredLibrary.sort((a, b) => new Date(b.added_date || 0) - new Date(a.added_date || 0));
             }
 
             // Toon resultaten
-            
+            mediaGrid.innerHTML = '';
             filteredLibrary.forEach(media => {
                 const card = createLibraryCard(media);
                 mediaGrid.appendChild(card);
@@ -963,6 +1013,84 @@
         }
 
         // Maak een bibliotheek kaart
+                renderTable();
+        function createLibraryCard(media) {
+            const card = document.createElement('div');
+            card.className = 'media-card';
+
+            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
+            const title = media.title || media.name;
+            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
+            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
+            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
+            const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
+
+            // Genres
+            let genres = 'Onbekend';
+            if (media.genres && media.genres.length > 0) {
+                genres = media.genres.map(genre => genre.name).join(', ');
+            } else if (media.genre_ids && media.genre_ids.length > 0) {
+                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
+            }
+
+            // Streamingdiensten
+            let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
+                media.streaming_services.join(', ') : 'Onbekend';
+
+            // Duur
+            let duration = '';
+            if (media.media_type === 'movie' && media.runtime) {
+                duration = `${media.runtime} min`;
+            } else if (media.media_type === 'tv' && media.number_of_episodes) {
+                duration = `${media.number_of_episodes} afl.`;
+            }
+
+            // Land
+            let productionCountry = 'Onbekend';
+            if (media.production_countries && media.production_countries.length > 0) {
+                productionCountry = media.production_countries[0].name;
+            }
+
+            // Acteur
+            const leadActor = media.lead_actor || 'Onbekend';
+
+            // Prijs
+            const price = media.price || 'Onbekend';
+
+            // Vertaling
+            const translatedTitle = media.translated_title || '';
+
+            card.innerHTML = `
+                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
+                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
+                <p><strong>Type:</strong> ${type}</p>
+                <p><strong>Jaar:</strong> ${year}</p>
+                <p><strong>Genre:</strong> ${genres}</p>
+                <p><strong>Land:</strong> ${productionCountry}</p>
+                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
+                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
+                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
+                <p><strong>Streaming:</strong> ${streamingServices}</p>
+                <p>${overview.substring(0, 80)}...</p>
+                <div class="actions" onclick="event.stopPropagation();">
+                    ${mediaLibrary.some(item => item.id === media.id) ? 
+                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
+                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
+                    }
+                    ${mediaLibrary.some(item => item.id === media.id) ? 
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
+                    }
+                    ${mediaLibrary.some(item => item.id === media.id) ? 
+                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
+                    }
+                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Render tabelweergave
         function renderTable() {
             tableBody.innerHTML = '';
 
@@ -1003,7 +1131,7 @@
                 });
             }
 
-            // Sorteer - Standaard: nieuwste eerst
+            // Sorteer
             if (currentSortColumn !== null) {
                 filteredLibrary.sort((a, b) => {
                     let aValue, bValue;
@@ -1059,9 +1187,6 @@
                     if (aValue > bValue) return 1 * currentSortDirection;
                     return 0;
                 });
-            } else {
-                // Standaard sortering: nieuwste eerst
-                filteredLibrary.sort((a, b) => new Date(b.added_date || 0) - new Date(a.added_date || 0));
             }
 
             // Voeg rijen toe aan de tabel
@@ -1122,9 +1247,9 @@
                     <td>${overview.substring(0, 40)}...</td>
                     <td>${media.watched ? 'Ja' : 'Nee'}</td>
                     <td>
-                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Verwijder</button>
-                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
-                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Bewerk</button>
+                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px;">Verwijder</button>
+                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
+                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px;">Bewerk</button>
                     </td>
                 `;
 
@@ -1218,16 +1343,6 @@
 
         function closeEditModal() {
             editModal.style.display = 'none';
-        }
-
-                // Update sorteerindicatie
-        function updateSortIndicators() {
-            document.querySelectorAll('th').forEach((th, index) => {
-                th.classList.remove('sorted-asc', 'sorted-desc');
-                if (index === currentSortColumn) {
-                    th.classList.add(currentSortDirection === 1 ? 'sorted-asc' : 'sorted-desc');
-                }
-            });
         }
 
         function closeImageModal() {
@@ -1349,17 +1464,6 @@
                 option.textContent = genre;
                 genreFilter.appendChild(option);
             });
-
-            // Update grid filters ook
-            if (gridGenreFilter) {
-                gridGenreFilter.innerHTML = '<option value="">Alle genres</option>';
-                Array.from(allGenres).sort().forEach(genre => {
-                    const option = document.createElement('option');
-                    option.value = genre;
-                    option.textContent = genre;
-                    gridGenreFilter.appendChild(option);
-                });
-            }
         }
 
         // Haal genre naam op
@@ -1460,18 +1564,13 @@
         librarySearchButton.addEventListener('click', searchLibrary);
         librarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchLibrary(); });
 
-        typeFilter.addEventListener('change', () => { renderTable(); });
-        genreFilter.addEventListener('change', () => { renderTable(); });
-        streamingFilter.addEventListener('change', () => { renderTable(); });
-        watchedFilter.addEventListener('change', () => { renderTable(); });
-        durationMinFilter.addEventListener('input', () => { renderTable(); });
-        durationMaxFilter.addEventListener('input', () => { renderTable(); });
-        sortFilter.addEventListener('change', () => { renderTable(); });
-        // Grid view event listeners
-        gridSearchButton.addEventListener('click', searchMedia);
-        gridSearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchMedia(); });
-        gridLibrarySearchButton.addEventListener('click', searchGridLibrary);
-        gridLibrarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchGridLibrary(); });
+        typeFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        genreFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        streamingFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        watchedFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
+        durationMinFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
+        durationMaxFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
+        sortFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
         gridTypeFilter.addEventListener('change', () => { displayLibrary(); });
         gridGenreFilter.addEventListener('change', () => { displayLibrary(); });
         gridStreamingFilter.addEventListener('change', () => { displayLibrary(); });
@@ -1480,236 +1579,13 @@
         gridDurationMaxFilter.addEventListener('input', () => { displayLibrary(); });
         gridSortFilter.addEventListener('change', () => { displayLibrary(); });
 
-                
-        // Grid view event listeners
-        if (gridSearchButton) {
-            gridSearchButton.addEventListener('click', searchMedia);
-        }
-        if (gridSearchInput) {
-            gridSearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchMedia(); });
-        }
-        if (gridLibrarySearchButton) {
-            gridLibrarySearchButton.addEventListener('click', searchGridLibrary);
-        }
-        if (gridLibrarySearchInput) {
-            gridLibrarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchGridLibrary(); });
-        }
-        if (gridTypeFilter) {
-            gridTypeFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridGenreFilter) {
-            gridGenreFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridStreamingFilter) {
-            gridStreamingFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridWatchedFilter) {
-            gridWatchedFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-        if (gridDurationMinFilter) {
-            gridDurationMinFilter.addEventListener('input', () => { displayLibrary(); });
-        }
-        if (gridDurationMaxFilter) {
-            gridDurationMaxFilter.addEventListener('input', () => { displayLibrary(); });
-        }
-        if (gridSortFilter) {
-            gridSortFilter.addEventListener('change', () => { displayLibrary(); });
-        }
-
         window.onclick = function(event) {
             if (event.target == streamingModal) closeModal();
             if (event.target == editModal) closeEditModal();
         }
 
         // Laad bibliotheek bij starten
-        renderTable();
         displayLibrary();
-        updateFilters();
-            // Maak een media kaart
-        function createMediaCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
-
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.overview || media.description || 'Geen beschrijving beschikbaar.';
-
-            // Genres
-            let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-
-            // Streamingdiensten
-            let streamingServices = 'Onbekend';
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const flatrate = nlProviders.flatrate || [];
-                const free = nlProviders.free || [];
-                const allProviders = [...flatrate, ...free];
-                if (allProviders.length > 0) {
-                    streamingServices = allProviders.map(provider => provider.provider_name).join(', ');
-                }
-            }
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Bekendste acteur
-            let leadActor = 'Onbekend';
-            if (media.credits && media.credits.cast && media.credits.cast.length > 0) {
-                leadActor = media.credits.cast[0].name;
-            }
-
-            // Prijs (voor Pathé Thuis)
-            let price = 'Onbekend';
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const rent = nlProviders.rent || [];
-                const buy = nlProviders.buy || [];
-                const allProviders = [...rent, ...buy];
-                const patheProvider = allProviders.find(p => p.provider_name === 'Pathé Thuis');
-                if (patheProvider) {
-                    price = `€${patheProvider.price || '?'}`;
-                } else {
-                    price = 'Gratis';
-                }
-            }
-
-            // Vertaling
-            let translatedTitle = '';
-            if (media.title && !/^[a-zA-Z0-9\s\-:,'.]+$/.test(media.title)) {
-                translatedTitle = getDutchTranslation(media.title);
-            }
-
-            const existingMedia = mediaLibrary.find(item => item.id === media.id);
-            const isInLibrary = !!existingMedia;
-
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/\/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
-                    ${isInLibrary ? 
-                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
-                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/\/g, '&quot;')})">Toevoegen</button>`
-                    }
-                    ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
-                    }
-                    ${isInLibrary ? 
-                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
-                    }
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\'")}')">Streaming</button>
-                </div>
-            `;
-
-            return card;
-        }
-
-        // Toon gefilterde bibliotheek (grid)
-        function displayFilteredLibrary(filteredLibrary) {
-            mediaGrid.innerHTML = '';
-            filteredLibrary.forEach(media => {
-                const card = createLibraryCard(media);
-                mediaGrid.appendChild(card);
-            });
-        }
-
-        // Maak een bibliotheek kaart
-        function createLibraryCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
-
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
-
-            // Genres
-            let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-
-            // Streamingdiensten
-            let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
-                media.streaming_services.join(', ') : 'Onbekend';
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Acteur
-            const leadActor = media.lead_actor || 'Onbekend';
-
-            // Prijs
-            const price = media.price || 'Onbekend';
-
-            // Vertaling
-            const translatedTitle = media.translated_title || '';
-
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/\/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
-                    <button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>
-                    <button class="watched-button" onclick="toggleWatched(${media.id})">${media.watched ? 'Niet bekeken' : 'Bekeken'}</button>
-                    <button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\'")}')">Streaming</button>
-                </div>
-            `;
-
-            return card;
-        }
-
-        </script>
+    </script>
 </body>
 </html>
