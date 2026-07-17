@@ -7,7 +7,7 @@
     <style>
         @font-face {
             font-family: 'DotFont';
-            src: url('data:font/woff2;charset=utf-8;base64,d09GRgABAAAAAAZgABAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlZGAAAB5AAAAFoAAAGQAbQBXU0ZGVE0sAAAA8wAAAGQAAABa72J5dXJaYGAQAAACLAAAAFN4A9jX3jW1vbgAAAAgAAAAAAAAAAAAB4z8B9ZBpgAAAAAAAAAAAAAAAAAAB4z8B9ZBpgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') format('woff2');
+            src: url('data:font/woff2;charset=utf-8;base64,d09GRgABAAAAAAZgABAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlZGAAAB5AAAAFoAAAGQAbQBXU0ZGVE0sAAAA8wAAAGQAAABa72J5dXJaYGAQAAACLAAAAFN4A9jX3jW1vbgAAAAgAAAAAAAAAAAAB4z8B9ZBpgAAAAAAAAAAAAAAAAAAB4z8B9ZBpgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
@@ -37,39 +37,6 @@
             margin-bottom: 15px;
             text-align: center;
             letter-spacing: 0.5px;
-        }
-        
-        .tabs {
-            display: flex;
-            margin-bottom: 15px;
-            gap: 5px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .tab {
-            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 8px 12px;
-            background-color: #e2e8f0;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            white-space: nowrap;
-            color: #1a365d;
-        }
-        
-        .tab.active {
-            background-color: #2563eb;
-            color: white;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
         }
         
         .search-box, .library-search-box {
@@ -135,107 +102,6 @@
             width: 50px;
         }
         
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 10px;
-        }
-        
-        .media-card {
-            border: 1px solid #cbd5e0;
-            border-radius: 8px;
-            padding: 8px;
-            background: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            font-size: 12px;
-        }
-        
-        .media-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 6px;
-        }
-        
-        .media-card h3 {
-            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 6px 0;
-            font-size: 14px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: #1a365d;
-        }
-        
-        .media-card p {
-            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 4px 0;
-            font-size: 11px;
-            color: #4a5568;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .media-card .actions {
-            display: flex;
-            gap: 5px;
-            margin-top: 8px;
-            flex-wrap: wrap;
-        }
-        
-        .media-card button {
-            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 4px 8px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 10px;
-            white-space: nowrap;
-        }
-        
-        .media-card .add-button {
-            background-color: #2563eb;
-            color: white;
-        }
-        
-        .media-card .remove-button {
-            background-color: #e53e3e;
-            color: white;
-        }
-        
-        .media-card .watched-button {
-            background-color: #3182ce;
-            color: white;
-        }
-        
-        .media-card .streaming-button {
-            background-color: #319795;
-            color: white;
-        }
-        
-        .media-card .edit-button {
-            background-color: #4299e1;
-            color: white;
-        }
-        
-        .export-section {
-            margin: 12px 0;
-            display: flex;
-            gap: 8px;
-        }
-        
-        .export-section button {
-            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding: 8px 12px;
-            background-color: #1a365d;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        
         .table-container {
             overflow-x: auto;
             margin-top: 10px;
@@ -282,6 +148,7 @@
             width: 100%;
             height: auto;
             border-radius: 4px;
+            cursor: pointer;
         }
         
         .modal {
@@ -411,15 +278,27 @@
             margin-top: 4px;
         }
         
+        .export-section {
+            margin: 12px 0;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .export-section button {
+            font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 8px 12px;
+            background-color: #1a365d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
         @media (max-width: 400px) {
-            .media-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-            
             .filter-group, .duration-range, .sort-group {
                 min-width: 100px;
             }
-            
             .filters {
                 gap: 5px;
             }
@@ -430,115 +309,101 @@
     <div class="container">
         <h1>Mediabibliotheek van Marije</h1>
         
-        <div class="tabs">
-            <button id="grid-tab" class="tab" onclick="switchTab('grid')">Kaartweergave</button>
-            <button id="table-tab" class="tab active" onclick="switchTab('table')">Tabelweergave</button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Zoek op titel (TMDB)...">
+            <button id="searchButton">Zoeken</button>
         </div>
-
-        <div id="grid-view" class="tab-content">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Zoek op titel...">
-                <button id="searchButton">Zoeken</button>
-            </div>
-            
-            <div class="library-search-box">
-                <input type="text" id="librarySearchInput" placeholder="Zoek in bibliotheek...">
-                <button id="librarySearchButton">Zoeken</button>
-            </div>
-            
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="typeFilter">Type:</label>
-                    <select id="typeFilter">
-                        <option value="">Alle types</option>
-                        <option value="movie">Films</option>
-                        <option value="tv">Series</option>
-                        <option value="documentary">Documentaires</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="genreFilter">Genre:</label>
-                    <select id="genreFilter">
-                        <option value="">Alle genres</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="streamingFilter">Streamingdienst:</label>
-                    <select id="streamingFilter">
-                        <option value="">Alle streamingdiensten</option>
-                        <option value="Netflix">Netflix</option>
-                        <option value="Disney+">Disney+</option>
-                        <option value="Amazon Prime Video">Prime Video</option>
-                        <option value="HBO Max">HBO Max</option>
-                        <option value="NPO Start">NPO Start</option>
-                        <option value="Videoland">Videoland</option>
-                        <option value="Pathé Thuis">Pathé Thuis</option>
-                        <option value="Apple TV+">Apple TV+</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="watchedFilter">Bekeken:</label>
-                    <select id="watchedFilter">
-                        <option value="">Alle status</option>
-                        <option value="watched">Bekeken</option>
-                        <option value="not-watched">Niet bekeken</option>
-                    </select>
-                </div>
-                <div class="duration-range">
-                    <label>Duur:</label>
-                    <div style="display: flex; gap: 5px; align-items: center;">
-                        <input type="number" id="durationMinFilter" placeholder="Min" min="0">
-                        <span>tot</span>
-                        <input type="number" id="durationMaxFilter" placeholder="Max" min="0">
-                    </div>
-                </div>
-                <div class="sort-group">
-                    <label for="sortFilter">Sorteer:</label>
-                    <select id="sortFilter">
-                        <option value="">Geen</option>
-                        <option value="title-asc">Titel (A-Z)</option>
-                        <option value="title-desc">Titel (Z-A)</option>
-                        <option value="year-asc">Jaar (oud→nieuw)</option>
-                        <option value="year-desc">Jaar (nieuw→oud)</option>
-                        <option value="duration-asc">Duur (kort→lang)</option>
-                        <option value="duration-desc">Duur (lang→kort)</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="export-section">
-                <button onclick="exportToExcel()">Exporteer naar Excel</button>
-            </div>
-            
-            <div class="media-grid" id="mediaGrid"></div>
+        
+        <div class="library-search-box">
+            <input type="text" id="librarySearchInput" placeholder="Zoek in bibliotheek...">
+            <button id="librarySearchButton">Zoeken</button>
         </div>
-
-        <div id="table-view" class="tab-content active">
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th onclick="sortTable(0)">Poster</th>
-                            <th onclick="sortTable(1)">Titel</th>
-                            <th onclick="sortTable(2)">Type</th>
-                            <th onclick="sortTable(3)">Jaar</th>
-                            <th onclick="sortTable(4)">Genre</th>
-                            <th onclick="sortTable(5)">Land</th>
-                            <th onclick="sortTable(6)">Duur</th>
-                            <th onclick="sortTable(7)">Acteur</th>
-                            <th onclick="sortTable(8)">Prijs</th>
-                            <th onclick="sortTable(9)">Streaming</th>
-                            <th onclick="sortTable(10)">Omschrijving</th>
-                            <th onclick="sortTable(11)">Bekeken</th>
-                            <th>Acties</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="typeFilter">Type:</label>
+                <select id="typeFilter">
+                    <option value="">Alle types</option>
+                    <option value="movie">Films</option>
+                    <option value="tv">Series</option>
+                    <option value="documentary">Documentaires</option>
+                </select>
             </div>
-            <div class="export-section">
-                <button onclick="exportToExcel()">Exporteer naar Excel</button>
+            <div class="filter-group">
+                <label for="genreFilter">Genre:</label>
+                <select id="genreFilter">
+                    <option value="">Alle genres</option>
+                </select>
             </div>
+            <div class="filter-group">
+                <label for="streamingFilter">Streamingdienst:</label>
+                <select id="streamingFilter">
+                    <option value="">Alle streamingdiensten</option>
+                    <option value="Netflix">Netflix</option>
+                    <option value="Disney+">Disney+</option>
+                    <option value="Amazon Prime Video">Prime Video</option>
+                    <option value="HBO Max">HBO Max</option>
+                    <option value="NPO Start">NPO Start</option>
+                    <option value="Videoland">Videoland</option>
+                    <option value="Pathé Thuis">Pathé Thuis</option>
+                    <option value="Apple TV+">Apple TV+</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="watchedFilter">Bekeken:</label>
+                <select id="watchedFilter">
+                    <option value="">Alle status</option>
+                    <option value="watched">Bekeken</option>
+                    <option value="not-watched">Niet bekeken</option>
+                </select>
+            </div>
+            <div class="duration-range">
+                <label>Duur:</label>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                    <input type="number" id="durationMinFilter" placeholder="Min" min="0">
+                    <span>tot</span>
+                    <input type="number" id="durationMaxFilter" placeholder="Max" min="0">
+                </div>
+            </div>
+            <div class="sort-group">
+                <label for="sortFilter">Sorteer:</label>
+                <select id="sortFilter">
+                    <option value="">Geen</option>
+                    <option value="title-asc">Titel (A-Z)</option>
+                    <option value="title-desc">Titel (Z-A)</option>
+                    <option value="year-asc">Jaar (oud→nieuw)</option>
+                    <option value="year-desc">Jaar (nieuw→oud)</option>
+                    <option value="duration-asc">Duur (kort→lang)</option>
+                    <option value="duration-desc">Duur (lang→kort)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="export-section">
+            <button onclick="exportToExcel()">Exporteer naar Excel</button>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Poster</th>
+                        <th onclick="sortTable(1)">Titel</th>
+                        <th onclick="sortTable(2)">Type</th>
+                        <th onclick="sortTable(3)">Jaar</th>
+                        <th onclick="sortTable(4)">Genre</th>
+                        <th onclick="sortTable(5)">Land</th>
+                        <th onclick="sortTable(6)">Duur</th>
+                        <th onclick="sortTable(7)">Acteur</th>
+                        <th onclick="sortTable(8)">Prijs</th>
+                        <th onclick="sortTable(9)">Streaming</th>
+                        <th onclick="sortTable(10)">Omschrijving</th>
+                        <th onclick="sortTable(11)">Bekeken</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
         </div>
     </div>
 
@@ -632,7 +497,6 @@
         const searchButton = document.getElementById('searchButton');
         const librarySearchInput = document.getElementById('librarySearchInput');
         const librarySearchButton = document.getElementById('librarySearchButton');
-        const mediaGrid = document.getElementById('mediaGrid');
         const tableBody = document.getElementById('tableBody');
         const typeFilter = document.getElementById('typeFilter');
         const genreFilter = document.getElementById('genreFilter');
@@ -648,21 +512,6 @@
         const modalMediaTitle = document.getElementById('modalMediaTitle');
         const editModalMediaTitle = document.getElementById('editModalMediaTitle');
 
-        // Tab switching
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            if (tabName === 'grid') {
-                document.getElementById('grid-tab').classList.add('active');
-                document.getElementById('grid-view').classList.add('active');
-            } else {
-                document.getElementById('table-tab').classList.add('active');
-                document.getElementById('table-view').classList.add('active');
-                renderTable();
-            }
-        }
-
         // Zoekfunctie voor TMDB
         async function searchMedia() {
             const query = searchInput.value.trim();
@@ -674,7 +523,7 @@
                 const data = await response.json();
 
                 const detailedResults = await Promise.all(
-                    data.results.map(async (result) => {
+                    data.results.slice(0, 10).map(async (result) => {
                         if (result.media_type === 'movie' || result.media_type === 'tv') {
                             const detailsUrl = `${TMDB_BASE_URL}/${result.media_type}/${result.id}?api_key=${TMDB_API_KEY}&language=nl-NL&append_to_response=credits,watch/providers`;
                             const detailsResponse = await fetch(detailsUrl);
@@ -692,60 +541,29 @@
             }
         }
 
-        // Zoekfunctie voor bibliotheek
-        function searchLibrary() {
-            const query = librarySearchInput.value.trim().toLowerCase();
-            if (!query) {
-                displayLibrary();
-                return;
-            }
-
-            const filteredLibrary = mediaLibrary.filter(media => {
-                const title = (media.title || media.name || '').toLowerCase();
-                const translatedTitle = (media.translated_title || '').toLowerCase();
-                const overview = (media.overview || media.description || '').toLowerCase();
-                const actor = (media.lead_actor || '').toLowerCase();
-                const genres = media.genres ? media.genres.map(g => g.name.toLowerCase()).join(' ') : '';
-                return title.includes(query) || translatedTitle.includes(query) || overview.includes(query) || actor.includes(query) || genres.includes(query);
-            });
-
-            displayFilteredLibrary(filteredLibrary);
-        }
-
-        // Toon zoekresultaten
+        // Toon zoekresultaten in een tabel
         function displaySearchResults(results) {
-            mediaGrid.innerHTML = '';
+            tableBody.innerHTML = '';
 
             results.forEach(result => {
                 if (result.media_type === 'movie' || result.media_type === 'tv') {
-                    const mediaCard = createMediaCard(result);
-                    mediaGrid.appendChild(mediaCard);
+                    const row = createSearchResultRow(result);
+                    tableBody.appendChild(row);
                 }
             });
-
-            updateFilters();
         }
 
-        // Toon gefilterde bibliotheek
-        function displayFilteredLibrary(filteredLibrary) {
-            mediaGrid.innerHTML = '';
-            filteredLibrary.forEach(media => {
-                const card = createLibraryCard(media);
-                mediaGrid.appendChild(card);
-            });
-        }
-
-        // Maak een media kaart
-        function createMediaCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
+        // Maak een rij voor zoekresultaten
+        function createSearchResultRow(media) {
+            const row = document.createElement('tr');
+            row.style.backgroundColor = '#ebf8ff';
 
             const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
             const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
+            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/50x75?text=No+Poster';
             const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
             const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.overview || media.description || 'Geen beschrijving beschikbaar.';
+            const overview = media.overview || 'Geen beschrijving beschikbaar.';
 
             // Genres
             let genres = 'Onbekend';
@@ -755,16 +573,10 @@
                 genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
             }
 
-            // Streamingdiensten
-            let streamingServices = 'Onbekend';
-            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
-                const nlProviders = media['watch/providers'].results.NL;
-                const flatrate = nlProviders.flatrate || [];
-                const free = nlProviders.free || [];
-                const allProviders = [...flatrate, ...free];
-                if (allProviders.length > 0) {
-                    streamingServices = allProviders.map(provider => provider.provider_name).join(', ');
-                }
+            // Land
+            let productionCountry = 'Onbekend';
+            if (media.production_countries && media.production_countries.length > 0) {
+                productionCountry = media.production_countries[0].name;
             }
 
             // Duur
@@ -775,19 +587,13 @@
                 duration = `${media.number_of_episodes} afl.`;
             }
 
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Bekendste acteur
+            // Acteur
             let leadActor = 'Onbekend';
             if (media.credits && media.credits.cast && media.credits.cast.length > 0) {
                 leadActor = media.credits.cast[0].name;
             }
 
-            // Prijs (voor Pathé Thuis)
+            // Prijs
             let price = 'Onbekend';
             if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
                 const nlProviders = media['watch/providers'].results.NL;
@@ -802,6 +608,18 @@
                 }
             }
 
+            // Streamingdiensten
+            let streamingServices = 'Onbekend';
+            if (media['watch/providers'] && media['watch/providers'].results && media['watch/providers'].results.NL) {
+                const nlProviders = media['watch/providers'].results.NL;
+                const flatrate = nlProviders.flatrate || [];
+                const free = nlProviders.free || [];
+                const allProviders = [...flatrate, ...free];
+                if (allProviders.length > 0) {
+                    streamingServices = allProviders.map(provider => provider.provider_name).join(', ');
+                }
+            }
+
             // Vertaling
             let translatedTitle = '';
             if (media.title && !/^[a-zA-Z0-9\s\-:,'.]+$/.test(media.title)) {
@@ -811,34 +629,28 @@
             const existingMedia = mediaLibrary.find(item => item.id === media.id);
             const isInLibrary = !!existingMedia;
 
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
+            row.innerHTML = `
+                <td class="poster-cell"><img src="${posterPath}" alt="${title}" onclick="openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});"></td>
+                <td>${title} ${translatedTitle ? `<br><span class="translated-title">(${translatedTitle})</span>` : ''}</td>
+                <td>${type}</td>
+                <td>${year}</td>
+                <td>${genres}</td>
+                <td>${productionCountry}</td>
+                <td>${duration || 'Onbekend'}</td>
+                <td>${leadActor}</td>
+                <td>${price}</td>
+                <td>${streamingServices}</td>
+                <td>${overview.substring(0, 40)}...</td>
+                <td>${isInLibrary ? 'Ja' : 'Nee'}</td>
+                <td>
                     ${isInLibrary ? 
-                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
-                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
+                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #e53e3e; color: white; border: none; border-radius: 4px; cursor: pointer;">Verwijder</button>` :
+                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})" style="padding: 2px 4px; font-size: 10px; background-color: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer;">Toevoegen</button>`
                     }
-                    ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
-                    }
-                    ${isInLibrary ? 
-                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
-                    }
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
-                </div>
+                </td>
             `;
 
-            return card;
+            return row;
         }
 
         // Voeg toe aan bibliotheek
@@ -899,15 +711,16 @@
 
             mediaLibrary.push(mediaToAdd);
             saveLibrary();
-            displayLibrary();
+            renderTable();
+            updateFilters();
         }
 
         // Verwijder uit bibliotheek
         function removeFromLibrary(id) {
             mediaLibrary = mediaLibrary.filter(item => item.id !== id);
             saveLibrary();
-            displayLibrary();
             renderTable();
+            updateFilters();
         }
 
         // Toggle bekeken status
@@ -916,7 +729,6 @@
             if (media) {
                 media.watched = !media.watched;
                 saveLibrary();
-                displayLibrary();
                 renderTable();
             }
         }
@@ -926,9 +738,24 @@
             localStorage.setItem('mediaLibrary', JSON.stringify(mediaLibrary));
         }
 
-        // Toon bibliotheek
-        function displayLibrary() {
+        // Render tabelweergave
+        function renderTable() {
+            tableBody.innerHTML = '';
+
             let filteredLibrary = [...mediaLibrary];
+
+            // Zoek in bibliotheek
+            const libraryQuery = librarySearchInput.value.trim().toLowerCase();
+            if (libraryQuery) {
+                filteredLibrary = filteredLibrary.filter(media => {
+                    const title = (media.title || media.name || '').toLowerCase();
+                    const translatedTitle = (media.translated_title || '').toLowerCase();
+                    const overview = (media.overview || media.description || '').toLowerCase();
+                    const actor = (media.lead_actor || '').toLowerCase();
+                    const genres = media.genres ? media.genres.map(g => g.name.toLowerCase()).join(' ') : '';
+                    return title.includes(libraryQuery) || translatedTitle.includes(libraryQuery) || overview.includes(libraryQuery) || actor.includes(libraryQuery) || genres.includes(libraryQuery);
+                });
+            }
 
             // Type filter
             if (typeFilter.value) {
@@ -963,7 +790,6 @@
             if (durationMinFilter.value || durationMaxFilter.value) {
                 const minDuration = parseInt(durationMinFilter.value) || 0;
                 const maxDuration = parseInt(durationMaxFilter.value) || Infinity;
-
                 filteredLibrary = filteredLibrary.filter(item => {
                     if (item.media_type === 'movie' && item.runtime) {
                         return item.runtime >= minDuration && item.runtime <= maxDuration;
@@ -974,7 +800,7 @@
                 });
             }
 
-            // Sorteer
+            // Sorteer via dropdown
             if (sortFilter.value) {
                 filteredLibrary.sort((a, b) => {
                     switch (sortFilter.value) {
@@ -1004,135 +830,8 @@
                 });
             }
 
-            // Toon resultaten
-            mediaGrid.innerHTML = '';
-            filteredLibrary.forEach(media => {
-                const card = createLibraryCard(media);
-                mediaGrid.appendChild(card);
-            });
-        }
-
-        // Maak een bibliotheek kaart
-                renderTable();
-        function createLibraryCard(media) {
-            const card = document.createElement('div');
-            card.className = 'media-card';
-
-            const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-            const title = media.title || media.name;
-            const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/140x210?text=No+Poster';
-            const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-            const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-            const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
-
-            // Genres
-            let genres = 'Onbekend';
-            if (media.genres && media.genres.length > 0) {
-                genres = media.genres.map(genre => genre.name).join(', ');
-            } else if (media.genre_ids && media.genre_ids.length > 0) {
-                genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-            }
-
-            // Streamingdiensten
-            let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
-                media.streaming_services.join(', ') : 'Onbekend';
-
-            // Duur
-            let duration = '';
-            if (media.media_type === 'movie' && media.runtime) {
-                duration = `${media.runtime} min`;
-            } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                duration = `${media.number_of_episodes} afl.`;
-            }
-
-            // Land
-            let productionCountry = 'Onbekend';
-            if (media.production_countries && media.production_countries.length > 0) {
-                productionCountry = media.production_countries[0].name;
-            }
-
-            // Acteur
-            const leadActor = media.lead_actor || 'Onbekend';
-
-            // Prijs
-            const price = media.price || 'Onbekend';
-
-            // Vertaling
-            const translatedTitle = media.translated_title || '';
-
-            card.innerHTML = `
-                <img src="${posterPath}" alt="${title}" onclick="event.stopPropagation(); openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});">
-                <h3>${title} ${translatedTitle ? `<span class="translated-title">(${translatedTitle})</span>` : ''}</h3>
-                <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Jaar:</strong> ${year}</p>
-                <p><strong>Genre:</strong> ${genres}</p>
-                <p><strong>Land:</strong> ${productionCountry}</p>
-                <p><strong>Duur:</strong> ${duration || 'Onbekend'}</p>
-                ${leadActor !== 'Onbekend' ? `<p class="actor-info"><strong>Acteur:</strong> ${leadActor}</p>` : ''}
-                ${price !== 'Onbekend' && price !== 'Gratis' ? `<p class="price-info"><strong>Prijs:</strong> ${price}</p>` : ''}
-                <p><strong>Streaming:</strong> ${streamingServices}</p>
-                <p>${overview.substring(0, 80)}...</p>
-                <div class="actions" onclick="event.stopPropagation();">
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>` :
-                        `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
-                    }
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
-                    }
-                    ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
-                    }
-                    <button class="streaming-button" onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')">Streaming</button>
-                </div>
-            `;
-
-            return card;
-        }
-
-        // Render tabelweergave
-        function renderTable() {
-            tableBody.innerHTML = '';
-
-            let filteredLibrary = [...mediaLibrary];
-
-            // Pas filters toe
-            if (typeFilter.value) {
-                filteredLibrary = filteredLibrary.filter(item => item.media_type === typeFilter.value);
-            }
-            if (genreFilter.value) {
-                filteredLibrary = filteredLibrary.filter(item => {
-                    const genreNames = item.genres ? item.genres.map(g => g.name) : [];
-                    const genreIds = item.genre_ids || [];
-                    const allGenres = [...genreNames, ...genreIds.map(id => getGenreName(id, item.media_type))];
-                    return allGenres.includes(genreFilter.value);
-                });
-            }
-            if (streamingFilter.value) {
-                filteredLibrary = filteredLibrary.filter(item => 
-                    item.streaming_services && item.streaming_services.includes(streamingFilter.value)
-                );
-            }
-            if (watchedFilter.value === 'watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched);
-            } else if (watchedFilter.value === 'not-watched') {
-                filteredLibrary = filteredLibrary.filter(item => !item.watched);
-            }
-            if (durationMinFilter.value || durationMaxFilter.value) {
-                const minDuration = parseInt(durationMinFilter.value) || 0;
-                const maxDuration = parseInt(durationMaxFilter.value) || Infinity;
-                filteredLibrary = filteredLibrary.filter(item => {
-                    if (item.media_type === 'movie' && item.runtime) {
-                        return item.runtime >= minDuration && item.runtime <= maxDuration;
-                    } else if (item.media_type === 'tv' && item.number_of_episodes) {
-                        return item.number_of_episodes >= minDuration && item.number_of_episodes <= maxDuration;
-                    }
-                    return false;
-                });
-            }
-
-            // Sorteer
-            if (currentSortColumn !== null) {
+            // Sorteer via kolomheader
+            if (currentSortColumn !== null && !sortFilter.value) {
                 filteredLibrary.sort((a, b) => {
                     let aValue, bValue;
                     switch (currentSortColumn) {
@@ -1247,9 +946,10 @@
                     <td>${overview.substring(0, 40)}...</td>
                     <td>${media.watched ? 'Ja' : 'Nee'}</td>
                     <td>
-                        <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px;">Verwijder</button>
-                        <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
-                        <button class="edit-button" onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px;">Bewerk</button>
+                        <button onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #e53e3e; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">Verwijder</button>
+                        <button onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #3182ce; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
+                        <button onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #4299e1; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">Bewerk</button>
+                        <button onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\\'")}')" style="padding: 2px 4px; font-size: 10px; background-color: #319795; color: white; border: none; border-radius: 4px; cursor: pointer;">Streaming</button>
                     </td>
                 `;
 
@@ -1265,6 +965,7 @@
                 currentSortColumn = columnIndex;
                 currentSortDirection = 1;
             }
+            sortFilter.value = '';
             renderTable();
         }
 
@@ -1375,7 +1076,6 @@
             }
 
             saveLibrary();
-            displayLibrary();
             renderTable();
             closeModal();
         }
@@ -1431,7 +1131,6 @@
             media.description = document.getElementById('editDescription').value;
 
             saveLibrary();
-            displayLibrary();
             renderTable();
             closeEditModal();
         }
@@ -1489,14 +1188,14 @@
         // Vertaling voor niet-Latijnse titels
         function getDutchTranslation(title) {
             const translations = {
-                'Брат': 'Broer',
-                'Брат 2': 'Broer 2',
-                'Иди и смотри': 'Ga en kijk',
-                'Сталкер': 'Stalker',
-                'Метрополис': 'Metropolis',
-                '七武士': 'De zeven samurai',
-                '神隠し': 'Geestenwereld',
-                '千と千尋の神隠し': 'Chihiro en de geestenwereld'
+                '\u0411\u0440\u0430\u0442': 'Broer',
+                '\u0411\u0440\u0430\u0442 2': 'Broer 2',
+                '\u0418\u0434\u0438 \u0438 \u0441\u043c\u043e\u0442\u0440\u0438': 'Ga en kijk',
+                '\u0421\u0442\u0430\u043b\u043a\u0435\u0440': 'Stalker',
+                '\u041c\u0435\u0442\u0440\u043e\u043f\u043e\u043b\u0438\u0441': 'Metropolis',
+                '\u4e03\u6b66\u58eb': 'De zeven samurai',
+                '\u795e\u96a0\u3057': 'Geestenwereld',
+                '\u5343\u3068\u5343\u5c0b\u306e\u795e\u96a0\u3057': 'Chihiro en de geestenwereld'
             };
             return translations[title] || title;
         }
@@ -1552,7 +1251,7 @@
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'mediabibliotheek_van_marije.xlsx';
+            link.download = 'mediabibliotheek_van_marije.csv';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -1561,23 +1260,16 @@
         // Event listeners
         searchButton.addEventListener('click', searchMedia);
         searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchMedia(); });
-        librarySearchButton.addEventListener('click', searchLibrary);
-        librarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchLibrary(); });
+        librarySearchButton.addEventListener('click', renderTable);
+        librarySearchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') renderTable(); });
 
-        typeFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        genreFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        streamingFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        watchedFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        durationMinFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
-        durationMaxFilter.addEventListener('input', () => { displayLibrary(); renderTable(); });
-        sortFilter.addEventListener('change', () => { displayLibrary(); renderTable(); });
-        gridTypeFilter.addEventListener('change', () => { displayLibrary(); });
-        gridGenreFilter.addEventListener('change', () => { displayLibrary(); });
-        gridStreamingFilter.addEventListener('change', () => { displayLibrary(); });
-        gridWatchedFilter.addEventListener('change', () => { displayLibrary(); });
-        gridDurationMinFilter.addEventListener('input', () => { displayLibrary(); });
-        gridDurationMaxFilter.addEventListener('input', () => { displayLibrary(); });
-        gridSortFilter.addEventListener('change', () => { displayLibrary(); });
+        typeFilter.addEventListener('change', renderTable);
+        genreFilter.addEventListener('change', renderTable);
+        streamingFilter.addEventListener('change', renderTable);
+        watchedFilter.addEventListener('change', renderTable);
+        durationMinFilter.addEventListener('input', renderTable);
+        durationMaxFilter.addEventListener('input', renderTable);
+        sortFilter.addEventListener('change', renderTable);
 
         window.onclick = function(event) {
             if (event.target == streamingModal) closeModal();
@@ -1585,7 +1277,8 @@
         }
 
         // Laad bibliotheek bij starten
-        displayLibrary();
+        renderTable();
+        updateFilters();
     </script>
 </body>
 </html>
