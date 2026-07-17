@@ -23,6 +23,10 @@
         
         .container {
             max-width: 100%;
+            margin: 0;
+            padding: 8px;
+            box-sizing: border-box;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
             padding: 10px;
@@ -31,6 +35,9 @@
         }
         
         h1 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            padding-top: 4px;
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 20px;
             color: #1a365d;
@@ -73,12 +80,18 @@
         }
         
         .search-box, .library-search-box {
+            margin-bottom: 6px;
+            gap: 4px;
             display: flex;
             margin-bottom: 12px;
             gap: 8px;
         }
         
         #searchInput, #librarySearchInput {
+            flex: 1;
+            padding: 8px 10px;
+            font-size: 14px;
+            min-width: 0;
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             flex: 1;
             padding: 10px;
@@ -89,6 +102,9 @@
         }
         
         #searchButton, #librarySearchButton {
+            padding: 8px 12px;
+            font-size: 14px;
+            min-width: 80px;
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 10px 15px;
             background-color: #2563eb;
@@ -101,6 +117,13 @@
         }
         
         .filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+            padding: 6px;
+            background-color: #f7fafc;
+            border-radius: 6px;
             display: flex;
             gap: 8px;
             margin-bottom: 15px;
@@ -110,12 +133,17 @@
         }
         
         .filter-group, .duration-range, .sort-group {
+            min-width: auto;
+            margin: 0;
             display: flex;
             flex-direction: column;
             min-width: 120px;
         }
         
         .filter-group label, .duration-range label, .sort-group label {
+            font-size: 11px;
+            margin-bottom: 2px;
+            font-weight: bold;
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin-bottom: 4px;
             font-weight: bold;
@@ -124,6 +152,11 @@
         }
         
         .filter-group select, .filter-group input, .duration-range input, .sort-group select {
+            padding: 6px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 8px;
             border: 1px solid #cbd5e0;
@@ -132,6 +165,9 @@
         }
         
         .duration-range input {
+            width: 50px;
+            padding: 6px;
+            font-size: 12px;
             width: 50px;
         }
         
@@ -220,12 +256,16 @@
         }
         
         .export-section {
+            margin: 6px 0;
+            gap: 4px;
             margin: 12px 0;
             display: flex;
             gap: 8px;
         }
         
         .export-section button {
+            padding: 8px 12px;
+            font-size: 12px;
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 8px 12px;
             background-color: #1a365d;
@@ -237,6 +277,10 @@
         }
         
         .table-container {
+            margin-top: 6px;
+            border-radius: 6px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             overflow-x: auto;
             margin-top: 10px;
             -webkit-overflow-scrolling: touch;
@@ -249,6 +293,9 @@
         }
         
         th, td {
+            padding: 8px 6px;
+            font-size: 12px;
+            white-space: nowrap;
             font-family: 'DotFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding: 8px;
             text-align: left;
@@ -274,6 +321,8 @@
         }
         
         .poster-cell {
+            width: 45px;
+            height: 65px;
             width: 50px;
             height: 75px;
         }
@@ -417,14 +466,46 @@
             }
             
             .filter-group, .duration-range, .sort-group {
+            min-width: auto;
+            margin: 0;
                 min-width: 100px;
             }
             
             .filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+            padding: 6px;
+            background-color: #f7fafc;
+            border-radius: 6px;
                 gap: 5px;
             }
         }
-    </style>
+    
+        @media (max-width: 400px) {
+            .filters {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 4px;
+            }
+            .filter-group select, .filter-group input {
+                font-size: 11px;
+                padding: 5px 6px;
+            }
+            th, td {
+                padding: 6px 4px;
+                font-size: 11px;
+            }
+            .poster-cell {
+                width: 40px;
+                height: 60px;
+            }
+            .remove-button, .watched-button, .edit-button {
+                padding: 3px 5px;
+                font-size: 10px;
+            }
+        }
+        </style>
 </head>
 <body>
     <div class="container">
@@ -459,7 +540,7 @@
                 </div>
                 <div class="filter-group">
                     <label for="streamingFilter">Streamingdienst:</label>
-                    <select id="streamingFilter" multiple>
+                    <select id="streamingFilter" multiple style="height: 80px; font-size: 12px;">
                         <option value="">Alle streamingdiensten</option>
                         <option value="Netflix">Netflix</option>
                         <option value="Disney+">Disney+</option>
