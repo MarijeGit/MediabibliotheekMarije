@@ -347,6 +347,7 @@
                     <option value="Videoland">Videoland</option>
                     <option value="Pathé Thuis">Pathé Thuis</option>
                     <option value="Apple TV+">Apple TV+</option>
+                    <option value="Sky Showtime">Sky Showtime</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -422,6 +423,7 @@
                 <label><input type="checkbox" id="videolandCheckbox"> Videoland</label>
                 <label><input type="checkbox" id="patheCheckbox"> Pathé Thuis</label>
                 <label><input type="checkbox" id="appleCheckbox"> Apple TV+</label>
+                <label><input type="checkbox" id="skyshowtimeCheckbox"> Sky Showtime</label>
                 <button onclick="saveStreamingServices()">Opslaan</button>
             </div>
         </div>
@@ -1066,7 +1068,8 @@
                 'npoCheckbox': 'NPO Start',
                 'videolandCheckbox': 'Videoland',
                 'patheCheckbox': 'Pathé Thuis',
-                'appleCheckbox': 'Apple TV+'
+                'appleCheckbox': 'Apple TV+',
+                'skyshowtimeCheckbox': 'Sky Showtime'
             };
 
             for (const [id, name] of Object.entries(checkboxes)) {
