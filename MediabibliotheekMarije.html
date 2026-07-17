@@ -337,7 +337,7 @@
             </div>
             <div class="filter-group">
                 <label for="streamingFilter">Streamingdienst:</label>
-                <select id="streamingFilter">
+                <select id="streamingFilter" multiple size="4">
                     <option value="">Alle streamingdiensten</option>
                     <option value="Netflix">Netflix</option>
                     <option value="Disney+">Disney+</option>
@@ -775,7 +775,12 @@
             }
 
             // Streaming filter
-            if (streamingFilter.value) {
+            const selectedStreamingServices = Array.from(streamingFilter.selectedOptions).map(option => option.value);
+            if (selectedStreamingServices.length > 0) {
+                filteredLibrary = filteredLibrary.filter(item =>
+                    item.streaming_services && selectedStreamingServices.some(service => item.streaming_services.includes(service))
+                );
+            }
                 filteredLibrary = filteredLibrary.filter(item => 
                     item.streaming_services && item.streaming_services.includes(streamingFilter.value)
                 );
