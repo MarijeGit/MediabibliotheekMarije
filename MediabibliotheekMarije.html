@@ -550,11 +550,170 @@
                 <button onclick="exportToExcel()">Exporteer naar Excel</button>
             </div>
             
-            <div class="media-grid" id="mediaGrid"></div>
+                        <div class="search-box">
+                <input type="text" id="gridSearchInput" placeholder="Zoek op titel...">
+                <button id="gridSearchButton">Zoeken</button>
+            </div>
+            
+            <div class="library-search-box">
+                <input type="text" id="gridLibrarySearchInput" placeholder="Zoek in bibliotheek...">
+                <button id="gridLibrarySearchButton">Zoeken</button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="gridTypeFilter">Type:</label>
+                    <select id="gridTypeFilter">
+                        <option value="">Alle types</option>
+                        <option value="movie">Films</option>
+                        <option value="tv">Series</option>
+                        <option value="documentary">Documentaires</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="gridGenreFilter">Genre:</label>
+                    <select id="gridGenreFilter">
+                        <option value="">Alle genres</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="gridStreamingFilter">Streamingdienst:</label>
+                    <select id="gridStreamingFilter" multiple style="height: 22px; font-size: 10px;">
+                        <option value="">Alle streamingdiensten</option>
+                        <option value="Netflix">Netflix</option>
+                        <option value="Disney+">Disney+</option>
+                        <option value="Amazon Prime Video">Prime Video</option>
+                        <option value="HBO Max">HBO Max</option>
+                        <option value="NPO Start">NPO Start</option>
+                        <option value="Videoland">Videoland</option>
+                        <option value="Pathé Thuis">Pathé Thuis</option>
+                        <option value="Apple TV+">Apple TV+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="gridWatchedFilter">Bekeken:</label>
+                    <select id="gridWatchedFilter">
+                        <option value="">Alle status</option>
+                        <option value="watched">Bekeken</option>
+                        <option value="not-watched">Niet bekeken</option>
+                    </select>
+                </div>
+                <div class="duration-range">
+                    <label>Duur:</label>
+                    <div style="display: flex; gap: 3px; align-items: center;">
+                        <input type="number" id="gridDurationMinFilter" placeholder="Min" min="0" style="padding: 1px; font-size: 10px;">
+                        <span>tot</span>
+                        <input type="number" id="gridDurationMaxFilter" placeholder="Max" min="0" style="padding: 1px; font-size: 10px;">
+                    </div>
+                </div>
+                <div class="sort-group">
+                    <label for="gridSortFilter">Sorteer:</label>
+                    <select id="gridSortFilter">
+                        <option value="">Standaard (Nieuwste eerst)</option>
+                        <option value="title-asc">Titel (A-Z)</option>
+                        <option value="title-desc">Titel (Z-A)</option>
+                        <option value="year-asc">Jaar (oud→nieuw)</option>
+                        <option value="year-desc">Jaar (nieuw→oud)</option>
+                        <option value="duration-asc">Duur (kort→lang)</option>
+                        <option value="duration-desc">Duur (lang→kort)</option>
+                    </select>
+                </div>
+            </div>
+            
+                        
+<div class="media-grid" id="mediaGrid"></div>
         </div>
 
         <div id="table-view" class="tab-content active">
-            <div class="table-container">
+                        <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Zoek op titel...">
+                <button id="searchButton">Zoeken</button>
+            </div>
+            
+            <div class="library-search-box">
+                <input type="text" id="librarySearchInput" placeholder="Zoek in bibliotheek...">
+                <button id="librarySearchButton">Zoeken</button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="typeFilter">Type:</label>
+                    <select id="typeFilter">
+                        <option value="">Alle types</option>
+                        <option value="movie">Films</option>
+                        <option value="tv">Series</option>
+                        <option value="documentary">Documentaires</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="genreFilter">Genre:</label>
+                    <select id="genreFilter">
+                        <option value="">Alle genres</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="streamingFilter">Streamingdienst:</label>
+                    <select id="streamingFilter" multiple style="height: 22px; font-size: 10px;">
+                        <option value="">Alle streamingdiensten</option>
+                        <option value="Netflix">Netflix</option>
+                        <option value="Disney+">Disney+</option>
+                        <option value="Amazon Prime Video">Prime Video</option>
+                        <option value="HBO Max">HBO Max</option>
+                        <option value="NPO Start">NPO Start</option>
+                        <option value="Videoland">Videoland</option>
+                        <option value="Pathé Thuis">Pathé Thuis</option>
+                        <option value="Apple TV+">Apple TV+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="watchedFilter">Bekeken:</label>
+                    <select id="watchedFilter">
+                        <option value="">Alle status</option>
+                        <option value="watched">Bekeken</option>
+                        <option value="not-watched">Niet bekeken</option>
+                    </select>
+                </div>
+                <div class="duration-range">
+                    <label>Duur:</label>
+                    <div style="display: flex; gap: 3px; align-items: center;">
+                        <input type="number" id="durationMinFilter" placeholder="Min" min="0" style="padding: 1px; font-size: 10px;">
+                        <span>tot</span>
+                        <input type="number" id="durationMaxFilter" placeholder="Max" min="0" style="padding: 1px; font-size: 10px;">
+                    </div>
+                </div>
+                <div class="sort-group">
+                    <label for="sortFilter">Sorteer:</label>
+                    <select id="sortFilter">
+                        <option value="">Standaard (Nieuwste eerst)</option>
+                        <option value="title-asc">Titel (A-Z)</option>
+                        <option value="title-desc">Titel (Z-A)</option>
+                        <option value="year-asc">Jaar (oud→nieuw)</option>
+                        <option value="year-desc">Jaar (nieuw→oud)</option>
+                        <option value="duration-asc">Duur (kort→lang)</option>
+                        <option value="duration-desc">Duur (lang→kort)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="subscriptionFilter">Mijn abonnementen:</label>
+                    <select id="subscriptionFilter" multiple style="height: 22px; font-size: 10px;">
+                        <option value="Netflix">Netflix</option>
+                        <option value="Disney+">Disney+</option>
+                        <option value="Amazon Prime Video">Prime Video</option>
+                        <option value="HBO Max">HBO Max</option>
+                        <option value="NPO Start">NPO Start</option>
+                        <option value="Videoland">Videoland</option>
+                        <option value="Pathé Thuis">Pathé Thuis</option>
+                        <option value="Apple TV+">Apple TV+</option>
+                    </select>
+                    <button onclick="saveSubscriptions()" style="margin-top: 2px; padding: 1px 2px; font-size: 10px;">Opslaan</button>
+                </div>
+            </div>
+            
+            <div class="export-section">
+                <button onclick="exportToExcel()">Exporteer naar Excel</button>
+            </div>
+            
+<div class="table-container">
                 <table>
                     <thead>
                         <tr>
