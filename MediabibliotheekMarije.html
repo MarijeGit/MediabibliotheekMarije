@@ -559,6 +559,7 @@
                 <label><input type="checkbox" id="videolandCheckbox"> Videoland</label>
                 <label><input type="checkbox" id="patheCheckbox"> Pathé Thuis</label>
                 <label><input type="checkbox" id="appleCheckbox"> Apple TV+</label>
+                <label><input type="checkbox" id="skyShowtimeCheckbox"> Sky Showtime</label>
                 <button onclick="saveStreamingServices()">Opslaan</button>
             </div>
         </div>
@@ -831,7 +832,7 @@
                         `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
                     }
                     ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched === true ? 'Niet bekeken' : existingMedia.watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
                     }
                     ${isInLibrary ? 
                         `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
@@ -1093,7 +1094,7 @@
                         `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
                     }
                     ${mediaLibrary.some(item => item.id === media.id) ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${mediaLibrary.find(item => item.id === media.id).watched === true ? 'Niet bekeken' : mediaLibrary.find(item => item.id === media.id).watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
                     }
                     ${mediaLibrary.some(item => item.id === media.id) ? 
                         `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
@@ -1384,6 +1385,7 @@
                 'disneyCheckbox': 'Disney+',
                 'primeCheckbox': 'Amazon Prime Video',
                 'hboCheckbox': 'HBO Max',
+                'skyShowtimeCheckbox': 'Sky Showtime',
                 'npoCheckbox': 'NPO Start',
                 'videolandCheckbox': 'Videoland',
                 'patheCheckbox': 'Pathé Thuis',
@@ -1564,7 +1566,7 @@
                     media.streaming_services.join(', ') : 'Onbekend';
                 let description = media.description || media.overview || 'Geen omschrijving';
                 description = description.replace(/"/g, '""');
-                const watched = media.watched ? 'Ja' : 'Nee';
+                const watched = media.watched === true ? 'Ja' : media.watched === 'watching' ? 'Nu kijkend' : 'Nee';
                 const addedDate = media.added_date ? new Date(media.added_date).toLocaleDateString('nl-NL') : 'Onbekend';
 
                 csv += `"${title}","${translatedTitle}","${type}","${year}","${genres}","${productionCountry}","${duration}","${leadActor}","${price}","${streamingServices}","${description}","${watched}","${addedDate}"\n`;
