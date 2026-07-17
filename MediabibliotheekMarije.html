@@ -331,8 +331,37 @@
             </div>
             <div class="filter-group">
                 <label for="genreFilter">Genre:</label>
-                <select id="genreFilter">
+                <select id="genreFilter" multiple size="6">
                     <option value="">Alle genres</option>
+                    <option value="Action">Action</option>
+                    <option value="Adult">Adult</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Biography">Biography</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Family">Family</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Film-noir">Film-noir</option>
+                    <option value="Game-show">Game-show</option>
+                    <option value="History">History</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Music">Music</option>
+                    <option value="Musical">Musical</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="News">News</option>
+                    <option value="Reality-tv">Reality-tv</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-fi">Sci-fi</option>
+                    <option value="Short">Short</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Talk-show">Talk-show</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="War">War</option>
+                    <option value="Western">Western</option>
+                    <option value="Dystopisch">Dystopisch</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -765,12 +794,13 @@
             }
 
             // Genre filter
-            if (genreFilter.value) {
+            const selectedGenres = Array.from(genreFilter.selectedOptions).map(option => option.value);
+            if (selectedGenres.length > 0) {
                 filteredLibrary = filteredLibrary.filter(item => {
                     const genreNames = item.genres ? item.genres.map(g => g.name) : [];
                     const genreIds = item.genre_ids || [];
                     const allGenres = [...genreNames, ...genreIds.map(id => getGenreName(id, item.media_type))];
-                    return allGenres.includes(genreFilter.value);
+                    return selectedGenres.some(genre => allGenres.includes(genre));
                 });
             }
 
@@ -1176,17 +1206,21 @@
         // Haal genre naam op
         function getGenreName(id, mediaType) {
             const movieGenres = {
-                28: 'Actie', 12: 'Avontuur', 16: 'Animatie', 35: 'Comedy', 80: 'Misdaad',
-                99: 'Documentaire', 18: 'Drama', 10751: 'Familie', 14: 'Fantasy', 36: 'Geschiedenis',
-                27: 'Horror', 10402: 'Muziek', 9648: 'Mysterie', 10749: 'Romantiek',
-                878: 'Science Fiction', 10770: 'TV Film', 53: 'Thriller', 10752: 'Oorlog', 37: 'Western'
+                28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy', 80: 'Crime',
+                99: 'Documentary', 18: 'Drama', 10751: 'Family', 14: 'Fantasy', 36: 'History',
+                27: 'Horror', 10402: 'Music', 9648: 'Mystery', 10749: 'Romance',
+                878: 'Sci-fi', 10770: 'TV Film', 53: 'Thriller', 10752: 'War', 37: 'Western',
+                10749: 'Romance', 10402: 'Music', 10751: 'Family', 10770: 'Short',
+                9648: 'Mystery', 53: 'Thriller', 10752: 'War', 37: 'Western',
+                10765: 'Sci-Fi & Fantasy', 10766: 'Soap', 10767: 'Talk-show', 10768: 'War & Politiek'
             };
 
             const tvGenres = {
-                10759: 'Actie & Avontuur', 16: 'Animatie', 35: 'Comedy', 80: 'Misdaad',
-                99: 'Documentaire', 18: 'Drama', 10751: 'Familie', 10762: 'Kinder',
-                9648: 'Mysterie', 10763: 'Nieuws', 10764: 'Reality', 10765: 'Sci-Fi & Fantasy',
-                10766: 'Soap', 10767: 'Talk', 10768: 'Oorlog & Politiek', 37: 'Western'
+                10759: 'Action & Adventure', 16: 'Animation', 35: 'Comedy', 80: 'Crime',
+                99: 'Documentary', 18: 'Drama', 10751: 'Family', 10762: 'Kids',
+                9648: 'Mystery', 10763: 'News', 10764: 'Reality-tv', 10765: 'Sci-Fi & Fantasy',
+                10766: 'Soap', 10767: 'Talk-show', 10768: 'War & Politics', 37: 'Western',
+                10751: 'Family', 10762: 'Kids', 10764: 'Reality-tv'
             };
 
             const genres = mediaType === 'tv' ? tvGenres : movieGenres;
