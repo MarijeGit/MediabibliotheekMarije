@@ -567,95 +567,9 @@
 
         // Zoekfunctie voor TMDB
         function searchMedia() {
-            const query = searchInput.value.trim().toLowerCase();
-            if (!query) {
-                renderTable(); // Als leeg, toon de bibliotheek
-                return;
-            }
-
-            // Zoek in de bibliotheek
-            const filteredLibrary = mediaLibrary.filter(media => {
-                const title = (media.title || media.name || '').toLowerCase();
-                const translatedTitle = (media.translated_title || '').toLowerCase();
-                const overview = (media.description || media.overview || '').toLowerCase();
-                const actor = (media.lead_actor || '').toLowerCase();
-                return title.includes(query) || translatedTitle.includes(query) || overview.includes(query) || actor.includes(query);
-            });
-
-            // Toon resultaten in de tabel
-            tableBody.innerHTML = '';
-            if (filteredLibrary.length === 0) {
-                const row = document.createElement('tr');
-                row.innerHTML = '<td colspan="13" style="text-align: center;">Geen resultaten gevonden in je bibliotheek.</td>';
-                tableBody.appendChild(row);
-            } else {
-                filteredLibrary.forEach(media => {
-                    const row = document.createElement('tr');
-                    row.style.backgroundColor = '#ebf8ff';
-
-                    const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
-                    const title = media.title || media.name || 'Onbekend';
-                    const translatedTitle = media.translated_title || '';
-                    const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : 'https://via.placeholder.com/50x75?text=No+Poster';
-                    const releaseDate = media.release_date || media.first_air_date || 'Onbekend';
-                    const year = releaseDate ? new Date(releaseDate).getFullYear() : 'Onbekend';
-                    const overview = media.description || media.overview || 'Geen beschrijving beschikbaar.';
-
-                    // Genres
-                    let genres = 'Onbekend';
-                    if (media.genres && media.genres.length > 0) {
-                        genres = media.genres.map(g => g.name).join(', ');
-                    } else if (media.genre_ids && media.genre_ids.length > 0) {
-                        genres = media.genre_ids.map(id => getGenreName(id, media.media_type)).join(', ');
-                    }
-
-                    // Land
-                    let productionCountry = 'Onbekend';
-                    if (media.production_countries && media.production_countries.length > 0) {
-                        productionCountry = media.production_countries[0].name;
-                    }
-
-                    // Duur
-                    let duration = '';
-                    if (media.media_type === 'movie' && media.runtime) {
-                        duration = `${media.runtime} min`;
-                    } else if (media.media_type === 'tv' && media.number_of_episodes) {
-                        duration = `${media.number_of_episodes} afl.`;
-                    }
-
-                    // Acteur
-                    const leadActor = media.lead_actor || 'Onbekend';
-
-                    // Prijs
-                    const price = media.price || 'Onbekend';
-
-                    // Streaming
-                    let streamingServices = media.streaming_services && media.streaming_services.length > 0 ? 
-                        media.streaming_services.join(', ') : 'Onbekend';
-
-                    row.innerHTML = `
-                        <td class="poster-cell"><img src="${posterPath}" alt="${title}" onclick="openImageModal(${JSON.stringify(media).replace(/"/g, '&quot;')});" style="cursor: pointer;"></td>
-                        <td>${title} ${translatedTitle ? `<br><span class="translated-title">(${translatedTitle})</span>` : ''}</td>
-                        <td>${type}</td>
-                        <td>${year}</td>
-                        <td>${genres}</td>
-                        <td>${productionCountry}</td>
-                        <td>${duration || 'Onbekend'}</td>
-                        <td>${leadActor}</td>
-                        <td>${price}</td>
-                        <td>${streamingServices}</td>
-                        <td>${overview.substring(0, 40)}...</td>
-                        <td>${media.watched ? 'Ja' : 'Nee'}</td>
-                        <td>
-                            <button onclick="removeFromLibrary(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #e53e3e; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">Verwijder</button>
-                            <button onclick="toggleWatched(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #3182ce; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
-                            <button onclick="openEditModal(${media.id})" style="padding: 2px 4px; font-size: 10px; background-color: #4299e1; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 2px;">Bewerk</button>
-                            <button onclick="openStreamingModal(${media.id}, '${title.replace(/'/g, "\'")}')" style="padding: 2px 4px; font-size: 10px; background-color: #319795; color: white; border: none; border-radius: 4px; cursor: pointer;">Streaming</button>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            }
+            // Zet de zoekterm in librarySearchInput en roep renderTable aan
+            librarySearchInput.value = searchInput.value;
+            renderTable();
         }
 
 // Toon zoekresultaten in een tabel
