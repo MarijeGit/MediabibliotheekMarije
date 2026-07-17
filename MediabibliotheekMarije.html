@@ -500,6 +500,7 @@
                         <option value="Videoland">Videoland</option>
                         <option value="Pathé Thuis">Pathé Thuis</option>
                         <option value="Apple TV+">Apple TV+</option>
+                        <option value="Sky Showtime">Sky Showtime</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -508,6 +509,7 @@
                         <option value="">Alle status</option>
                         <option value="watched">Bekeken</option>
                         <option value="not-watched">Niet bekeken</option>
+                        <option value="watching">Nu aan het kijken</option>
                     </select>
                 </div>
                 <div class="duration-range">
@@ -541,6 +543,7 @@
                         <option value="Videoland">Videoland</option>
                         <option value="Pathé Thuis">Pathé Thuis</option>
                         <option value="Apple TV+">Apple TV+</option>
+                        <option value="Sky Showtime">Sky Showtime</option>
                     </select>
                     <button onclick="saveSubscriptions()" style="margin-top: 5px; padding: 4px 8px; font-size: 11px;">Opslaan</button>
                 </div>
@@ -560,63 +563,62 @@
                 <button id="gridLibrarySearchButton">Zoeken</button>
             </div>
 
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="gridTypeFilter">Type:</label>
-                    <select id="gridTypeFilter">
+            <div class="filters" style="flex-wrap: wrap;">
+                <div class="filter-group" style="min-width: 100px;">
+                    <label for="gridTypeFilter" style="font-size: 10px; margin-bottom: 1px;">Type:</label>
+                    <select id="gridTypeFilter" style="padding: 1px; font-size: 10px; height: 22px;">
                         <option value="">Alle types</option>
                         <option value="movie">Films</option>
                         <option value="tv">Series</option>
                         <option value="documentary">Documentaires</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label for="gridGenreFilter">Genre:</label>
-                    <select id="gridGenreFilter">
+                <div class="filter-group" style="min-width: 100px;">
+                    <label for="gridWatchedFilter" style="font-size: 10px; margin-bottom: 1px;">Status:</label>
+                    <select id="gridWatchedFilter" style="padding: 1px; font-size: 10px; height: 22px;">
+                        <option value="">Alle status</option>
+                        <option value="watched">Bekeken</option>
+                        <option value="not-watched">Niet bekeken</option>
+                        <option value="watching">Nu aan het kijken</option>
+                    </select>
+                </div>
+                <div class="filter-group" style="min-width: 100px;">
+                    <label for="gridSortFilter" style="font-size: 10px; margin-bottom: 1px;">Sorteer:</label>
+                    <select id="gridSortFilter" style="padding: 1px; font-size: 10px; height: 22px;">
+                        <option value="">Nieuwste eerst</option>
+                        <option value="title-asc">Titel A-Z</option>
+                        <option value="title-desc">Titel Z-A</option>
+                        <option value="year-desc">Jaar nieuw→oud</option>
+                    </select>
+                </div>
+                <div class="filter-group" style="min-width: 100px;">
+                    <label for="gridGenreFilter" style="font-size: 10px; margin-bottom: 1px;">Genre:</label>
+                    <select id="gridGenreFilter" style="padding: 1px; font-size: 10px; height: 22px;">
                         <option value="">Alle genres</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label for="gridStreamingFilter">Streamingdienst:</label>
-                    <select id="gridStreamingFilter" multiple style="height: 22px; font-size: 10px;">
-                        <option value="">Alle streamingdiensten</option>
+                <div class="filter-group" style="min-width: 120px;">
+                    <label for="gridStreamingFilter" style="font-size: 10px; margin-bottom: 1px;">Streaming:</label>
+                    <select id="gridStreamingFilter" multiple style="padding: 1px; font-size: 10px; height: 22px;">
+                        <option value="">Alle</option>
                         <option value="Netflix">Netflix</option>
                         <option value="Disney+">Disney+</option>
-                        <option value="Amazon Prime Video">Prime Video</option>
+                        <option value="Prime Video">Prime Video</option>
                         <option value="HBO Max">HBO Max</option>
                         <option value="NPO Start">NPO Start</option>
                         <option value="Videoland">Videoland</option>
                         <option value="Pathé Thuis">Pathé Thuis</option>
                         <option value="Apple TV+">Apple TV+</option>
+                        <option value="Sky Showtime">Sky Showtime</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label for="gridWatchedFilter">Bekeken:</label>
-                    <select id="gridWatchedFilter">
-                        <option value="">Alle status</option>
-                        <option value="watched">Bekeken</option>
-                        <option value="not-watched">Niet bekeken</option>
-                    </select>
-                </div>
-                <div class="duration-range">
-                    <label>Duur:</label>
-                    <div style="display: flex; gap: 3px; align-items: center;">
-                        <input type="number" id="gridDurationMinFilter" placeholder="Min" min="0" style="padding: 1px; font-size: 10px;">
-                        <span>tot</span>
-                        <input type="number" id="gridDurationMaxFilter" placeholder="Max" min="0" style="padding: 1px; font-size: 10px;">
+                <div class="duration-range" style="min-width: 100px;">
+                    <label style="font-size: 10px; margin-bottom: 1px;">Duur:</label>
+                    <div style="display: flex; gap: 2px; align-items: center;">
+                        <input type="number" id="gridDurationMinFilter" placeholder="Min" min="0" style="padding: 1px; font-size: 10px; height: 20px; width: 45px;">
+                        <span style="font-size: 10px;">tot</span>
+                        <input type="number" id="gridDurationMaxFilter" placeholder="Max" min="0" style="padding: 1px; font-size: 10px; height: 20px; width: 45px;">
                     </div>
-                </div>
-                <div class="sort-group">
-                    <label for="gridSortFilter">Sorteer:</label>
-                    <select id="gridSortFilter">
-                        <option value="">Standaard (Nieuwste eerst)</option>
-                        <option value="title-asc">Titel (A-Z)</option>
-                        <option value="title-desc">Titel (Z-A)</option>
-                        <option value="year-asc">Jaar (oud→nieuw)</option>
-                        <option value="year-desc">Jaar (nieuw→oud)</option>
-                        <option value="duration-asc">Duur (kort→lang)</option>
-                        <option value="duration-desc">Duur (lang→kort)</option>
-                    </select>
                 </div>
             </div>
             
@@ -663,6 +665,7 @@
                         <option value="Videoland">Videoland</option>
                         <option value="Pathé Thuis">Pathé Thuis</option>
                         <option value="Apple TV+">Apple TV+</option>
+                        <option value="Sky Showtime">Sky Showtime</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -671,6 +674,7 @@
                         <option value="">Alle status</option>
                         <option value="watched">Bekeken</option>
                         <option value="not-watched">Niet bekeken</option>
+                        <option value="watching">Nu aan het kijken</option>
                     </select>
                 </div>
                 <div class="duration-range">
@@ -693,26 +697,10 @@
                         <option value="duration-desc">Duur (lang→kort)</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label for="subscriptionFilter">Mijn abonnementen:</label>
-                    <select id="subscriptionFilter" multiple style="height: 22px; font-size: 10px;">
-                        <option value="Netflix">Netflix</option>
-                        <option value="Disney+">Disney+</option>
-                        <option value="Amazon Prime Video">Prime Video</option>
-                        <option value="HBO Max">HBO Max</option>
-                        <option value="NPO Start">NPO Start</option>
-                        <option value="Videoland">Videoland</option>
-                        <option value="Pathé Thuis">Pathé Thuis</option>
-                        <option value="Apple TV+">Apple TV+</option>
-                    </select>
-                    <button onclick="saveSubscriptions()" style="margin-top: 2px; padding: 1px 2px; font-size: 10px;">Opslaan</button>
-                </div>
+
             </div>
             
-            <div class="export-section">
-                <button onclick="exportToExcel()">Exporteer naar Excel</button>
-            </div>
-            
+                        
 <div class="table-container">
                 <table>
                     <thead>
@@ -735,10 +723,7 @@
                     <tbody id="tableBody"></tbody>
                 </table>
             </div>
-            <div class="export-section">
-                <button onclick="exportToExcel()">Exporteer naar Excel</button>
-            </div>
-        </div>
+                    </div>
     </div>
 
     <!-- Modal voor streamingdiensten -->
@@ -1043,7 +1028,7 @@
                         `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
                     }
                     ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched === true ? 'Niet bekeken' : existingMedia.watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
                     }
                     ${isInLibrary ? 
                         `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
@@ -1128,7 +1113,13 @@
         function toggleWatched(id) {
             const media = mediaLibrary.find(item => item.id === id);
             if (media) {
-                media.watched = !media.watched;
+                if (media.watched === true) {
+                    media.watched = false;
+                } else if (media.watched === 'watching') {
+                    media.watched = false;
+                } else {
+                    media.watched = true;
+                }
                 saveLibrary();
                 displayLibrary();
                 renderTable();
@@ -1170,9 +1161,11 @@
 
             // Bekeken filter
             if (watchedFilter.value === 'watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === true);
             } else if (watchedFilter.value === 'not-watched') {
-                filteredLibrary = filteredLibrary.filter(item => !item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === false);
+            } else if (watchedFilter.value === 'watching') {
+                filteredLibrary = filteredLibrary.filter(item => item.watched === 'watching');
             }
 
             // Duur filter
@@ -1338,9 +1331,11 @@
                 });
             }
             if (watchedFilter.value === 'watched') {
-                filteredLibrary = filteredLibrary.filter(item => item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === true);
             } else if (watchedFilter.value === 'not-watched') {
-                filteredLibrary = filteredLibrary.filter(item => !item.watched);
+                filteredLibrary = filteredLibrary.filter(item => item.watched === false);
+            } else if (watchedFilter.value === 'watching') {
+                filteredLibrary = filteredLibrary.filter(item => item.watched === 'watching');
             }
             if (durationMinFilter.value || durationMaxFilter.value) {
                 const minDuration = parseInt(durationMinFilter.value) || 0;
@@ -1472,7 +1467,7 @@
                     <td>${price}</td>
                     <td>${streamingServices}</td>
                     <td>${overview.substring(0, 40)}...</td>
-                    <td>${media.watched ? 'Ja' : 'Nee'}</td>
+                    <td>${media.watched === true ? 'Ja' : media.watched === 'watching' ? 'Nu kijkend' : 'Nee'}</td>
                     <td>
                         <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Verwijder</button>
                         <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
@@ -1553,6 +1548,16 @@
 
             // Acteur
             document.getElementById('editActor').value = media.lead_actor || '';
+            
+            // Status (watched/watching)
+            const statusSelect = document.createElement('select');
+            statusSelect.id = 'editStatus';
+            statusSelect.innerHTML = '
+                <option value="false">Niet bekeken</option>
+                <option value="true">Bekeken</option>
+                <option value="watching">Nu aan het kijken</option>
+            ';
+            statusSelect.value = media.watched === true ? 'true' : media.watched === 'watching' ? 'watching' : 'false';
 
             // Prijs
             document.getElementById('editPrice').value = media.price || '';
@@ -1694,6 +1699,10 @@
 
             // Prijs
             media.price = document.getElementById('editPrice').value || '';
+            
+            // Status
+            const statusValue = document.getElementById('editStatus').value;
+            media.watched = statusValue === 'true' ? true : statusValue === 'watching' ? 'watching' : false;
 
             // Omschrijving
             media.description = document.getElementById('editDescription').value;
@@ -2206,7 +2215,7 @@
                         `<button class="add-button" onclick="addToLibrary(${JSON.stringify(media).replace(/"/g, '&quot;')})">Toevoegen</button>`
                     }
                     ${isInLibrary ? 
-                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched ? 'Niet bekeken' : 'Bekeken'}</button>` : ''
+                        `<button class="watched-button" onclick="toggleWatched(${media.id})">${existingMedia.watched === true ? 'Niet bekeken' : existingMedia.watched === 'watching' ? 'Stop kijken' : 'Bekeken'}</button>` : ''
                     }
                     ${isInLibrary ? 
                         `<button class="edit-button" onclick="openEditModal(${media.id})">Bewerken</button>` : ''
@@ -2291,7 +2300,13 @@
         function toggleWatched(id) {
             const media = mediaLibrary.find(item => item.id === id);
             if (media) {
-                media.watched = !media.watched;
+                if (media.watched === true) {
+                    media.watched = false;
+                } else if (media.watched === 'watching') {
+                    media.watched = false;
+                } else {
+                    media.watched = true;
+                }
                 saveLibrary();
                 displayLibrary();
                 renderTable();
@@ -2635,7 +2650,7 @@
                     <td>${price}</td>
                     <td>${streamingServices}</td>
                     <td>${overview.substring(0, 40)}...</td>
-                    <td>${media.watched ? 'Ja' : 'Nee'}</td>
+                    <td>${media.watched === true ? 'Ja' : media.watched === 'watching' ? 'Nu kijkend' : 'Nee'}</td>
                     <td>
                         <button class="remove-button" onclick="removeFromLibrary(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">Verwijder</button>
                         <button class="watched-button" onclick="toggleWatched(${media.id})" style="padding: 4px 8px; font-size: 11px; margin-bottom: 2px;">${media.watched ? 'Niet' : 'Bekeken'}</button>
@@ -2716,6 +2731,16 @@
 
             // Acteur
             document.getElementById('editActor').value = media.lead_actor || '';
+            
+            // Status (watched/watching)
+            const statusSelect = document.createElement('select');
+            statusSelect.id = 'editStatus';
+            statusSelect.innerHTML = '
+                <option value="false">Niet bekeken</option>
+                <option value="true">Bekeken</option>
+                <option value="watching">Nu aan het kijken</option>
+            ';
+            statusSelect.value = media.watched === true ? 'true' : media.watched === 'watching' ? 'watching' : 'false';
 
             // Prijs
             document.getElementById('editPrice').value = media.price || '';
@@ -2857,6 +2882,10 @@
 
             // Prijs
             media.price = document.getElementById('editPrice').value || '';
+            
+            // Status
+            const statusValue = document.getElementById('editStatus').value;
+            media.watched = statusValue === 'true' ? true : statusValue === 'watching' ? 'watching' : false;
 
             // Omschrijving
             media.description = document.getElementById('editDescription').value;
