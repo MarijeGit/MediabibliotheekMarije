@@ -333,33 +333,32 @@
                 <label for="genreFilter">Genre:</label>
                 <select id="genreFilter" multiple size="6">
                     <option value="">Alle genres</option>
-                    <option value="Action">Action</option>
-                    <option value="Adult">Adult</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Animation">Animation</option>
-                    <option value="Biography">Biography</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Documentary">Documentary</option>
+                    <option value="Actie">Actie</option>
+                    <option value="Avontuur">Avontuur</option>
+                    <option value="Animatie">Animatie</option>
+                    <option value="Biografie">Biografie</option>
+                    <option value="Komedie">Komedie</option>
+                    <option value="Misdaad">Misdaad</option>
+                    <option value="Documentaire">Documentaire</option>
                     <option value="Drama">Drama</option>
-                    <option value="Family">Family</option>
+                    <option value="Familie">Familie</option>
                     <option value="Fantasy">Fantasy</option>
-                    <option value="Film-noir">Film-noir</option>
-                    <option value="Game-show">Game-show</option>
-                    <option value="History">History</option>
+                    <option value="Film Noir">Film Noir</option>
+                    <option value="Spelshow">Spelshow</option>
+                    <option value="Geschiedenis">Geschiedenis</option>
                     <option value="Horror">Horror</option>
-                    <option value="Music">Music</option>
+                    <option value="Muziek">Muziek</option>
                     <option value="Musical">Musical</option>
-                    <option value="Mystery">Mystery</option>
-                    <option value="News">News</option>
-                    <option value="Reality-tv">Reality-tv</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sci-fi">Sci-fi</option>
-                    <option value="Short">Short</option>
+                    <option value="Mysterie">Mysterie</option>
+                    <option value="Nieuws">Nieuws</option>
+                    <option value="Reality-TV">Reality-TV</option>
+                    <option value="Romantiek">Romantiek</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                    <option value="Kortfilm">Kortfilm</option>
                     <option value="Sport">Sport</option>
-                    <option value="Talk-show">Talk-show</option>
+                    <option value="Praatprogramma">Praatprogramma</option>
                     <option value="Thriller">Thriller</option>
-                    <option value="War">War</option>
+                    <option value="Oorlog">Oorlog</option>
                     <option value="Western">Western</option>
                     <option value="Dystopisch">Dystopisch</option>
                 </select>
@@ -800,7 +799,12 @@
                     const genreNames = item.genres ? item.genres.map(g => g.name) : [];
                     const genreIds = item.genre_ids || [];
                     const allGenres = [...genreNames, ...genreIds.map(id => getGenreName(id, item.media_type))];
-                    return selectedGenres.some(genre => allGenres.includes(genre));
+                    // Controleer of een van de geselecteerde genres voorkomt in de media-genres (case-insensitive)
+                    return selectedGenres.some(genre => 
+                        allGenres.some(mediaGenre => 
+                            mediaGenre.toLowerCase() === genre.toLowerCase()
+                        )
+                    );
                 });
             }
 
@@ -1182,7 +1186,16 @@
 
         // Update filters
         function updateFilters() {
-            const allGenres = new Set();
+            // Voeg alle Nederlandse genres toe (inclusief Dystopisch)
+            const allGenres = new Set([
+                'Actie', 'Avontuur', 'Animatie', 'Biografie', 'Komedie', 'Misdaad',
+                'Documentaire', 'Drama', 'Familie', 'Fantasy', 'Film Noir', 'Spelshow',
+                'Geschiedenis', 'Horror', 'Muziek', 'Musical', 'Mysterie', 'Nieuws',
+                'Reality-TV', 'Romantiek', 'Science Fiction', 'Kortfilm', 'Sport',
+                'Praatprogramma', 'Thriller', 'Oorlog', 'Western', 'Dystopisch'
+            ]);
+
+            // Voeg genres uit de bibliotheek toe (voor handmatig toegevoegde genres)
             mediaLibrary.forEach(media => {
                 if (media.genres && media.genres.length > 0) {
                     media.genres.forEach(genre => allGenres.add(genre.name));
@@ -1206,21 +1219,17 @@
         // Haal genre naam op
         function getGenreName(id, mediaType) {
             const movieGenres = {
-                28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy', 80: 'Crime',
-                99: 'Documentary', 18: 'Drama', 10751: 'Family', 14: 'Fantasy', 36: 'History',
-                27: 'Horror', 10402: 'Music', 9648: 'Mystery', 10749: 'Romance',
-                878: 'Sci-fi', 10770: 'TV Film', 53: 'Thriller', 10752: 'War', 37: 'Western',
-                10749: 'Romance', 10402: 'Music', 10751: 'Family', 10770: 'Short',
-                9648: 'Mystery', 53: 'Thriller', 10752: 'War', 37: 'Western',
-                10765: 'Sci-Fi & Fantasy', 10766: 'Soap', 10767: 'Talk-show', 10768: 'War & Politiek'
+                28: 'Actie', 12: 'Avontuur', 16: 'Animatie', 35: 'Komedie', 80: 'Misdaad',
+                99: 'Documentaire', 18: 'Drama', 10751: 'Familie', 14: 'Fantasy', 36: 'Geschiedenis',
+                27: 'Horror', 10402: 'Muziek', 9648: 'Mysterie', 10749: 'Romantiek',
+                878: 'Science Fiction', 10770: 'TV Film', 53: 'Thriller', 10752: 'Oorlog', 37: 'Western'
             };
 
             const tvGenres = {
-                10759: 'Action & Adventure', 16: 'Animation', 35: 'Comedy', 80: 'Crime',
-                99: 'Documentary', 18: 'Drama', 10751: 'Family', 10762: 'Kids',
-                9648: 'Mystery', 10763: 'News', 10764: 'Reality-tv', 10765: 'Sci-Fi & Fantasy',
-                10766: 'Soap', 10767: 'Talk-show', 10768: 'War & Politics', 37: 'Western',
-                10751: 'Family', 10762: 'Kids', 10764: 'Reality-tv'
+                10759: 'Actie & Avontuur', 16: 'Animatie', 35: 'Komedie', 80: 'Misdaad',
+                99: 'Documentaire', 18: 'Drama', 10751: 'Familie', 10762: 'Kinder',
+                9648: 'Mysterie', 10763: 'Nieuws', 10764: 'Reality-TV', 10765: 'Science Fiction & Fantasy',
+                10766: 'Soap', 10767: 'Praatprogramma', 10768: 'Oorlog & Politiek', 37: 'Western'
             };
 
             const genres = mediaType === 'tv' ? tvGenres : movieGenres;
