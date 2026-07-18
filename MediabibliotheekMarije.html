@@ -1037,6 +1037,7 @@
         }
 
         function openAddModal() {
+            console.log('openAddModal aangeroepen');
             addModal.style.display = 'block';
         }
 
@@ -1045,24 +1046,49 @@
         }
 
         function addNewMedia() {
+            console.log('addNewMedia aangeroepen');
+            // Haal waardes op
+            const title = document.getElementById('addTitle').value.trim();
+            if (!title) {
+                alert('Vul ten minste een titel in!');
+                return;
+            }
+
+            const yearValue = document.getElementById('addYear').value.trim();
+            const releaseDate = yearValue ? `${yearValue}-01-01` : '';
+
+            const durationValue = document.getElementById('addDuration').value.trim();
+            const mediaType = document.getElementById('addType').value || 'movie';
+            const runtime = mediaType === 'movie' && durationValue ? parseInt(durationValue) : null;
+            const numberOfEpisodes = mediaType === 'tv' && durationValue ? parseInt(durationValue) : null;
+
+            const genresValue = document.getElementById('addGenre').value.trim();
+            const genres = genresValue ? genresValue.split(',').map(name => ({ name: name.trim() })) : [];
+
+            const countryValue = document.getElementById('addCountry').value.trim();
+            const productionCountries = countryValue ? [{ name: countryValue }] : [];
+
+            const streamingValue = document.getElementById('addStreaming').value.trim();
+            const streamingServices = streamingValue ? streamingValue.split(',').map(name => name.trim()) : [];
+
             const newMedia = {
-                id: Date.now(), // Uniek ID op basis van timestamp
-                title: document.getElementById('addTitle').value || 'Onbekend',
-                translated_title: document.getElementById('addTranslatedTitle').value || '',
-                media_type: document.getElementById('addType').value || 'movie',
-                poster_path: '', // Geen poster voor handmatige toevoeging
-                release_date: document.getElementById('addYear').value ? new Date(document.getElementById('addYear').value, 0, 1).toISOString().split('T')[0] : '',
-                overview: document.getElementById('addDescription').value || '',
-                description: document.getElementById('addDescription').value || '',
+                id: Date.now(),
+                title: title,
+                translated_title: document.getElementById('addTranslatedTitle').value.trim() || '',
+                media_type: mediaType,
+                poster_path: '',
+                release_date: releaseDate,
+                overview: document.getElementById('addDescription').value.trim() || '',
+                description: document.getElementById('addDescription').value.trim() || '',
                 genre_ids: [],
-                genres: document.getElementById('addGenre').value ? document.getElementById('addGenre').value.split(',').map(name => ({ name: name.trim() })) : [],
-                runtime: document.getElementById('addDuration').value ? parseInt(document.getElementById('addDuration').value) : null,
-                number_of_episodes: document.getElementById('addDuration').value && document.getElementById('addType').value === 'tv' ? parseInt(document.getElementById('addDuration').value) : null,
-                production_countries: document.getElementById('addCountry').value ? [{ name: document.getElementById('addCountry').value }] : [],
-                lead_actor: document.getElementById('addActor').value || '',
-                price: document.getElementById('addPrice').value || '',
+                genres: genres,
+                runtime: runtime,
+                number_of_episodes: numberOfEpisodes,
+                production_countries: productionCountries,
+                lead_actor: document.getElementById('addActor').value.trim() || '',
+                price: document.getElementById('addPrice').value.trim() || '',
                 watched: false,
-                streaming_services: document.getElementById('addStreaming').value ? document.getElementById('addStreaming').value.split(',').map(name => name.trim()) : [],
+                streaming_services: streamingServices,
                 added_date: new Date().toISOString()
             };
 
