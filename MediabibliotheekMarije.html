@@ -135,43 +135,41 @@
             </div>
             <div style="display: flex; flex-direction: column; min-width: 120px;">
                 <label style="font-size: 12px; font-weight: bold; margin-bottom: 2px;">Genre:</label>
-                <select id="genreFilter" onchange="renderTable()" style="padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 12px;">
-                    <option value="">Alle genres</option>
+                <select id="genreFilter" multiple size="4" onchange="renderTable()" style="padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 12px;">
                     <option value="Actie">Actie</option>
-                    <option value="Avontuur">Avontuur</option>
                     <option value="Animatie">Animatie</option>
+                    <option value="Avontuur">Avontuur</option>
                     <option value="Biografie">Biografie</option>
-                    <option value="Komedie">Komedie</option>
-                    <option value="Misdaad">Misdaad</option>
+                    <option value="Dystopisch">Dystopisch</option>
                     <option value="Documentaire">Documentaire</option>
                     <option value="Drama">Drama</option>
                     <option value="Familie">Familie</option>
                     <option value="Fantasy">Fantasy</option>
                     <option value="Horror">Horror</option>
-                    <option value="Muziek">Muziek</option>
-                    <option value="Musical">Musical</option>
+                    <option value="Komedie">Komedie</option>
+                    <option value="Misdaad">Misdaad</option>
                     <option value="Mysterie">Mysterie</option>
+                    <option value="Musical">Musical</option>
+                    <option value="Muziek">Muziek</option>
+                    <option value="Oorlog">Oorlog</option>
                     <option value="Romantiek">Romantiek</option>
                     <option value="Science Fiction">Science Fiction</option>
                     <option value="Thriller">Thriller</option>
-                    <option value="Oorlog">Oorlog</option>
                     <option value="Western">Western</option>
-                    <option value="Dystopisch">Dystopisch</option>
                 </select>
             </div>
             <div style="display: flex; flex-direction: column; min-width: 120px;">
                 <label style="font-size: 12px; font-weight: bold; margin-bottom: 2px;">Streaming:</label>
-                <select id="streamingFilter" onchange="renderTable()" style="padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 12px;">
-                    <option value="">Alle streamingdiensten</option>
-                    <option value="Netflix">Netflix</option>
-                    <option value="Disney+">Disney+</option>
+                <select id="streamingFilter" multiple size="4" onchange="renderTable()" style="padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 12px;">
                     <option value="Amazon Prime Video">Prime Video</option>
-                    <option value="HBO Max">HBO Max</option>
-                    <option value="NPO Start">NPO Start</option>
-                    <option value="Videoland">Videoland</option>
-                    <option value="Pathé Thuis">Pathé Thuis</option>
                     <option value="Apple TV+">Apple TV+</option>
+                    <option value="Disney+">Disney+</option>
+                    <option value="HBO Max">HBO Max</option>
+                    <option value="Netflix">Netflix</option>
+                    <option value="NPO Start">NPO Start</option>
+                    <option value="Pathé Thuis">Pathé Thuis</option>
                     <option value="Sky Showtime">Sky Showtime</option>
+                    <option value="Videoland">Videoland</option>
                 </select>
             </div>
             <div style="display: flex; flex-direction: column; min-width: 120px;">
@@ -242,7 +240,6 @@
 
         // Toggle add form
         function toggleAddForm() {
-            console.log('toggleAddForm aangeroepen, huidige display:', addForm.style.display);
             if (addForm.style.display === 'block') {
                 addForm.style.display = 'none';
             } else {
@@ -277,9 +274,7 @@
                 added_date: new Date().toISOString()
             };
 
-            console.log('Nieuwe media:', newMedia);
             mediaLibrary.push(newMedia);
-            console.log('Bibliotheek na toevoegen:', mediaLibrary.length, 'items');
             saveLibrary();
             renderTable();
             toggleAddForm();
@@ -302,7 +297,6 @@
 
         // Sla bibliotheek op
         function saveLibrary() {
-            console.log('Bibliotheek opgeslagen:', mediaLibrary.length, 'items');
             localStorage.setItem('mediaLibrary', JSON.stringify(mediaLibrary));
         }
 
@@ -313,8 +307,8 @@
             // Haal zoekterm en filters op
             const query = (document.getElementById('librarySearchInput').value || '').toLowerCase();
             const typeFilter = document.getElementById('typeFilter').value;
-            const genreFilter = document.getElementById('genreFilter').value;
-            const streamingFilter = document.getElementById('streamingFilter').value;
+            const genreFilters = Array.from(document.getElementById('genreFilter').selectedOptions).map(option => option.value);
+            const streamingFilters = Array.from(document.getElementById('streamingFilter').selectedOptions).map(option => option.value);
             const watchedFilter = document.getElementById('watchedFilter').value;
             
             // Filter bibliotheek
@@ -343,17 +337,17 @@
                     matchesType = media.media_type === typeFilter;
                 }
                 
-                // Genre filter
+                // Genre filter (meerdere genres mogelijk)
                 let matchesGenre = true;
-                if (genreFilter) {
+                if (genreFilters.length > 0) {
                     const mediaGenres = media.genres ? media.genres.map(g => g.name) : [];
-                    matchesGenre = mediaGenres.includes(genreFilter);
+                    matchesGenre = genreFilters.some(genre => mediaGenres.includes(genre));
                 }
                 
-                // Streaming filter
+                // Streaming filter (meerdere streamingdiensten mogelijk)
                 let matchesStreaming = true;
-                if (streamingFilter) {
-                    matchesStreaming = media.streaming_services && media.streaming_services.includes(streamingFilter);
+                if (streamingFilters.length > 0) {
+                    matchesStreaming = media.streaming_services && streamingFilters.some(service => media.streaming_services.includes(service));
                 }
                 
                 // Bekeken filter
