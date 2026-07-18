@@ -242,10 +242,13 @@
 
         // Toggle add form
         function toggleAddForm() {
-            if (addForm.style.display === 'none' || !addForm.style.display) {
-                addForm.style.display = 'block';
-            } else {
+            console.log('toggleAddForm aangeroepen, huidige display:', addForm.style.display);
+            if (addForm.style.display === 'block') {
                 addForm.style.display = 'none';
+            } else {
+                addForm.style.display = 'block';
+                // Scroll naar het formulier voor betere zichtbaarheid
+                addForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
 
@@ -274,7 +277,9 @@
                 added_date: new Date().toISOString()
             };
 
+            console.log('Nieuwe media:', newMedia);
             mediaLibrary.push(newMedia);
+            console.log('Bibliotheek na toevoegen:', mediaLibrary.length, 'items');
             saveLibrary();
             renderTable();
             toggleAddForm();
@@ -297,6 +302,7 @@
 
         // Sla bibliotheek op
         function saveLibrary() {
+            console.log('Bibliotheek opgeslagen:', mediaLibrary.length, 'items');
             localStorage.setItem('mediaLibrary', JSON.stringify(mediaLibrary));
         }
 
