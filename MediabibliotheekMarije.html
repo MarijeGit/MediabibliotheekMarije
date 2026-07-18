@@ -118,6 +118,11 @@
     <div class="container">
         <h1>Mediabibliotheek van Marije</h1>
         
+        <div class="search-box" style="margin-bottom: 10px;">
+            <input type="text" id="librarySearchInput" placeholder="Zoek in bibliotheek..." style="width: 70%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;" onkeypress="if(event.key==='Enter') renderTable();">
+            <button onclick="renderTable()" style="width: 28%; padding: 8px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Zoeken</button>
+        </div>
+        
         <div class="buttons">
             <button class="add-button" onclick="toggleAddForm()">Nieuwe film toevoegen</button>
             <button class="export-button" onclick="exportToExcel()">Exporteer naar Excel</button>
@@ -237,15 +242,35 @@
         // Render tabel
         function renderTable() {
             tableBody.innerHTML = '';
+            
+            // Haal zoekterm op
+            const query = (document.getElementById('librarySearchInput').value || '').toLowerCase();
+            
+            // Filter bibliotheek op zoekterm
+            const filteredLibrary = mediaLibrary.filter(media => {
+                const title = (media.title || '').toLowerCase();
+                const translatedTitle = (media.translated_title || '').toLowerCase();
+                const description = (media.description || '').toLowerCase();
+                const actor = (media.lead_actor || '').toLowerCase();
+                const genres = media.genres ? media.genres.map(g => g.name.toLowerCase()).join(' ') : '';
+                const country = media.production_countries && media.production_countries[0] ? media.production_countries[0].name.toLowerCase() : '';
+                
+                return title.includes(query) || 
+                       translatedTitle.includes(query) || 
+                       description.includes(query) || 
+                       actor.includes(query) || 
+                       genres.includes(query) || 
+                       country.includes(query);
+            });
 
-            if (mediaLibrary.length === 0) {
+            if (filteredLibrary.length === 0) {
                 const row = document.createElement('tr');
-                row.innerHTML = '<td colspan="11" style="text-align: center;">Je bibliotheek is leeg. Voeg een film toe!</td>';
+                row.innerHTML = '<td colspan="11" style="text-align: center;">Geen resultaten gevonden. Probeer een andere zoekterm.</td>';
                 tableBody.appendChild(row);
                 return;
             }
 
-            mediaLibrary.forEach(media => {
+            filteredLibrary.forEach(media => {
                 const row = document.createElement('tr');
 
                 const type = media.media_type === 'movie' ? 'Film' : media.media_type === 'tv' ? 'Serie' : 'Documentaire';
