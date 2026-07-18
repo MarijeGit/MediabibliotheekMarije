@@ -348,11 +348,18 @@
                 let matchesStreaming = true;
                 if (streamingFilters.length > 0) {
                     const mediaServices = media.streaming_services || [];
-                    console.log('Streaming filters:', streamingFilters, 'Media services:', mediaServices);
+                    // Debug: toon geselecteerde filters en media services in de eerste rij
+                    if (media === mediaLibrary[0]) {
+                        const debugRow = document.createElement('tr');
+                        debugRow.style.backgroundColor = '#fef08a';
+                        debugRow.innerHTML = `<td colspan="11" style="padding: 8px; font-size: 12px; color: #7c2d12;">
+                            Debug: Streaming filters: [${streamingFilters.join(', ')}] | Media services: [${mediaServices.join(', ')}]
+                        </td>`;
+                        tableBody.appendChild(debugRow);
+                    }
                     matchesStreaming = streamingFilters.some(service => 
                         mediaServices.some(ms => ms.toLowerCase() === service.toLowerCase())
                     );
-                    console.log('Matches streaming:', matchesStreaming);
                 }
                 
                 // Bekeken filter
