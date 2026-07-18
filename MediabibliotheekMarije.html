@@ -424,7 +424,7 @@
         
         <div class="export-section">
             <button onclick="exportToExcel()">Exporteer naar Excel</button>
-            <button onclick="openAddModal()" style="background-color: #2563eb;">Nieuwe film toevoegen</button>
+            <button onclick="openAddForm()" style="background-color: #2563eb;">Nieuwe film toevoegen</button>
         </div>
         
         <div class="table-container">
@@ -518,50 +518,28 @@
         </div>
     </div>
 
-    <!-- Modal voor nieuwe film toevoegen -->
-    <div id="addModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAddModal()">&times;</span>
-            <h2>Nieuwe film toevoegen</h2>
-            <div class="edit-options">
-                <label for="addTitle">Titel:</label>
-                <input type="text" id="addTitle" placeholder="Bijv. Inception">
-                
-                <label for="addTranslatedTitle">Nederlandse titel:</label>
-                <input type="text" id="addTranslatedTitle" placeholder="Bijv. Begin">
-                
-                <label for="addType">Type:</label>
-                <select id="addType">
-                    <option value="movie">Film</option>
-                    <option value="tv">Serie</option>
-                    <option value="documentary">Documentaire</option>
-                </select>
-                
-                <label for="addYear">Jaar:</label>
-                <input type="number" id="addYear" min="1900" max="2100" placeholder="Bijv. 2010">
-                
-                <label for="addGenre">Genre:</label>
-                <input type="text" id="addGenre" placeholder="Bijv. Actie, Thriller">
-                
-                <label for="addCountry">Land:</label>
-                <input type="text" id="addCountry" placeholder="Bijv. Verenigde Staten">
-                
-                <label for="addDuration">Duur (minuten of afleveringen):</label>
-                <input type="text" id="addDuration" placeholder="Bijv. 148 min of 10 afl.">
-                
-                <label for="addActor">Bekendste acteur:</label>
-                <input type="text" id="addActor" placeholder="Bijv. Leonardo DiCaprio">
-                
-                <label for="addPrice">Prijs (€):</label>
-                <input type="text" id="addPrice" placeholder="Bijv. 4.99 of Gratis">
-                
-                <label for="addStreaming">Streamingdiensten:</label>
-                <input type="text" id="addStreaming" placeholder="Bijv. Netflix, Disney+">
-                
-                <label for="addDescription">Omschrijving:</label>
-                <textarea id="addDescription" placeholder="Bijv. Een film over dromen in dromen..."></textarea>
-                
-                <button onclick="addNewMedia()" style="margin-top: 12px;">Toevoegen</button>
+    <!-- Inline formulier voor nieuwe film toevoegen (voor mobiel) -->
+    <div id="addForm" style="display: none; background: #f7fafc; padding: 10px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #cbd5e0;">
+        <h2 style="margin-top: 0; color: #1a365d;">Nieuwe film toevoegen</h2>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <input type="text" id="addTitle" placeholder="Titel (verplicht)" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <input type="text" id="addTranslatedTitle" placeholder="Nederlandse titel" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <select id="addType" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+                <option value="movie">Film</option>
+                <option value="tv">Serie</option>
+                <option value="documentary">Documentaire</option>
+            </select>
+            <input type="number" id="addYear" placeholder="Jaar" min="1900" max="2100" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <input type="text" id="addGenre" placeholder="Genre (bv. Actie, Thriller)" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <input type="text" id="addCountry" placeholder="Land" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <input type="text" id="addDuration" placeholder="Duur (minuten of afleveringen)" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <input type="text" id="addActor" placeholder="Acteur" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <input type="text" id="addPrice" placeholder="Prijs (€)" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <input type="text" id="addStreaming" placeholder="Streaming (bv. Netflix)" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px;">
+            <textarea id="addDescription" placeholder="Omschrijving" style="padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px; min-height: 80px; resize: vertical;"></textarea>
+            <div style="display: flex; gap: 8px;">
+                <button onclick="addNewMedia()" style="padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; flex: 1;">Toevoegen</button>
+                <button onclick="closeAddForm()" style="padding: 10px; background: #718096; color: white; border: none; border-radius: 4px; cursor: pointer; flex: 1;">Annuleren</button>
             </div>
         </div>
     </div>
@@ -609,8 +587,7 @@
         const sortFilter = document.getElementById('sortFilter');
         const streamingModal = document.getElementById('streamingModal');
         const editModal = document.getElementById('editModal');
-        const addModal = document.getElementById('addModal');
-        const imageModal = document.getElementById('imageModal');
+const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const modalMediaTitle = document.getElementById('modalMediaTitle');
         const editModalMediaTitle = document.getElementById('editModalMediaTitle');
@@ -1036,13 +1013,14 @@
             editModal.style.display = 'none';
         }
 
-        function openAddModal() {
-            console.log('openAddModal aangeroepen');
-            addModal.style.display = 'block';
+        function openAddForm() {
+            console.log('openAddForm aangeroepen');
+            document.getElementById('addForm').style.display = 'block';
+            document.getElementById('searchInput').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        function closeAddModal() {
-            addModal.style.display = 'none';
+        function closeAddForm() {
+            document.getElementById('addForm').style.display = 'none';
         }
 
         function addNewMedia() {
@@ -1374,7 +1352,6 @@
         window.onclick = function(event) {
             if (event.target == streamingModal) closeModal();
             if (event.target == editModal) closeEditModal();
-            if (event.target == addModal) closeAddModal();
         }
 
         // Laad bibliotheek bij starten
