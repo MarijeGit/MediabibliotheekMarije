@@ -424,6 +424,7 @@
         
         <div class="export-section">
             <button onclick="exportToExcel()">Exporteer naar Excel</button>
+            <button onclick="openAddModal()" style="background-color: #2563eb;">Nieuwe film toevoegen</button>
         </div>
         
         <div class="table-container">
@@ -517,6 +518,54 @@
         </div>
     </div>
 
+    <!-- Modal voor nieuwe film toevoegen -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddModal()">&times;</span>
+            <h2>Nieuwe film toevoegen</h2>
+            <div class="edit-options">
+                <label for="addTitle">Titel:</label>
+                <input type="text" id="addTitle" placeholder="Bijv. Inception">
+                
+                <label for="addTranslatedTitle">Nederlandse titel:</label>
+                <input type="text" id="addTranslatedTitle" placeholder="Bijv. Begin">
+                
+                <label for="addType">Type:</label>
+                <select id="addType">
+                    <option value="movie">Film</option>
+                    <option value="tv">Serie</option>
+                    <option value="documentary">Documentaire</option>
+                </select>
+                
+                <label for="addYear">Jaar:</label>
+                <input type="number" id="addYear" min="1900" max="2100" placeholder="Bijv. 2010">
+                
+                <label for="addGenre">Genre:</label>
+                <input type="text" id="addGenre" placeholder="Bijv. Actie, Thriller">
+                
+                <label for="addCountry">Land:</label>
+                <input type="text" id="addCountry" placeholder="Bijv. Verenigde Staten">
+                
+                <label for="addDuration">Duur (minuten of afleveringen):</label>
+                <input type="text" id="addDuration" placeholder="Bijv. 148 min of 10 afl.">
+                
+                <label for="addActor">Bekendste acteur:</label>
+                <input type="text" id="addActor" placeholder="Bijv. Leonardo DiCaprio">
+                
+                <label for="addPrice">Prijs (€):</label>
+                <input type="text" id="addPrice" placeholder="Bijv. 4.99 of Gratis">
+                
+                <label for="addStreaming">Streamingdiensten:</label>
+                <input type="text" id="addStreaming" placeholder="Bijv. Netflix, Disney+">
+                
+                <label for="addDescription">Omschrijving:</label>
+                <textarea id="addDescription" placeholder="Bijv. Een film over dromen in dromen..."></textarea>
+                
+                <button onclick="addNewMedia()" style="margin-top: 12px;">Toevoegen</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal voor afbeelding -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()">
         <span class="close">&times;</span>
@@ -560,6 +609,7 @@
         const sortFilter = document.getElementById('sortFilter');
         const streamingModal = document.getElementById('streamingModal');
         const editModal = document.getElementById('editModal');
+        const addModal = document.getElementById('addModal');
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const modalMediaTitle = document.getElementById('modalMediaTitle');
@@ -986,6 +1036,54 @@
             editModal.style.display = 'none';
         }
 
+        function openAddModal() {
+            addModal.style.display = 'block';
+        }
+
+        function closeAddModal() {
+            addModal.style.display = 'none';
+        }
+
+        function addNewMedia() {
+            const newMedia = {
+                id: Date.now(), // Uniek ID op basis van timestamp
+                title: document.getElementById('addTitle').value || 'Onbekend',
+                translated_title: document.getElementById('addTranslatedTitle').value || '',
+                media_type: document.getElementById('addType').value || 'movie',
+                poster_path: '', // Geen poster voor handmatige toevoeging
+                release_date: document.getElementById('addYear').value ? new Date(document.getElementById('addYear').value, 0, 1).toISOString().split('T')[0] : '',
+                overview: document.getElementById('addDescription').value || '',
+                description: document.getElementById('addDescription').value || '',
+                genre_ids: [],
+                genres: document.getElementById('addGenre').value ? document.getElementById('addGenre').value.split(',').map(name => ({ name: name.trim() })) : [],
+                runtime: document.getElementById('addDuration').value ? parseInt(document.getElementById('addDuration').value) : null,
+                number_of_episodes: document.getElementById('addDuration').value && document.getElementById('addType').value === 'tv' ? parseInt(document.getElementById('addDuration').value) : null,
+                production_countries: document.getElementById('addCountry').value ? [{ name: document.getElementById('addCountry').value }] : [],
+                lead_actor: document.getElementById('addActor').value || '',
+                price: document.getElementById('addPrice').value || '',
+                watched: false,
+                streaming_services: document.getElementById('addStreaming').value ? document.getElementById('addStreaming').value.split(',').map(name => name.trim()) : [],
+                added_date: new Date().toISOString()
+            };
+
+            mediaLibrary.push(newMedia);
+            saveLibrary();
+            renderTable();
+            closeAddModal();
+            
+            // Reset velden
+            document.getElementById('addTitle').value = '';
+            document.getElementById('addTranslatedTitle').value = '';
+            document.getElementById('addYear').value = '';
+            document.getElementById('addGenre').value = '';
+            document.getElementById('addCountry').value = '';
+            document.getElementById('addDuration').value = '';
+            document.getElementById('addActor').value = '';
+            document.getElementById('addPrice').value = '';
+            document.getElementById('addStreaming').value = '';
+            document.getElementById('addDescription').value = '';
+        }
+
         function closeImageModal() {
             imageModal.style.display = 'none';
         }
@@ -1250,6 +1348,7 @@
         window.onclick = function(event) {
             if (event.target == streamingModal) closeModal();
             if (event.target == editModal) closeEditModal();
+            if (event.target == addModal) closeAddModal();
         }
 
         // Laad bibliotheek bij starten
