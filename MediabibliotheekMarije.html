@@ -347,7 +347,12 @@
                 // Streaming filter (meerdere streamingdiensten mogelijk)
                 let matchesStreaming = true;
                 if (streamingFilters.length > 0) {
-                    matchesStreaming = media.streaming_services && streamingFilters.some(service => media.streaming_services.includes(service));
+                    const mediaServices = media.streaming_services || [];
+                    console.log('Streaming filters:', streamingFilters, 'Media services:', mediaServices);
+                    matchesStreaming = streamingFilters.some(service => 
+                        mediaServices.some(ms => ms.toLowerCase() === service.toLowerCase())
+                    );
+                    console.log('Matches streaming:', matchesStreaming);
                 }
                 
                 // Bekeken filter
