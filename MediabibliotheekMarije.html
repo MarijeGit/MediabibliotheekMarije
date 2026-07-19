@@ -315,38 +315,91 @@
         }
 
         // Haal continent op basis van land
+        // Haal continent op basis van land (Nederlandse landen)
         function getContinent(country) {
             if (!country) return 'Onbekend';
             
             const countryLower = country.toLowerCase();
             
             // Noord-Amerika
-            const northAmerica = ['united states', 'usa', 'canada', 'mexico', 'united states of america'];
-            if (northAmerica.includes(countryLower)) return 'Amerikaans';
+            const noordAmerika = ['verenigde staten', 'vs', 'usa', 'canada', 'mexico', 'united states', 'united states of america'];
+            if (noordAmerika.includes(countryLower)) return 'Amerikaans';
             
             // Zuid-Amerika
-            const southAmerica = ['brazil', 'argentina', 'colombia', 'peru', 'chile', 'venezuela', 'ecuador', 'bolivia', 'paraguay', 'uruguay'];
-            if (southAmerica.includes(countryLower)) return 'Zuid-Amerikaans';
+            const zuidAmerika = ['argentinië', 'bolivia', 'brazilië', 'chili', 'colombia', 'ecuador', 'paraguay', 'peru', 'uruguay', 'venezuela', 'argentina', 'brazil'];
+            if (zuidAmerika.includes(countryLower)) return 'Zuid-Amerikaans';
             
-            // West-Europa
-            const westernEurope = ['netherlands', 'belgium', 'france', 'germany', 'united kingdom', 'uk', 'ireland', 'luxembourg', 'switzerland', 'austria', 'denmark', 'norway', 'sweden', 'finland', 'iceland', 'spain', 'portugal', 'italy'];
-            if (westernEurope.includes(countryLower)) return 'Europees';
+            // Europa
+            const europa = [
+                'albanië', 'andorra', 'armenië', 'azerbeidzjan', 'belgië', 'bosnië en herzegovina', 'bulgarije', 'cyprus',
+                'denemarken', 'duitsland', 'estland', 'finland', 'frankrijk', 'georgië', 'griekenland', 'hongarije',
+                'ierland', 'ijsland', 'italië', 'kosovo', 'kroatië', 'letland', 'lichtenstein', 'lithouwen',
+                'luxemburg', 'malta', 'moldavië', 'monaco', 'montenegro', 'nederland', 'noord-macedonië', 'noorwegen',
+                'oekraïne', 'ostenrijk', 'polen', 'portugal', 'roemenië', 'rusland', 'san marino', 'servië',
+                'slovenië', 'slowakije', 'spanje', 'tsjechië', 'turkije', 'vatikaanstad', 'verenigd koninkrijk',
+                'wit-rusland', 'zweden', 'zwitserland',
+                // Engelse namen voor compatibiliteit
+                'albania', 'austria', 'belgium', 'bosnia', 'bulgaria', 'croatia', 'czech republic', 'denmark',
+                'estonia', 'finland', 'france', 'germany', 'greece', 'hungary', 'iceland', 'ireland',
+                'italy', 'latvia', 'lithuania', 'luxembourg', 'moldova', 'montenegro', 'netherlands',
+                'north macedonia', 'norway', 'poland', 'portugal', 'romania', 'russia', 'serbia', 'slovakia',
+                'slovenia', 'spain', 'sweden', 'switzerland', 'turkey', 'uk', 'united kingdom'
+            ];
+            if (europa.includes(countryLower)) return 'Europees';
             
-            // Oost-Europa
-            const easternEurope = ['poland', 'russia', 'hungary', 'czech republic', 'slovakia', 'romania', 'bulgaria', 'ukraine', 'belarus', 'moldova', 'serbia', 'croatia', 'slovenia', 'bosnia', 'montenegro', 'albania', 'greece', 'turkey', 'cyprus'];
-            if (easternEurope.includes(countryLower)) return 'Oost-Europees';
+            // Oost-Europees
+            const oostEuropa = ['wit-rusland', 'bulgarije', 'tsjechië', 'hongarije', 'moldavië', 'polen', 'roemenië', 'rusland', 'servië', 'slowakije', 'slovenië',
+                'belarus', 'bulgaria', 'czech republic', 'hungary', 'moldova', 'russia', 'serbia', 'slovakia', 'slovenia'];
+            if (oostEuropa.includes(countryLower)) return 'Oost-Europees';
             
             // Azië
-            const asia = ['japan', 'china', 'south korea', 'north korea', 'india', 'thailand', 'vietnam', 'indonesia', 'malaysia', 'singapore', 'philippines', 'taiwan', 'hong kong'];
-            if (asia.includes(countryLower)) return 'Aziatisch';
+            const azie = ['afghanistan', 'armenië', 'azerbeidzjan', 'bahrein', 'bangladesh', 'bhutan', 'brunei', 'cambodja',
+                'china', 'cyprus', 'georgië', 'india', 'indonesië', 'iran', 'irak', 'israël', 'japan', 'jordanië',
+                'kazachstan', 'koeweit', 'kirgizië', 'laos', 'libanon', 'maleisië', 'maldiven', 'mongolië',
+                'myanmar', 'nepal', 'noord-korea', 'oman', 'pakistan', 'palestina', 'filippijnen', 'qatar',
+                'saudi-arabië', 'singapore', 'zuid-korea', 'sri lanka', 'syrië', 'taiwan', 'tadzjikistan',
+                'thailand', 'oost-timor', 'turkmenistan', 'verenigde arabische emiraten', 'ozbekistan', 'vietnam', 'jemen',
+                'hongkong', 'macau',
+                // Engelse namen voor compatibiliteit
+                'afghanistan', 'armenia', 'azerbaijan', 'bahrain', 'bangladesh', 'bhutan', 'brunei', 'cambodia',
+                'china', 'georgia', 'india', 'indonesia', 'iran', 'iraq', 'israel', 'japan', 'jordan',
+                'kazakhstan', 'kuwait', 'kyrgyzstan', 'laos', 'lebanon', 'malaysia', 'maldives', 'mongolia',
+                'myanmar', 'nepal', 'north korea', 'oman', 'pakistan', 'palestine', 'philippines', 'qatar',
+                'saudi arabia', 'singapore', 'south korea', 'sri lanka', 'syria', 'taiwan', 'tajikistan',
+                'thailand', 'timor-leste', 'turkmenistan', 'united arab emirates', 'uzbekistan', 'vietnam', 'yemen',
+                'hong kong', 'macau'
+            ];
+            if (azie.includes(countryLower)) return 'Aziatisch';
             
             // Afrika
-            const africa = ['south africa', 'nigeria', 'egypt', 'morocco', 'kenya', 'ghana', 'algeria', 'ethiopia'];
-            if (africa.includes(countryLower)) return 'Afrikaans';
+            const afrika = ['algerije', 'angola', 'benin', 'botswana', 'burkina faso', 'burundi', 'kaapverdië',
+                'kamerun', 'centraal-afrikaanse republiek', 'tsjaad', 'comoren', 'congo', 'ivoorkust',
+                'djibouti', 'egypte', 'equatoriaal-guinea', 'eritrea', 'eswatini', 'ethiopië', 'gabon', 'gambia',
+                'ghana', 'guinee', 'guinee-bissau', 'kenia', 'lesotho', 'liberia', 'libië', 'madagaskar',
+                'malawi', 'mali', 'mauretanië', 'mauritius', 'marokko', 'mozambique', 'namibië', 'niger',
+                'nigeria', 'rwanda', 'sao tomé en principe', 'senegal', 'seychellen', 'sierra leone',
+                'somalia', 'zuid-afrika', 'zuid-sudan', 'soedan', 'tanzania', 'togo', 'tunesië', 'uganda',
+                'zambia', 'zimbabwe',
+                // Engelse namen voor compatibiliteit
+                'algeria', 'angola', 'benin', 'botswana', 'burkina faso', 'burundi', 'cabo verde',
+                'cameroon', 'central african republic', 'chad', 'comoros', 'congo', 'cote d ivoire',
+                'djibouti', 'egypt', 'equatorial guinea', 'eritrea', 'eswatini', 'ethiopia', 'gabon', 'gambia',
+                'ghana', 'guinea', 'guinea-bissau', 'kenya', 'lesotho', 'liberia', 'libya', 'madagascar',
+                'malawi', 'mali', 'mauritania', 'mauritius', 'morocco', 'mozambique', 'namibia', 'niger',
+                'nigeria', 'rwanda', 'sao tome and principe', 'senegal', 'seychelles', 'sierra leone',
+                'somalia', 'south africa', 'south sudan', 'sudan', 'tanzania', 'togo', 'tunisia', 'uganda',
+                'zambia', 'zimbabwe'
+            ];
+            if (afrika.includes(countryLower)) return 'Afrikaans';
             
             // Oceanië
-            const oceania = ['australia', 'new zealand', 'fiji', 'papua new guinea'];
-            if (oceania.includes(countryLower)) return 'Oceanië';
+            const oceanie = ['australië', 'fiji', 'kiribati', 'marshalleilanden', 'micronesië', 'nauru',
+                'nieuw-zeeland', 'palau', 'papua-nieuwe-guinea', 'samoa', 'salomonseilanden', 'tonga', 'tuvalu', 'vanuatu',
+                // Engelse namen voor compatibiliteit
+                'australia', 'fiji', 'kiribati', 'marshall islands', 'micronesia', 'nauru',
+                'new zealand', 'palau', 'papua new guinea', 'samoa', 'solomon islands', 'tonga', 'tuvalu', 'vanuatu'
+            ];
+            if (oceanie.includes(countryLower)) return 'Oceanië';
             
             return 'Onbekend';
         }
