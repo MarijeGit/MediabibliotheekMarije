@@ -273,7 +273,7 @@
             tmdbResultsDiv.innerHTML = '<div style="padding: 8px; background: #f7fafc; border-radius: 4px;">Zoeken op TMDB...</div>';
 
             try {
-                const searchUrl = `https://cors-anywhere.herokuapp.com/${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`;
+                const searchUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`)}`;
                 const response = await fetch(searchUrl);
                 
                 if (!response.ok) {
