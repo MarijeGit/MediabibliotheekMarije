@@ -261,6 +261,92 @@
         let currentSortDirection = 1; // 1 = ascending, -1 = descending
         let lastTMDBResults = []; // Slaat laatste TMDB-zoekresultaten op
 
+        // Zoek op TMDB
+        async function searchTMDB() {
+            const query = document.getElementById('tmdbSearchInput').value.trim();
+            if (!query) {
+                document.getElementById('tmdbResults').innerHTML = '';
+                return;
+            }
+
+            const tmdbResultsDiv = document.getElementById('tmdbResults');
+            tmdbResultsDiv.innerHTML = '<div style="padding: 8px; background: #f7fafc; border-radius: 4px;">Zoeken op TMDB...</div>';
+
+            try {
+                const searchUrl = `https://cors-anywhere.herokuapp.com/${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`;
+                const response = await fetch(searchUrl);
+                
+                if (!response.ok) {
+                    throw new Error('HTTP error! status: ' + response.status);
+                }
+                
+                const data = await response.json();
+                
+                if (!data.results || data.results.length === 0) {
+                    tmdbResultsDiv.innerHTML = '<div style="padding: 8px; background: #f7fafc; border-radius: 4px;">Geen resultaten gevonden op TMDB.</div>';
+                    return;
+                }
+
+                const results = data.results.filter(result => result.media_type === 'movie' || result.media_type === 'tv');
+                lastTMDBResults = results;
+                displayTMDBResults(results);
+            } catch (error) {
+                tmdbResultsDiv.innerHTML = '<div style="color: red; padding: 8px; background: #fee; border-radius: 4px;">Fout bij zoeken. Probeer het later opnieuw.</div>';
+            }
+        }
+
+        function displayTMDBResults(results) {
+            const tmdbResultsDiv = document.getElementById('tmdbResults');
+            if (results.length === 0) {
+                tmdbResultsDiv.innerHTML = '<div style="padding: 8px; background: #f7fafc; border-radius: 4px;">Geen resultaten gevonden op TMDB.</div>';
+                return;
+            }
+
+            let html = '<div style="background: #f7fafc; padding: 10px; border-radius: 8px; margin-bottom: 10px;"><h3 style="margin-top: 0; color: #1a365d;">TMDB Zoekresultaten (klik om toe te voegen):</h3><div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch;">';
+
+            results.forEach(result => {
+                const title = result.title || result.name || 'Onbekend';
+                const year = result.release_date ? new Date(result.release_date).getFullYear() : '????';
+                const posterPath = result.poster_path ? TMDB_IMAGE_BASE_URL + result.poster_path : 'https://via.placeholder.com/92x138?text=No+Poster';
+                const mediaType = result.media_type === 'movie' ? 'Film' : 'Serie';
+                html += '<div style="width: 92px; text-align: center; cursor: pointer;" onclick="addFromTMDB(' + result.id + ')"><img src="' + posterPath + '" alt="' + title + '" style="width: 92px; height: 138px; object-fit: cover; border-radius: 4px; margin-bottom: 5px;"><div style="font-size: 12px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="' + title + ' (' + year + ')">' + title + ' (' + year + ')</div><div style="font-size: 11px; color: #4a5568;">' + mediaType + '</div></div>';
+            });
+
+            html += '</div></div>';
+            tmdbResultsDiv.innerHTML = html;
+        }
+
+        function addFromTMDB(mediaId) {
+            const media = lastTMDBResults.find(item => item.id === mediaId);
+            if (!media) return;
+            const newMedia = {
+                id: media.id,
+                title: media.title || media.name || 'Onbekend',
+                translated_title: '',
+                media_type: media.media_type,
+                poster_path: media.poster_path || '',
+                release_date: media.release_date || '',
+                overview: media.overview || '',
+                description: media.overview || '',
+                genre_ids: media.genre_ids || [],
+                genres: [],
+                runtime: media.media_type === 'movie' ? media.runtime : null,
+                number_of_episodes: media.media_type === 'tv' ? media.number_of_episodes : null,
+                production_countries: media.production_countries || [],
+                lead_actor: '',
+                price: '',
+                watched: false,
+                streaming_services: [],
+                added_date: new Date().toISOString()
+            };
+            mediaLibrary.push(newMedia);
+            saveLibrary();
+            renderTable();
+            document.getElementById('tmdbResults').innerHTML = '';
+            document.getElementById('tmdbSearchInput').value = '';
+        }
+
+
         // DOM elementen
         const tableBody = document.getElementById('tableBody');
         const addForm = document.getElementById('addForm');
