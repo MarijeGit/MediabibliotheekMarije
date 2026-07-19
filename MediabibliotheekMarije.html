@@ -247,6 +247,8 @@
     <script>
         // Lokale opslag
         let mediaLibrary = JSON.parse(localStorage.getItem('mediaLibrary')) || [];
+        let currentSortColumn = null;
+        let currentSortDirection = 1; // 1 = ascending, -1 = descending
 
         // DOM elementen
         const tableBody = document.getElementById('tableBody');
@@ -313,6 +315,85 @@
         // Sla bibliotheek op
         function saveLibrary() {
             localStorage.setItem('mediaLibrary', JSON.stringify(mediaLibrary));
+        }
+
+        // Sorteer tabel op kolom
+        function sortTable(columnIndex) {
+            // Als dezelfde kolom wordt geklikt, wissel de sorteerrichting
+            if (currentSortColumn === columnIndex) {
+                currentSortDirection *= -1;
+            } else {
+                currentSortColumn = columnIndex;
+                currentSortDirection = 1;
+            }
+
+            // Update de header om de sorteerrichting te tonen
+            const headers = document.querySelectorAll('th');
+            headers.forEach((header, index) => {
+                if (index === columnIndex) {
+                    header.innerHTML = header.innerHTML.replace('▲▼', currentSortDirection === 1 ? '▲' : '▼');
+                } else {
+                    header.innerHTML = header.innerHTML.replace('▲', '▲▼').replace('▼', '▲▼');
+                }
+            });
+
+            // Sorteer de bibliotheek
+            mediaLibrary.sort((a, b) => {
+                let aValue, bValue;
+                
+                switch (columnIndex) {
+                    case 0: // Poster (geen sorteren)
+                        return 0;
+                    case 1: // Titel
+                        aValue = (a.title || a.name || '').toLowerCase();
+                        bValue = (b.title || b.name || '').toLowerCase();
+                        break;
+                    case 2: // Type
+                        aValue = a.media_type || '';
+                        bValue = b.media_type || '';
+                        break;
+                    case 3: // Jaar
+                        aValue = a.release_date ? new Date(a.release_date).getFullYear() : 0;
+                        bValue = b.release_date ? new Date(b.release_date).getFullYear() : 0;
+                        break;
+                    case 4: // Genre
+                        aValue = (a.genres ? a.genres.map(g => g.name).join(', ') : '').toLowerCase();
+                        bValue = (b.genres ? b.genres.map(g => g.name).join(', ') : '').toLowerCase();
+                        break;
+                    case 5: // Land
+                        aValue = (a.production_countries && a.production_countries[0] ? a.production_countries[0].name : '').toLowerCase();
+                        bValue = (b.production_countries && b.production_countries[0] ? b.production_countries[0].name : '').toLowerCase();
+                        break;
+                    case 6: // Duur
+                        aValue = a.media_type === 'movie' ? a.runtime : a.number_of_episodes || 0;
+                        bValue = b.media_type === 'movie' ? b.runtime : b.number_of_episodes || 0;
+                        break;
+                    case 7: // Acteur
+                        aValue = (a.lead_actor || '').toLowerCase();
+                        bValue = (b.lead_actor || '').toLowerCase();
+                        break;
+                    case 8: // Prijs
+                        aValue = (a.price || '').toLowerCase();
+                        bValue = (b.price || '').toLowerCase();
+                        break;
+                    case 9: // Streaming
+                        aValue = (a.streaming_services || []).join(', ').toLowerCase();
+                        bValue = (b.streaming_services || []).join(', ').toLowerCase();
+                        break;
+                    case 10: // Bekeken
+                        aValue = a.watched ? 1 : 0;
+                        bValue = b.watched ? 1 : 0;
+                        break;
+                    default:
+                        return 0;
+                }
+
+                if (aValue < bValue) return -1 * currentSortDirection;
+                if (aValue > bValue) return 1 * currentSortDirection;
+                return 0;
+            });
+
+            renderTable();
         }
 
         // Haal continent op basis van land
