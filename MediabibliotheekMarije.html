@@ -226,16 +226,16 @@
                 <thead>
                     <tr>
                         <th style="width: 50px;">Poster</th>
-                        <th>Titel</th>
-                        <th>Type</th>
-                        <th>Jaar</th>
-                        <th>Genre</th>
-                        <th>Land</th>
-                        <th>Duur</th>
-                        <th>Acteur</th>
-                        <th>Prijs</th>
-                        <th>Streaming</th>
-                        <th>Bekeken</th>
+                        <th style="cursor: pointer;" onclick="sortTable(1)">Titel ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(2)">Type ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(3)">Jaar ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(4)">Genre ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(5)">Land ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(6)">Duur ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(7)">Acteur ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(8)">Prijs ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(9)">Streaming ▲▼</th>
+                        <th style="cursor: pointer;" onclick="sortTable(10)">Bekeken ▲▼</th>
                         <th>Acties</th>
                     </tr>
                 </thead>
@@ -320,7 +320,6 @@
         // Sorteer tabel op kolom
         // Sorteer tabel op kolom
         function sortTable(columnIndex) {
-            console.log('sortTable aangeroepen met columnIndex:', columnIndex);
             // Als dezelfde kolom wordt geklikt, wissel de sorteerrichting
             if (currentSortColumn === columnIndex) {
                 currentSortDirection *= -1;
@@ -328,16 +327,6 @@
                 currentSortColumn = columnIndex;
                 currentSortDirection = 1;
             }
-
-            // Update de header om de sorteerrichting te tonen
-            const headers = document.querySelectorAll('th');
-            headers.forEach((header, index) => {
-                if (index === columnIndex) {
-                    header.innerHTML = header.innerHTML.replace('▲▼', currentSortDirection === 1 ? '▲' : '▼');
-                } else {
-                    header.innerHTML = header.innerHTML.replace('▲', '▲▼').replace('▼', '▲▼');
-                }
-            });
 
             renderTable();
         }
@@ -495,7 +484,6 @@
 
         // Render tabel
         function renderTable() {
-            console.log('renderTable aangeroepen, currentSortColumn:', currentSortColumn, 'currentSortDirection:', currentSortDirection);
             tableBody.innerHTML = '';
             
             // Haal zoekterm en filters op
@@ -621,6 +609,8 @@
                 return 0;
             });
         }
+        
+
         
         // Sorteer als er een kolom is geselecteerd
         if (currentSortColumn !== null && currentSortColumn > 0) {
