@@ -237,6 +237,7 @@
         // DOM elementen
         const tableBody = document.getElementById('tableBody');
         const addForm = document.getElementById('addForm');
+        const editForm = document.getElementById('editForm');
 
         // Toggle add form
         function toggleAddForm() {
@@ -300,6 +301,67 @@
             localStorage.setItem('mediaLibrary', JSON.stringify(mediaLibrary));
         }
 
+        // Toggle bewerk-formulier
+        function toggleEditForm() {
+            if (editForm.style.display === 'block') {
+                editForm.style.display = 'none';
+            } else {
+                editForm.style.display = 'block';
+                editForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        // Laad film in bewerk-formulier
+        function loadEditForm(id) {
+            const media = mediaLibrary.find(item => item.id === id);
+            if (!media) return;
+
+            document.getElementById('editId').value = media.id;
+            document.getElementById('editTitle').value = media.title || '';
+            document.getElementById('editTranslatedTitle').value = media.translated_title || '';
+            document.getElementById('editType').value = media.media_type || 'movie';
+            document.getElementById('editYear').value = media.release_date ? new Date(media.release_date).getFullYear() : '';
+            document.getElementById('editGenre').value = media.genres ? media.genres.map(g => g.name).join(', ') : '';
+            document.getElementById('editCountry').value = media.production_countries && media.production_countries[0] ? media.production_countries[0].name : '';
+            document.getElementById('editDuration').value = media.media_type === 'movie' && media.runtime ? media.runtime : media.number_of_episodes || '';
+            document.getElementById('editActor').value = media.lead_actor || '';
+            document.getElementById('editPrice').value = media.price || '';
+            document.getElementById('editStreaming').value = media.streaming_services ? media.streaming_services.join(', ') : '';
+            document.getElementById('editDescription').value = media.description || '';
+
+            toggleEditForm();
+        }
+
+        // Sla bewerkte film op
+        function saveEditedMedia() {
+            const id = parseInt(document.getElementById('editId').value);
+            const media = mediaLibrary.find(item => item.id === id);
+            if (!media) return;
+
+            media.title = document.getElementById('editTitle').value.trim() || media.title;
+            media.translated_title = document.getElementById('editTranslatedTitle').value.trim() || '';
+            media.media_type = document.getElementById('editType').value || media.media_type;
+            media.release_date = document.getElementById('editYear').value ? `${document.getElementById('editYear').value}-01-01` : media.release_date;
+            media.genres = document.getElementById('editGenre').value ? document.getElementById('editGenre').value.split(',').map(name => ({ name: name.trim() })) : media.genres || [];
+            media.production_countries = document.getElementById('editCountry').value ? [{ name: document.getElementById('editCountry').value.trim() }] : media.production_countries || [];
+            
+            const durationValue = document.getElementById('editDuration').value.trim();
+            if (media.media_type === 'movie' && durationValue) {
+                media.runtime = parseInt(durationValue);
+            } else if (media.media_type === 'tv' && durationValue) {
+                media.number_of_episodes = parseInt(durationValue);
+            }
+            
+            media.lead_actor = document.getElementById('editActor').value.trim() || '';
+            media.price = document.getElementById('editPrice').value.trim() || '';
+            media.streaming_services = document.getElementById('editStreaming').value ? document.getElementById('editStreaming').value.split(',').map(name => name.trim()) : media.streaming_services || [];
+            media.description = document.getElementById('editDescription').value.trim() || '';
+
+            saveLibrary();
+            renderTable();
+            toggleEditForm();
+        }
+
         // Render tabel
         function renderTable() {
             tableBody.innerHTML = '';
@@ -348,15 +410,6 @@
                 let matchesStreaming = true;
                 if (streamingFilters.length > 0) {
                     const mediaServices = media.streaming_services || [];
-                    // Debug: toon geselecteerde filters en media services in de eerste rij
-                    if (media === mediaLibrary[0]) {
-                        const debugRow = document.createElement('tr');
-                        debugRow.style.backgroundColor = '#fef08a';
-                        debugRow.innerHTML = `<td colspan="11" style="padding: 8px; font-size: 12px; color: #7c2d12;">
-                            Debug: Streaming filters: [${streamingFilters.join(', ')}] | Media services: [${mediaServices.join(', ')}]
-                        </td>`;
-                        tableBody.appendChild(debugRow);
-                    }
                     matchesStreaming = streamingFilters.some(service => 
                         mediaServices.some(ms => ms.toLowerCase() === service.toLowerCase())
                     );
@@ -408,6 +461,7 @@
                     <td class="actions">
                         <button class="remove-button" onclick="removeFromLibrary(${media.id})">Verwijder</button>
                         <button class="watched-button" onclick="toggleWatched(${media.id})">${media.watched ? 'Niet bekeken' : 'Bekeken'}</button>
+                        <button class="edit-button" onclick="loadEditForm(${media.id})">Bewerk</button>
                     </td>
                 `;
 
