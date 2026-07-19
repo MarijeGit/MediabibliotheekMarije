@@ -173,6 +173,19 @@
                 </select>
             </div>
             <div style="display: flex; flex-direction: column; min-width: 120px;">
+                <label style="font-size: 12px; font-weight: bold; margin-bottom: 2px;">Continent:</label>
+                <select id="continentFilter" onchange="renderTable()" style="padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 12px;">
+                    <option value="">Alle continenten</option>
+                    <option value="Amerikaans">Amerikaans</option>
+                    <option value="Afrikaans">Afrikaans</option>
+                    <option value="Aziatisch">Aziatisch</option>
+                    <option value="Europees">Europees</option>
+                    <option value="Oost-Europees">Oost-Europees</option>
+                    <option value="Oceanië">Oceanië</option>
+                    <option value="Zuid-Amerikaans">Zuid-Amerikaans</option>
+                </select>
+            </div>
+            <div style="display: flex; flex-direction: column; min-width: 120px;">
                 <label style="font-size: 12px; font-weight: bold; margin-bottom: 2px;">Bekeken:</label>
                 <select id="watchedFilter" onchange="renderTable()" style="padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 12px;">
                     <option value="">Alle status</option>
@@ -301,6 +314,43 @@
             localStorage.setItem('mediaLibrary', JSON.stringify(mediaLibrary));
         }
 
+        // Haal continent op basis van land
+        function getContinent(country) {
+            if (!country) return 'Onbekend';
+            
+            const countryLower = country.toLowerCase();
+            
+            // Noord-Amerika
+            const northAmerica = ['united states', 'usa', 'canada', 'mexico', 'united states of america'];
+            if (northAmerica.includes(countryLower)) return 'Amerikaans';
+            
+            // Zuid-Amerika
+            const southAmerica = ['brazil', 'argentina', 'colombia', 'peru', 'chile', 'venezuela', 'ecuador', 'bolivia', 'paraguay', 'uruguay'];
+            if (southAmerica.includes(countryLower)) return 'Zuid-Amerikaans';
+            
+            // West-Europa
+            const westernEurope = ['netherlands', 'belgium', 'france', 'germany', 'united kingdom', 'uk', 'ireland', 'luxembourg', 'switzerland', 'austria', 'denmark', 'norway', 'sweden', 'finland', 'iceland', 'spain', 'portugal', 'italy'];
+            if (westernEurope.includes(countryLower)) return 'Europees';
+            
+            // Oost-Europa
+            const easternEurope = ['poland', 'russia', 'hungary', 'czech republic', 'slovakia', 'romania', 'bulgaria', 'ukraine', 'belarus', 'moldova', 'serbia', 'croatia', 'slovenia', 'bosnia', 'montenegro', 'albania', 'greece', 'turkey', 'cyprus'];
+            if (easternEurope.includes(countryLower)) return 'Oost-Europees';
+            
+            // Azië
+            const asia = ['japan', 'china', 'south korea', 'north korea', 'india', 'thailand', 'vietnam', 'indonesia', 'malaysia', 'singapore', 'philippines', 'taiwan', 'hong kong'];
+            if (asia.includes(countryLower)) return 'Aziatisch';
+            
+            // Afrika
+            const africa = ['south africa', 'nigeria', 'egypt', 'morocco', 'kenya', 'ghana', 'algeria', 'ethiopia'];
+            if (africa.includes(countryLower)) return 'Afrikaans';
+            
+            // Oceanië
+            const oceania = ['australia', 'new zealand', 'fiji', 'papua new guinea'];
+            if (oceania.includes(countryLower)) return 'Oceanië';
+            
+            return 'Onbekend';
+        }
+
         // Toggle bewerk-formulier
         function toggleEditForm() {
             if (editForm.style.display === 'block') {
@@ -371,6 +421,7 @@
             const typeFilter = document.getElementById('typeFilter').value;
             const genreFilters = Array.from(document.getElementById('genreFilter').selectedOptions).map(option => option.value);
             const streamingFilters = Array.from(document.getElementById('streamingFilter').selectedOptions).map(option => option.value);
+            const continentFilter = document.getElementById('continentFilter').value;
             const watchedFilter = document.getElementById('watchedFilter').value;
             
             // Filter bibliotheek
@@ -415,6 +466,13 @@
                     );
                 }
                 
+                // Continent filter
+                let matchesContinent = true;
+                if (continentFilter) {
+                    const country = media.production_countries && media.production_countries[0] ? media.production_countries[0].name : '';
+                    matchesContinent = getContinent(country) === continentFilter;
+                }
+                
                 // Bekeken filter
                 let matchesWatched = true;
                 if (watchedFilter === 'watched') {
@@ -423,7 +481,7 @@
                     matchesWatched = !media.watched;
                 }
                 
-                return matchesSearch && matchesType && matchesGenre && matchesStreaming && matchesWatched;
+                return matchesSearch && matchesType && matchesGenre && matchesStreaming && matchesContinent && matchesWatched;
             });
 
             if (filteredLibrary.length === 0) {
