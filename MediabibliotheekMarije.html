@@ -271,10 +271,16 @@
 
             const tmdbResultsDiv = document.getElementById('tmdbResults');
             tmdbResultsDiv.innerHTML = '<div style="padding: 8px; background: #f7fafc; border-radius: 4px;">Zoeken op TMDB...</div>';
-
             try {
-                const searchUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`)}`;
-                const response = await fetch(searchUrl);
+                const searchUrl = `${TMDB_BASE_URL}/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL`;
+                const response = await fetch(searchUrl, {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
                 
                 if (!response.ok) {
                     throw new Error('HTTP error! status: ' + response.status);
@@ -289,12 +295,21 @@
 
                 const results = data.results.filter(result => result.media_type === 'movie' || result.media_type === 'tv');
                 lastTMDBResults = results;
-                displayTMDBResults(results);
             } catch (error) {
-                tmdbResultsDiv.innerHTML = '<div style="color: red; padding: 8px; background: #fee; border-radius: 4px;">Fout bij zoeken. Probeer het later opnieuw.</div>';
+                // Probeer JSONP als fallback
+                tmdbResultsDiv.innerHTML = '<div style="color: orange; padding: 8px; background: #fef3c7; border-radius: 4px;">Probeert JSONP...</div>';
+                try {
+                    const jsonpUrl = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=nl-NL&callback=handleTMDBResponse`;
+                    const script = document.createElement('script');
+                    script.src = jsonpUrl;
+                    script.onerror = function() {
+                        tmdbResultsDiv.innerHTML = '<div style="color: red; padding: 8px; background: #fee; border-radius: 4px;">Fout bij zoeken. Probeer het later opnieuw.</div>';
+                    };
+                    document.body.appendChild(script);
+                } catch (jsonpError) {
+                    tmdbResultsDiv.innerHTML = '<div style="color: red; padding: 8px; background: #fee; border-radius: 4px;">Fout bij zoeken. Probeer het later opnieuw.</div>';
+                }
             }
-        }
-
         function displayTMDBResults(results) {
             const tmdbResultsDiv = document.getElementById('tmdbResults');
             if (results.length === 0) {
@@ -314,6 +329,21 @@
 
             html += '</div></div>';
             tmdbResultsDiv.innerHTML = html;
+        }
+
+        // JSONP callback voor TMDB
+        function handleTMDBResponse(data) {
+            const tmdbResultsDiv = document.getElementById('tmdbResults');
+            if (!data.results || data.results.length === 0) {
+                tmdbResultsDiv.innerHTML = '<div style="padding: 8px; background: #f7fafc; border-radius: 4px;">Geen resultaten gevonden op TMDB.</div>';
+                return;
+            }
+            const results = data.results.filter(result => result.media_type === 'movie' || result.media_type === 'tv');
+            lastTMDBResults = results;
+            displayTMDBResults(results);
+            // Verwijder het script-element
+            const script = document.querySelector('script[src*="themoviedb.org"]');
+            if (script) script.remove();
         }
 
         function addFromTMDB(mediaId) {
